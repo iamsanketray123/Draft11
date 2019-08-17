@@ -11,7 +11,7 @@ import Foundation
 
 struct Pool {
     let entryFee: Int
-    let id: Int
+    let id: String
     let percentageOfWinners: Int
     let spotsLeft: Int
     let totalSpots: Int
@@ -19,7 +19,7 @@ struct Pool {
     
     init(dictionary: [String: Any]) {
         self.entryFee = dictionary["entryFee"] as? Int ?? Int()
-        self.id = dictionary["id"] as? Int ?? Int()
+        self.id = dictionary["id"] as? String ?? String()
         self.percentageOfWinners = dictionary["percentageOfWinners"] as? Int ?? Int()
         self.spotsLeft = dictionary["spotsLeft"] as? Int ?? Int()
         self.totalSpots = dictionary["totalSpots"] as? Int ?? Int()

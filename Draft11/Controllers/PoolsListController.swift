@@ -19,7 +19,7 @@ class PoolsListController: UIViewController {
     var pools = [Pool]()
     let poolCellId = "poolCellId"
     
-    
+    let a = [String:String]()
     //    let pools = [
     //        Pool(entryFee: 5750, id: 1, percentageOfWinners: 50, spotsLeft: 2, totalSpots: 2, totalWinningAmount: 10000),
     //        Pool(entryFee: 2000, id: 2, percentageOfWinners: 33, spotsLeft: 6, totalSpots: 6, totalWinningAmount: 10000),
@@ -42,6 +42,7 @@ class PoolsListController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         self.view.backgroundColor = .white
         collectionView.delegate = self
@@ -82,20 +83,64 @@ class PoolsListController: UIViewController {
     }
     
     
-    fileprivate func joinPool(with id: Int) {
-// MARK:    replace id with autoID
-        reference.child("Pools").queryOrdered(byChild: "id").queryEqual(toValue: id).observeSingleEvent(of: .value) { (snapshot) in
+    fileprivate func join(pool: Pool, userID: String) {
+        
+        self.reference.child("Pools").child(pool.id).observeSingleEvent(of: .value) { (snapshot) in
             guard let dictionary  = snapshot.value as? [String: Any] else { return }
-            guard let idToUpdate = dictionary.keys.first else { return }
-            guard let poolGettingUpdated = self.pools.filter({$0.id == id}).first else { return }
-            if poolGettingUpdated.spotsLeft >= 1 {
-                self.reference.child("Pools").child(idToUpdate).updateChildValues(["spotsLeft" : (poolGettingUpdated.spotsLeft - 1)])
-                guard let currentUserUID = Auth.auth().currentUser?.uid else { return }
-                print(currentUserUID, "current user id 🍏")
-                self.reference.child("Pools").child(idToUpdate).child("players").child(currentUserUID)
+            print(dictionary, "🚦")
+            let pool = Pool(dictionary: dictionary)
+            if pool.spotsLeft >= 1 {
+                self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : (pool.spotsLeft - 1)])
+                self.reference.child("Teams").child(userID).child("poolsJoined").updateChildValues(["\(pool.id)": Date().timeIntervalSince1970])
             } else {
                 print("Pool already filled, sorry!")
             }
+        }
+    }
+    
+    fileprivate func joinPool(with id: Int) {
+        
+        let pool = pools[id]
+        
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        reference.child("Teams").child(userID).child("poolsJoined").observeSingleEvent(of: .value) { (snapshot) in
+            let snap = snapshot.value as? [String: Any]
+            
+            if snap == nil {
+                
+                self.join(pool: pool, userID: userID)
+                
+            } else { // user has joined
+                
+                if snap!["\(pool.id)"] == nil { // user has not joined this pool
+                    
+                    self.join(pool: pool, userID: userID)
+                    
+                } else {
+                    print("ALREADY JOINED ⚠️")
+                }
+                
+            }
+//            let dictionary = snapshot.value as? [String: Any]
+//            print("🥛", dictionary, "🥛")
+//            if dictionary == nil {
+//                print("player has not joined ANY pools before this")
+//
+//                self.reference.child("Pools").child(pool.id).observeSingleEvent(of: .value) { (snapshot) in
+//                    guard let dictionary  = snapshot.value as? [String: Any] else { return }
+//                    print(dictionary, "🚦")
+//                    let pool = Pool(dictionary: dictionary)
+//                    if pool.spotsLeft >= 1 {
+//                        self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : (pool.spotsLeft - 1)])
+//                        self.reference.child("Teams").child(userID).child("poolsJoined").updateChildValues(["\(pool.id)": Date().timeIntervalSince1970])
+//                    } else {
+//                        print("Pool already filled, sorry!")
+//                    }
+//                }
+//            } else {
+//                print("player has joined a pool and now we must check if he has joined our specific pool")
+//            }
+            
         }
     }
     

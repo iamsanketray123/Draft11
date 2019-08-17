@@ -8,11 +8,12 @@
 
 import UIKit
 import FirebaseDatabase
-
+import FirebaseAuth
 
 class CoinSelectionController: UIViewController {
 
     @IBOutlet weak var coinsTable: UITableView!
+    @IBOutlet weak var tableTopConstraint: NSLayoutConstraint!
     
     var coins = [Coin]()
     var selectedCoins = [Coin]()
@@ -33,7 +34,7 @@ class CoinSelectionController: UIViewController {
         var coinsArray = coinsString.split(separator: ",")
         coinsArray.sort(by: {$0 < $1})
         let sortedCoinsString = coinsArray.joined(separator: ",")
-
+        
         getCryptoDetailsFor(coinsString: sortedCoinsString, currency: "INR", completionForError: { (errorMessage) in
             print(errorMessage)
         }) { (coins) in
@@ -41,32 +42,39 @@ class CoinSelectionController: UIViewController {
             self.coins.sort(by: {$0.symbol < $1.symbol})
             DispatchQueue.main.async {
                 self.coinsTable.reloadData()
+//                self.animateTopSection()
             }
         }
         
     }
     
-    
-//    fileprivate func fetchCoinsFromFirebase() {
-//        reference.child("Coins").observeSingleEvent(of: .value) { (snapshot) in
-//            guard let dictionary = snapshot.value as? [String: Any] else { return }
-//
-//            dictionary.forEach({ (key, value) in
-//                let coin = Coin(symbol: key as String, name: value as! String, price: nil, percentageChange24h: nil, percentageChange7d: nil)
-//                self.coins.append(coin)
-//            })
-//            DispatchQueue.main.async {
-//                self.coins.sort(by: {$0.name < $1.name})
-//                self.coinsTable.reloadData()
-//            }
-//
-//        }
-//    }
-    
+    fileprivate func animateTopSection() {
+        tableTopConstraint.constant += 80
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+
     @IBAction func backButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func confirmTeamTapped(_ sender: Any) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let updateValues = generateDictionary()
+        reference.child("Teams").child(uid).child("portfolio").updateChildValues(updateValues)
+    }
+    
+    fileprivate func generateDictionary() -> [String: Double] {
+        
+        var dictionary = [String: Double]()
+        for coin in selectedCoins {
+            dictionary["\(coin.symbol)"] = (20000 / coin.price!)
+        }
+        
+        return dictionary
+    }
 
 }
 
@@ -90,11 +98,13 @@ extension CoinSelectionController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let coin = coins[indexPath.item]
         print(coin.symbol)
-        if selectedCoins.count <= 5 {
+        if selectedCoins.count < 5 {
             selectedCoins.append(coin)
-            print(selectedCoins)
+//            print(selectedCoins)
         } else {
-            print(selectedCoins, "max number of coins selected")
+            tableView.deselectRow(at: indexPath, animated: true)
+//            print(selectedCoins, "max number of coins selected")
+            print("max number of coins selected")
         }
     }
     
@@ -103,7 +113,7 @@ extension CoinSelectionController : UITableViewDelegate, UITableViewDataSource {
         print("Coin already selected, must remove", coin.symbol)
         guard let indexToRemove = selectedCoins.firstIndex(of: coin) else { return }
         selectedCoins.remove(at: indexToRemove)
-        print(selectedCoins)
+//        print(selectedCoins)
         
     }
     

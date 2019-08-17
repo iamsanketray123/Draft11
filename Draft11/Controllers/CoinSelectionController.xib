@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CoinSelectionController" customModule="Draft11" customModuleProvider="target">
             <connections>
                 <outlet property="coinsTable" destination="Plu-DW-mD1" id="xcv-QV-jjG"/>
+                <outlet property="tableTopConstraint" destination="OMD-nO-4gp" id="mtO-Pp-R17"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -35,9 +36,18 @@
                                 <action selector="backButtonTapped:" destination="-1" eventType="touchUpInside" id="hud-LR-0yI"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFD-P3-Gs2">
+                            <rect key="frame" x="351" y="86" width="55" height="30"/>
+                            <state key="normal" title="Confirm"/>
+                            <connections>
+                                <action selector="confirmTeamTapped:" destination="-1" eventType="touchUpInside" id="Myp-nI-VsA"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.71372549019999998" green="0.1843137255" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="dFD-P3-Gs2" secondAttribute="bottom" constant="8" id="6Df-pk-LQN"/>
+                        <constraint firstAttribute="trailing" secondItem="dFD-P3-Gs2" secondAttribute="trailing" constant="8" id="NBX-t3-KNB"/>
                         <constraint firstItem="88m-O9-9Ka" firstAttribute="leading" secondItem="sQe-fl-xvm" secondAttribute="leading" constant="8" id="QFU-bw-Hlf"/>
                         <constraint firstAttribute="bottom" secondItem="88m-O9-9Ka" secondAttribute="bottom" constant="8" id="Qhh-Ga-7oz"/>
                     </constraints>
@@ -81,19 +91,9 @@
                         <constraint firstItem="06e-Nr-k0s" firstAttribute="centerY" secondItem="OoN-88-qSf" secondAttribute="centerY" id="fcX-Cv-PSm"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWI-Qv-nxT">
-                    <rect key="frame" x="0.0" y="782" width="414" height="80"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="80" id="Qyx-hb-UKC"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="rWI-Qv-nxT" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="6DX-v4-QkB"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rWI-Qv-nxT" secondAttribute="trailing" id="7kn-Gy-zeG"/>
-                <constraint firstItem="rWI-Qv-nxT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="COH-6C-SPz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Plu-DW-mD1" secondAttribute="trailing" id="DuG-e1-sGo"/>
                 <constraint firstItem="Plu-DW-mD1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="140" id="OMD-nO-4gp"/>
                 <constraint firstItem="Plu-DW-mD1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Rh9-Kd-ELa"/>
