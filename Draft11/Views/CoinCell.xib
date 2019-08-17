@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="87" id="KGk-i7-Jjw" customClass="CoinCell" customModule="Draft11" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="86.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BTC" translatesAutoresizingMaskIntoConstraints="NO" id="56X-eN-1r8">
+                        <rect key="frame" x="12" y="31.5" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="fqB-mw-yzb"/>
+                            <constraint firstAttribute="width" constant="24" id="ydM-PE-vMk"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitcoin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZj-qL-gku">
+                        <rect key="frame" x="48" y="49.5" width="39" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                        <color key="textColor" red="0.36862745098039218" green="0.36862745098039218" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-0.25%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pN1-Vb-vtR">
+                        <rect key="frame" x="269" y="31" width="90" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="itU-d5-2b1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                        <color key="textColor" red="0.25098039215686274" green="0.51764705882352935" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₹ 10,100.90" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7K-fd-LTk">
+                        <rect key="frame" x="133" y="31" width="100" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="0Wu-td-cBG"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxo-DX-TcC">
+                        <rect key="frame" x="48" y="29.5" width="73" height="20"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="56X-eN-1r8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="7Cz-ua-I9C"/>
+                    <constraint firstItem="OZj-qL-gku" firstAttribute="leading" secondItem="56X-eN-1r8" secondAttribute="trailing" constant="12" id="9wN-RX-4P8"/>
+                    <constraint firstItem="gxo-DX-TcC" firstAttribute="leading" secondItem="56X-eN-1r8" secondAttribute="trailing" constant="12" id="A91-90-Omj"/>
+                    <constraint firstItem="56X-eN-1r8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LC2-9j-l22"/>
+                    <constraint firstAttribute="trailing" secondItem="pN1-Vb-vtR" secondAttribute="trailing" constant="16" id="TVi-mA-n85"/>
+                    <constraint firstItem="j7K-fd-LTk" firstAttribute="centerY" secondItem="gxo-DX-TcC" secondAttribute="centerY" id="fgF-of-aSB"/>
+                    <constraint firstItem="pN1-Vb-vtR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-4" id="i2k-Dd-f5z"/>
+                    <constraint firstItem="pN1-Vb-vtR" firstAttribute="leading" secondItem="j7K-fd-LTk" secondAttribute="trailing" constant="36" id="pvf-zT-PsD"/>
+                    <constraint firstItem="gxo-DX-TcC" firstAttribute="centerY" secondItem="56X-eN-1r8" secondAttribute="centerY" constant="-4" id="uhu-Vk-fDx"/>
+                    <constraint firstItem="OZj-qL-gku" firstAttribute="top" secondItem="gxo-DX-TcC" secondAttribute="bottom" id="w40-TA-2fV"/>
+                    <constraint firstItem="j7K-fd-LTk" firstAttribute="leading" secondItem="gxo-DX-TcC" secondAttribute="trailing" constant="12" id="zOL-jE-hox"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="change24Hours" destination="pN1-Vb-vtR" id="pY4-sI-1f5"/>
+                <outlet property="coinImage" destination="56X-eN-1r8" id="sZm-Yw-DFw"/>
+                <outlet property="coinName" destination="OZj-qL-gku" id="5zM-gO-Pyb"/>
+                <outlet property="currentPrice" destination="j7K-fd-LTk" id="evB-kA-BHA"/>
+                <outlet property="symbol" destination="gxo-DX-TcC" id="DeD-aD-Nce"/>
+            </connections>
+            <point key="canvasLocation" x="177.536231884058" y="110.15625"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="BTC" width="128" height="128"/>
+    </resources>
+</document>

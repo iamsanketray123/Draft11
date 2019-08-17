@@ -16,6 +16,12 @@
 		19EFAE0E23031EB1005E07B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19EFAE0C23031EB1005E07B4 /* LaunchScreen.storyboard */; };
 		19EFAE1623032263005E07B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19EFAE1523032263005E07B4 /* GoogleService-Info.plist */; };
 		19EFAE1823032BFF005E07B4 /* Pool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EFAE1723032BFF005E07B4 /* Pool.swift */; };
+		19F179D8230687EE00FE118E /* CoinSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F179D6230687EE00FE118E /* CoinSelectionController.swift */; };
+		19F179D9230687EE00FE118E /* CoinSelectionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19F179D7230687EE00FE118E /* CoinSelectionController.xib */; };
+		19F179DB230688FC00FE118E /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F179DA230688FC00FE118E /* Coin.swift */; };
+		19F179E023068DAA00FE118E /* CoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F179DE23068DAA00FE118E /* CoinCell.swift */; };
+		19F179E123068DAA00FE118E /* CoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19F179DF23068DAA00FE118E /* CoinCell.xib */; };
+		19F179E32306A6DF00FE118E /* CryptoDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F179E22306A6DF00FE118E /* CryptoDetails.swift */; };
 		92D3FDE3287B942E4F0AFDEE /* Pods_Draft11.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1093360D6F660618C27FEA7 /* Pods_Draft11.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +37,12 @@
 		19EFAE0F23031EB1005E07B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19EFAE1523032263005E07B4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		19EFAE1723032BFF005E07B4 /* Pool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pool.swift; sourceTree = "<group>"; };
+		19F179D6230687EE00FE118E /* CoinSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSelectionController.swift; sourceTree = "<group>"; };
+		19F179D7230687EE00FE118E /* CoinSelectionController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoinSelectionController.xib; sourceTree = "<group>"; };
+		19F179DA230688FC00FE118E /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		19F179DE23068DAA00FE118E /* CoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCell.swift; sourceTree = "<group>"; };
+		19F179DF23068DAA00FE118E /* CoinCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoinCell.xib; sourceTree = "<group>"; };
+		19F179E22306A6DF00FE118E /* CryptoDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetails.swift; sourceTree = "<group>"; };
 		2470507A1E04C19B98AFD569 /* Pods-Draft11.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Draft11.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Draft11/Pods-Draft11.debug.xcconfig"; sourceTree = "<group>"; };
 		84E17193FFE5954F792F5112 /* Pods-Draft11.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Draft11.release.xcconfig"; path = "Pods/Target Support Files/Pods-Draft11/Pods-Draft11.release.xcconfig"; sourceTree = "<group>"; };
 		A1093360D6F660618C27FEA7 /* Pods_Draft11.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Draft11.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,17 +82,55 @@
 			isa = PBXGroup;
 			children = (
 				19EFAE0323031EB0005E07B4 /* AppDelegate.swift */,
-				19EFAE1723032BFF005E07B4 /* Pool.swift */,
-				1986EDA92303E0CB00B04D30 /* PoolsListController.swift */,
-				1986EDAA2303E0CB00B04D30 /* PoolsListController.xib */,
-				1986EDAD2303E41000B04D30 /* PoolCell.swift */,
-				1986EDAE2303E41000B04D30 /* PoolCell.xib */,
+				19F179E523071F2F00FE118E /* Network Calls */,
+				19F179DC2306891400FE118E /* Models */,
+				19F179E423071F2100FE118E /* Controllers */,
+				19F179DD23068D9100FE118E /* Views */,
 				19EFAE0A23031EB1005E07B4 /* Assets.xcassets */,
 				19EFAE0C23031EB1005E07B4 /* LaunchScreen.storyboard */,
 				19EFAE0F23031EB1005E07B4 /* Info.plist */,
 				19EFAE1523032263005E07B4 /* GoogleService-Info.plist */,
 			);
 			path = Draft11;
+			sourceTree = "<group>";
+		};
+		19F179DC2306891400FE118E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				19EFAE1723032BFF005E07B4 /* Pool.swift */,
+				19F179DA230688FC00FE118E /* Coin.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		19F179DD23068D9100FE118E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1986EDAD2303E41000B04D30 /* PoolCell.swift */,
+				1986EDAE2303E41000B04D30 /* PoolCell.xib */,
+				19F179DE23068DAA00FE118E /* CoinCell.swift */,
+				19F179DF23068DAA00FE118E /* CoinCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		19F179E423071F2100FE118E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1986EDA92303E0CB00B04D30 /* PoolsListController.swift */,
+				1986EDAA2303E0CB00B04D30 /* PoolsListController.xib */,
+				19F179D6230687EE00FE118E /* CoinSelectionController.swift */,
+				19F179D7230687EE00FE118E /* CoinSelectionController.xib */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		19F179E523071F2F00FE118E /* Network Calls */ = {
+			isa = PBXGroup;
+			children = (
+				19F179E22306A6DF00FE118E /* CryptoDetails.swift */,
+			);
+			path = "Network Calls";
 			sourceTree = "<group>";
 		};
 		4E0FFD55755B2A9A06C6606B /* Pods */ = {
@@ -163,8 +213,10 @@
 				1986EDB02303E41000B04D30 /* PoolCell.xib in Resources */,
 				19EFAE0E23031EB1005E07B4 /* LaunchScreen.storyboard in Resources */,
 				1986EDAC2303E0CB00B04D30 /* PoolsListController.xib in Resources */,
+				19F179D9230687EE00FE118E /* CoinSelectionController.xib in Resources */,
 				19EFAE1623032263005E07B4 /* GoogleService-Info.plist in Resources */,
 				19EFAE0B23031EB1005E07B4 /* Assets.xcassets in Resources */,
+				19F179E123068DAA00FE118E /* CoinCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +254,7 @@
 				"${BUILT_PRODUCTS_DIR}/LightweightObservable/LightweightObservable.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -211,6 +264,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LightweightObservable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -224,8 +278,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19F179DB230688FC00FE118E /* Coin.swift in Sources */,
 				19EFAE1823032BFF005E07B4 /* Pool.swift in Sources */,
+				19F179E023068DAA00FE118E /* CoinCell.swift in Sources */,
+				19F179D8230687EE00FE118E /* CoinSelectionController.swift in Sources */,
 				19EFAE0423031EB0005E07B4 /* AppDelegate.swift in Sources */,
+				19F179E32306A6DF00FE118E /* CryptoDetails.swift in Sources */,
 				1986EDAB2303E0CB00B04D30 /* PoolsListController.swift in Sources */,
 				1986EDAF2303E41000B04D30 /* PoolCell.swift in Sources */,
 			);

@@ -61,6 +61,10 @@ Firebase Messaging works as intended."
     #endif
 #endif
 
+  #if __has_include(<FirebaseMLCommon/FirebaseMLCommon.h>)
+    #import <FirebaseMLCommon/FirebaseMLCommon.h>
+  #endif
+
   #if __has_include(<FirebaseMLModelInterpreter/FirebaseMLModelInterpreter.h>)
     #import <FirebaseMLModelInterpreter/FirebaseMLModelInterpreter.h>
   #endif
@@ -124,7 +128,7 @@ Firebase Performance works as intended."
     #import <FirebaseRemoteConfig/FirebaseRemoteConfig.h>
     #if !__has_include(<FirebaseAnalytics/FirebaseAnalytics.h>)
       #ifndef FIREBASE_ANALYTICS_SUPPRESS_WARNING
-//        #warning "FirebaseAnalytics.framework is not included in your target. Please add \
+        #warning "FirebaseAnalytics.framework is not included in your target. Please add \
 `Firebase/Analytics` to your Podfile or add FirebaseAnalytics.framework to your project to ensure \
 Firebase Remote Config works as intended."
       #endif // #ifndef FIREBASE_ANALYTICS_SUPPRESS_WARNING

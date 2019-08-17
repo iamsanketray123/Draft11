@@ -13,5 +13,4 @@ pod 'Firebase/Database'
 pod 'Firebase/RemoteConfig'
 pod 'GradientProgressBar'
 
-
 end
