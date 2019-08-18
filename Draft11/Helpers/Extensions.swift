@@ -86,7 +86,7 @@ extension UIColor {
         return UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1)
     }
     static func draft11Red() -> UIColor {
-        return UIColor(red: 182/255, green: 47/255, blue: 42/255, alpha: 1)
+        return UIColor(red: 200/255, green: 40/255, blue: 30/255, alpha: 1)
     }
 }
 

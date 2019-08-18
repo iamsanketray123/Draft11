@@ -44,7 +44,7 @@ class PoolCell: UICollectionViewCell {
         
         
         progress.animationDuration = 1
-        progress.gradientColorList = [.orange, UIColor(red: 182/255, green: 47/255, blue: 44/255, alpha: 0.8)]
+        progress.gradientColorList = [.orange, UIColor.rgb(200, 40, 30, 0.8)]
         progress.setProgress(0, animated: false)
         progress.setProgress( Float(pool.totalSpots - pool.spotsLeft) / Float(pool.totalSpots), animated: true)
         

@@ -17,6 +17,7 @@ class CoinSelectionController: UIViewController {
     @IBOutlet var selectedViews: [QuadrilateralView]!
     @IBOutlet weak var selectionCountLabel: UILabel!
     @IBOutlet weak var confirmButton: UIButton!
+    @IBOutlet weak var stack: UIStackView!
     
     
     var coins = [Coin]()
@@ -53,7 +54,7 @@ class CoinSelectionController: UIViewController {
             self.coins.sort(by: {$0.symbol < $1.symbol})
             DispatchQueue.main.async {
                 self.coinsTable.reloadData()
-//                self.animateTopSection()
+                self.animateTopSection()
             }
         }
         
@@ -62,8 +63,6 @@ class CoinSelectionController: UIViewController {
         confirmButton.layer.shadowOpacity = 3
         confirmButton.layer.shadowOffset.width = 0
         confirmButton.layer.shadowOffset.height = 3
-        
-        
         
     }
     
@@ -81,7 +80,7 @@ class CoinSelectionController: UIViewController {
     
     fileprivate func changeSelectionCountText(count: Int) {
         let attributedString = NSMutableAttributedString()
-        let selectedCoins = NSAttributedString(string: "\(count)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 26, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor(white: 0.8, alpha: 1)])
+        let selectedCoins = NSAttributedString(string: "\(count)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 30, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor(white: 0.8, alpha: 1)])
         let totalCoins = NSAttributedString(string: "/5", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .medium), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         
         attributedString.append(selectedCoins)
@@ -92,10 +91,12 @@ class CoinSelectionController: UIViewController {
     fileprivate func animateTopSection() {
         tableTopConstraint.constant += 80
         UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
+            self.selectionCountLabel.alpha = 1
+            self.stack.alpha = 1
             self.view.layoutIfNeeded()
         })
     }
-
+    
     @IBAction func backButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }

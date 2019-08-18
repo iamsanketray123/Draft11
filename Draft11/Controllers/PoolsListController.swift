@@ -57,8 +57,9 @@ class PoolsListController: UIViewController {
         
     }
     @IBAction func test(_ sender: Any) {
-        let uid = Auth.auth().currentUser!.uid
-        print(uid)
+        let prizeBreakUpController = PrizeBreakUpController()
+        prizeBreakUpController.selectedPool = pools[1]
+        self.navigationController?.pushViewController(prizeBreakUpController, animated: true)
     }
     
     fileprivate func joinPoolOrCreateTeam(id: Int) {

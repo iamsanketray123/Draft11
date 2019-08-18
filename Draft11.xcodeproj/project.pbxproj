@@ -10,6 +10,10 @@
 		194C4C9623094C7600B036A5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194C4C9523094C7600B036A5 /* Extensions.swift */; };
 		194C4C992309555C00B036A5 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194C4C982309555C00B036A5 /* CategoryView.swift */; };
 		194C4C9B2309558300B036A5 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194C4C9A2309558300B036A5 /* CategoryCell.swift */; };
+		194C4C9E2309F3FB00B036A5 /* PrizeBreakUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194C4C9C2309F3FB00B036A5 /* PrizeBreakUpController.swift */; };
+		194C4C9F2309F3FB00B036A5 /* PrizeBreakUpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 194C4C9D2309F3FB00B036A5 /* PrizeBreakUpController.xib */; };
+		194C4CA22309FF0000B036A5 /* PrizeBreakUpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194C4CA02309FF0000B036A5 /* PrizeBreakUpCell.swift */; };
+		194C4CA32309FF0000B036A5 /* PrizeBreakUpCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 194C4CA12309FF0000B036A5 /* PrizeBreakUpCell.xib */; };
 		1986EDAB2303E0CB00B04D30 /* PoolsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986EDA92303E0CB00B04D30 /* PoolsListController.swift */; };
 		1986EDAC2303E0CB00B04D30 /* PoolsListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1986EDAA2303E0CB00B04D30 /* PoolsListController.xib */; };
 		1986EDAF2303E41000B04D30 /* PoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986EDAD2303E41000B04D30 /* PoolCell.swift */; };
@@ -32,6 +36,10 @@
 		194C4C9523094C7600B036A5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		194C4C982309555C00B036A5 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		194C4C9A2309558300B036A5 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		194C4C9C2309F3FB00B036A5 /* PrizeBreakUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrizeBreakUpController.swift; sourceTree = "<group>"; };
+		194C4C9D2309F3FB00B036A5 /* PrizeBreakUpController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrizeBreakUpController.xib; sourceTree = "<group>"; };
+		194C4CA02309FF0000B036A5 /* PrizeBreakUpCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrizeBreakUpCell.swift; sourceTree = "<group>"; };
+		194C4CA12309FF0000B036A5 /* PrizeBreakUpCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrizeBreakUpCell.xib; sourceTree = "<group>"; };
 		1986EDA92303E0CB00B04D30 /* PoolsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolsListController.swift; sourceTree = "<group>"; };
 		1986EDAA2303E0CB00B04D30 /* PoolsListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PoolsListController.xib; sourceTree = "<group>"; };
 		1986EDAD2303E41000B04D30 /* PoolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolCell.swift; sourceTree = "<group>"; };
@@ -127,6 +135,8 @@
 				1986EDAE2303E41000B04D30 /* PoolCell.xib */,
 				19F179DE23068DAA00FE118E /* CoinCell.swift */,
 				19F179DF23068DAA00FE118E /* CoinCell.xib */,
+				194C4CA02309FF0000B036A5 /* PrizeBreakUpCell.swift */,
+				194C4CA12309FF0000B036A5 /* PrizeBreakUpCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -138,6 +148,8 @@
 				1986EDAA2303E0CB00B04D30 /* PoolsListController.xib */,
 				19F179D6230687EE00FE118E /* CoinSelectionController.swift */,
 				19F179D7230687EE00FE118E /* CoinSelectionController.xib */,
+				194C4C9C2309F3FB00B036A5 /* PrizeBreakUpController.swift */,
+				194C4C9D2309F3FB00B036A5 /* PrizeBreakUpController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -227,12 +239,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				194C4C9F2309F3FB00B036A5 /* PrizeBreakUpController.xib in Resources */,
 				1986EDB02303E41000B04D30 /* PoolCell.xib in Resources */,
 				19EFAE0E23031EB1005E07B4 /* LaunchScreen.storyboard in Resources */,
 				1986EDAC2303E0CB00B04D30 /* PoolsListController.xib in Resources */,
 				19F179D9230687EE00FE118E /* CoinSelectionController.xib in Resources */,
 				19EFAE1623032263005E07B4 /* GoogleService-Info.plist in Resources */,
 				19EFAE0B23031EB1005E07B4 /* Assets.xcassets in Resources */,
+				194C4CA32309FF0000B036A5 /* PrizeBreakUpCell.xib in Resources */,
 				19F179E123068DAA00FE118E /* CoinCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,10 +313,12 @@
 				19EFAE1823032BFF005E07B4 /* Pool.swift in Sources */,
 				19F179E023068DAA00FE118E /* CoinCell.swift in Sources */,
 				19F179D8230687EE00FE118E /* CoinSelectionController.swift in Sources */,
+				194C4C9E2309F3FB00B036A5 /* PrizeBreakUpController.swift in Sources */,
 				194C4C992309555C00B036A5 /* CategoryView.swift in Sources */,
 				19EFAE0423031EB0005E07B4 /* AppDelegate.swift in Sources */,
 				19F179E32306A6DF00FE118E /* CryptoDetails.swift in Sources */,
 				1986EDAB2303E0CB00B04D30 /* PoolsListController.swift in Sources */,
+				194C4CA22309FF0000B036A5 /* PrizeBreakUpCell.swift in Sources */,
 				1986EDAF2303E41000B04D30 /* PoolCell.swift in Sources */,
 				194C4C9623094C7600B036A5 /* Extensions.swift in Sources */,
 				194C4C9B2309558300B036A5 /* CategoryCell.swift in Sources */,

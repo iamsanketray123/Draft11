@@ -15,6 +15,7 @@
                 <outlet property="coinsTable" destination="Plu-DW-mD1" id="xcv-QV-jjG"/>
                 <outlet property="confirmButton" destination="a1t-sP-IDo" id="LU6-Em-K2K"/>
                 <outlet property="selectionCountLabel" destination="vyD-78-9Qp" id="SOw-KA-Roj"/>
+                <outlet property="stack" destination="AMj-HD-FXN" id="DNM-WV-EfW"/>
                 <outlet property="tableTopConstraint" destination="OMD-nO-4gp" id="mtO-Pp-R17"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="selectedViews" destination="pDD-Jh-Da0" collectionClass="NSMutableArray" id="8dI-d6-amo"/>
@@ -30,11 +31,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Plu-DW-mD1">
-                    <rect key="frame" x="0.0" y="264" width="414" height="598"/>
+                    <rect key="frame" x="0.0" y="184" width="414" height="678"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQe-fl-xvm">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="204"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="124"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backButton" translatesAutoresizingMaskIntoConstraints="NO" id="RmQ-Gu-Zda">
                             <rect key="frame" x="12" y="40" width="16" height="30"/>
@@ -44,16 +45,28 @@
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="88m-O9-9Ka">
-                            <rect key="frame" x="8" y="40" width="69" height="30"/>
+                            <rect key="frame" x="8" y="40" width="72" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="69" id="PJV-ad-ST8"/>
+                                <constraint firstAttribute="width" constant="72" id="PJV-ad-ST8"/>
                             </constraints>
                             <connections>
                                 <action selector="backButtonTapped:" destination="-1" eventType="touchUpInside" id="hud-LR-0yI"/>
                             </connections>
                         </button>
-                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AMj-HD-FXN">
-                            <rect key="frame" x="82" y="164" width="250" height="20"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coins Selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6E-MR-ltt">
+                            <rect key="frame" x="145" y="44.5" width="124.5" height="21.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vyD-78-9Qp">
+                            <rect key="frame" x="207" y="74" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AMj-HD-FXN">
+                            <rect key="frame" x="82" y="84" width="250" height="20"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pDD-Jh-Da0" userLabel="v1" customClass="QuadrilateralView" customModule="Draft11" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="20"/>
@@ -97,18 +110,6 @@
                                 </view>
                             </subviews>
                         </stackView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coins Selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6E-MR-ltt">
-                            <rect key="frame" x="145" y="44.5" width="124.5" height="21.5"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vyD-78-9Qp">
-                            <rect key="frame" x="207" y="74" width="0.0" height="0.0"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -125,7 +126,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pII-H5-6Mt">
-                    <rect key="frame" x="0.0" y="204" width="414" height="60"/>
+                    <rect key="frame" x="0.0" y="124" width="414" height="60"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cryptocurrencies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OoN-88-qSf">
                             <rect key="frame" x="12" y="21.5" width="118" height="17"/>
@@ -183,7 +184,7 @@
             <constraints>
                 <constraint firstItem="a1t-sP-IDo" firstAttribute="centerX" secondItem="Plu-DW-mD1" secondAttribute="centerX" id="2Z4-fz-lA8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Plu-DW-mD1" secondAttribute="trailing" id="DuG-e1-sGo"/>
-                <constraint firstItem="Plu-DW-mD1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="220" id="OMD-nO-4gp"/>
+                <constraint firstItem="Plu-DW-mD1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="140" id="OMD-nO-4gp"/>
                 <constraint firstItem="Plu-DW-mD1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Rh9-Kd-ELa"/>
                 <constraint firstItem="pII-H5-6Mt" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Tl9-nS-0RM"/>
                 <constraint firstItem="sQe-fl-xvm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Yg3-zd-dl3"/>

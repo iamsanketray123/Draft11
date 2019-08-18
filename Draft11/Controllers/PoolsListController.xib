@@ -52,7 +52,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3u3-7D-YaJ">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3u3-7D-YaJ">
                             <rect key="frame" x="321" y="86" width="46" height="30"/>
                             <state key="normal" title="Button"/>
                             <connections>
@@ -60,7 +60,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.71372549019607845" green="0.18431372549019609" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.78315507067553047" green="0.15790640528471661" blue="0.11812907097770614" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="xy8-Rp-Cq0" firstAttribute="centerX" secondItem="a7E-z3-k3T" secondAttribute="centerX" constant="-40" id="7uM-6L-Mzl"/>
                         <constraint firstAttribute="bottom" secondItem="3u3-7D-YaJ" secondAttribute="bottom" constant="8" id="CcS-bs-k7h"/>

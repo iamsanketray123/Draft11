@@ -19,7 +19,7 @@ class CategoryCell: UICollectionViewCell {
     
     let redView : UIView = {
         let redView = UIView()
-        redView.backgroundColor = UIColor.rgb(182, 47, 44)
+        redView.backgroundColor = UIColor.rgb(200, 40, 30)
         return redView
     }()
     
@@ -49,7 +49,7 @@ class CategoryCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if self.isSelected {
-                label.textColor = UIColor.darkGray
+                label.textColor = UIColor.draft11Red()
                 UIView.animate(withDuration: 0.5) {
                     self.redView.alpha = 1
                 }
