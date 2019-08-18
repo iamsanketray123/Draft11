@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="categoryContainer" destination="ja9-fL-8BI" id="d1Q-iH-Xyd"/>
                 <outlet property="collectionView" destination="aWU-eU-2ox" id="9dY-sd-T7P"/>
+                <outlet property="comingSoon" destination="oAL-Q0-gFC" id="cR0-Ti-Orc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -76,6 +77,12 @@
                         <constraint firstAttribute="height" constant="60" id="YNf-sh-jy4"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-- COMING SOON --" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAL-Q0-gFC">
+                    <rect key="frame" x="110.66666666666667" y="426.33333333333331" width="153.66666666666663" height="19.333333333333314"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -84,12 +91,14 @@
                 <constraint firstItem="ja9-fL-8BI" firstAttribute="top" secondItem="a7E-z3-k3T" secondAttribute="bottom" id="Cto-qP-Iyc"/>
                 <constraint firstItem="aWU-eU-2ox" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="140" id="ITS-Lg-bdc"/>
                 <constraint firstItem="aWU-eU-2ox" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="NWt-lv-2WP"/>
+                <constraint firstItem="oAL-Q0-gFC" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="30" id="Rdr-lg-Wal"/>
                 <constraint firstItem="aWU-eU-2ox" firstAttribute="top" secondItem="ja9-fL-8BI" secondAttribute="bottom" id="Skk-Si-DQy"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="aWU-eU-2ox" secondAttribute="bottom" id="UBE-yM-l9o"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ja9-fL-8BI" secondAttribute="trailing" id="UIH-0f-F28"/>
                 <constraint firstItem="aWU-eU-2ox" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="V5r-2M-8uZ"/>
                 <constraint firstItem="ja9-fL-8BI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="YYi-Qv-hDt"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="a7E-z3-k3T" secondAttribute="trailing" id="i3w-ac-lIZ"/>
+                <constraint firstItem="oAL-Q0-gFC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mZ3-3b-Z6v"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="223.19999999999999" y="187.68472906403943"/>

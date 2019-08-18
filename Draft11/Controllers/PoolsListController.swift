@@ -15,6 +15,7 @@ class PoolsListController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var categoryContainer: UIView!
+    @IBOutlet weak var comingSoon: UILabel!
     
     var reference: DatabaseReference!
     var pools = [Pool]()

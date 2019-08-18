@@ -64,7 +64,17 @@ extension CategoryView : UICollectionViewDelegate, UICollectionViewDataSource, U
         return 10
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        print(indexPath.item)
+        if let poolsListController = poolsListController {
+            if indexPath.item == 0 {
+                poolsListController.collectionView.isHidden = false
+                poolsListController.comingSoon.alpha = 0
+            } else {
+                poolsListController.collectionView.isHidden = true
+                poolsListController.comingSoon.alpha = 0
+                UIView.animate(withDuration: 1) {
+                    poolsListController.comingSoon.alpha = 1
+                }
+            }
+        }
     }
 }

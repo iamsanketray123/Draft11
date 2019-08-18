@@ -103,10 +103,9 @@ class CoinSelectionController: UIViewController {
                 let updateValues = self.generateDictionary(selectedCoins: randomPortfolio)
                 print("❣️", randomPortfolio, updateValues, "❣️")
                 self.reference.child("Teams").child(randomPlayerUID).child("portfolio").updateChildValues(updateValues)
-                self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : (pool.spotsLeft - 1)])
                 self.reference.child("Teams").child(randomPlayerUID).child("poolsJoined").updateChildValues([pool.id : Date().timeIntervalSince1970])
-                
             }
+            self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : 0])
         }
     }
     

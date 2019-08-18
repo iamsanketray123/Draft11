@@ -84,7 +84,7 @@ extension UIColor {
     static func placeHolder() -> UIColor {
         return UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1)
     }
-    static func cashRichGreen() -> UIColor {
-        return UIColor(red: 0/255, green: 176/255, blue: 130/255, alpha: 1)
+    static func draft11Red() -> UIColor {
+        return UIColor(red: 182/255, green: 47/255, blue: 42/255, alpha: 1)
     }
 }
