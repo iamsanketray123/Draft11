@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		194C4C9623094C7600B036A5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194C4C9523094C7600B036A5 /* Extensions.swift */; };
+		194C4C992309555C00B036A5 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194C4C982309555C00B036A5 /* CategoryView.swift */; };
+		194C4C9B2309558300B036A5 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194C4C9A2309558300B036A5 /* CategoryCell.swift */; };
 		1986EDAB2303E0CB00B04D30 /* PoolsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986EDA92303E0CB00B04D30 /* PoolsListController.swift */; };
 		1986EDAC2303E0CB00B04D30 /* PoolsListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1986EDAA2303E0CB00B04D30 /* PoolsListController.xib */; };
 		1986EDAF2303E41000B04D30 /* PoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986EDAD2303E41000B04D30 /* PoolCell.swift */; };
@@ -26,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		194C4C9523094C7600B036A5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		194C4C982309555C00B036A5 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		194C4C9A2309558300B036A5 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		1986EDA92303E0CB00B04D30 /* PoolsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolsListController.swift; sourceTree = "<group>"; };
 		1986EDAA2303E0CB00B04D30 /* PoolsListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PoolsListController.xib; sourceTree = "<group>"; };
 		1986EDAD2303E41000B04D30 /* PoolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolCell.swift; sourceTree = "<group>"; };
@@ -60,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		194C4C9723094C7E00B036A5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				194C4C9523094C7600B036A5 /* Extensions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		19EFADF723031EB0005E07B4 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +100,7 @@
 				19F179DC2306891400FE118E /* Models */,
 				19F179E423071F2100FE118E /* Controllers */,
 				19F179DD23068D9100FE118E /* Views */,
+				194C4C9723094C7E00B036A5 /* Helpers */,
 				19EFAE0A23031EB1005E07B4 /* Assets.xcassets */,
 				19EFAE0C23031EB1005E07B4 /* LaunchScreen.storyboard */,
 				19EFAE0F23031EB1005E07B4 /* Info.plist */,
@@ -106,6 +121,8 @@
 		19F179DD23068D9100FE118E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				194C4C982309555C00B036A5 /* CategoryView.swift */,
+				194C4C9A2309558300B036A5 /* CategoryCell.swift */,
 				1986EDAD2303E41000B04D30 /* PoolCell.swift */,
 				1986EDAE2303E41000B04D30 /* PoolCell.xib */,
 				19F179DE23068DAA00FE118E /* CoinCell.swift */,
@@ -282,10 +299,13 @@
 				19EFAE1823032BFF005E07B4 /* Pool.swift in Sources */,
 				19F179E023068DAA00FE118E /* CoinCell.swift in Sources */,
 				19F179D8230687EE00FE118E /* CoinSelectionController.swift in Sources */,
+				194C4C992309555C00B036A5 /* CategoryView.swift in Sources */,
 				19EFAE0423031EB0005E07B4 /* AppDelegate.swift in Sources */,
 				19F179E32306A6DF00FE118E /* CryptoDetails.swift in Sources */,
 				1986EDAB2303E0CB00B04D30 /* PoolsListController.swift in Sources */,
 				1986EDAF2303E41000B04D30 /* PoolCell.swift in Sources */,
+				194C4C9623094C7600B036A5 /* Extensions.swift in Sources */,
+				194C4C9B2309558300B036A5 /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

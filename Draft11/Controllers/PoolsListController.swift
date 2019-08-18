@@ -14,35 +14,26 @@ import Firebase
 class PoolsListController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var categoryContainer: UIView!
     
     var reference: DatabaseReference!
     var pools = [Pool]()
     let poolCellId = "poolCellId"
     
     let a = [String:String]()
-    //    let pools = [
-    //        Pool(entryFee: 5750, id: 1, percentageOfWinners: 50, spotsLeft: 2, totalSpots: 2, totalWinningAmount: 10000),
-    //        Pool(entryFee: 2000, id: 2, percentageOfWinners: 33, spotsLeft: 6, totalSpots: 6, totalWinningAmount: 10000),
-    //        Pool(entryFee: 60, id: 3, percentageOfWinners: 50, spotsLeft: 10, totalSpots: 10, totalWinningAmount: 500),
-    //        Pool(entryFee: 165, id: 4, percentageOfWinners: 82, spotsLeft: 11, totalSpots: 11, totalWinningAmount: 1500)
-    //    ]
     
-    //    fileprivate func addPools() {
-    //        for pool in pools {
-    //            reference.child("Pools").childByAutoId().updateChildValues([
-    //                "entryFee" : pool.entryFee,
-    //                "id" : pool.id,
-    //                "percentageOfWinners" : pool.percentageOfWinners,
-    //                "spotsLeft" : pool.spotsLeft,
-    //                "totalSpots" : pool.totalSpots,
-    //                "totalWinningAmount" : pool.totalWinningAmount])
-    //        }
-    //    }
-    
+    lazy var categoryView: CategoryView = {
+        let cv = CategoryView()
+        cv.poolsListController = self
+        return cv
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        categoryContainer.addSubview(categoryView)
+        categoryView.anchor(top: categoryContainer.topAnchor, left: categoryContainer.leftAnchor, bottom: categoryContainer.bottomAnchor, right: categoryContainer.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        categoryView.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
         
         self.view.backgroundColor = .white
         collectionView.delegate = self
