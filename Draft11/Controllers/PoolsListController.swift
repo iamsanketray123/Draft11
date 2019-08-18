@@ -74,7 +74,9 @@ class PoolsListController: UIViewController {
         reference.child("Teams").child(uid).observeSingleEvent(of: .value) { (snaphot) in
             let snap = snaphot.value as? [String: Any]
             if snap == nil { // no team has been created
-                self.navigationController?.pushViewController(CoinSelectionController(), animated: true)
+                let coinSelectionController = CoinSelectionController()
+                coinSelectionController.selectedPool = self.pools[id]
+                self.navigationController?.pushViewController(coinSelectionController, animated: true)
             } else {
                 self.joinPool(with: id)
             }
@@ -83,15 +85,16 @@ class PoolsListController: UIViewController {
     }
     
     
-    fileprivate func join(pool: Pool, userID: String) {
-        
-        self.reference.child("Pools").child(pool.id).observeSingleEvent(of: .value) { (snapshot) in
+    func join(pool: Pool, userID: String) {
+        print(pool, "☢️")
+        reference = Database.database().reference()
+        reference.child("Pools").child(pool.id).observeSingleEvent(of: .value) { (snapshot) in
             guard let dictionary  = snapshot.value as? [String: Any] else { return }
             print(dictionary, "🚦")
             let pool = Pool(dictionary: dictionary)
             if pool.spotsLeft >= 1 {
                 self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : (pool.spotsLeft - 1)])
-                self.reference.child("Teams").child(userID).child("poolsJoined").updateChildValues(["\(pool.id)": Date().timeIntervalSince1970])
+                self.reference.child("Teams").child(userID).child("poolsJoined").updateChildValues([pool.id: Date().timeIntervalSince1970])
             } else {
                 print("Pool already filled, sorry!")
             }
@@ -121,26 +124,6 @@ class PoolsListController: UIViewController {
                 }
                 
             }
-//            let dictionary = snapshot.value as? [String: Any]
-//            print("🥛", dictionary, "🥛")
-//            if dictionary == nil {
-//                print("player has not joined ANY pools before this")
-//
-//                self.reference.child("Pools").child(pool.id).observeSingleEvent(of: .value) { (snapshot) in
-//                    guard let dictionary  = snapshot.value as? [String: Any] else { return }
-//                    print(dictionary, "🚦")
-//                    let pool = Pool(dictionary: dictionary)
-//                    if pool.spotsLeft >= 1 {
-//                        self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : (pool.spotsLeft - 1)])
-//                        self.reference.child("Teams").child(userID).child("poolsJoined").updateChildValues(["\(pool.id)": Date().timeIntervalSince1970])
-//                    } else {
-//                        print("Pool already filled, sorry!")
-//                    }
-//                }
-//            } else {
-//                print("player has joined a pool and now we must check if he has joined our specific pool")
-//            }
-            
         }
     }
     

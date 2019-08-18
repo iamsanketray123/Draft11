@@ -19,10 +19,11 @@ class CoinSelectionController: UIViewController {
     var selectedCoins = [Coin]()
     var reference: DatabaseReference!
     let coinCellId = "coinCellId"
+    var selectedPool: Pool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         reference = Database.database().reference()
         
         coinsTable.delegate = self
@@ -62,11 +63,14 @@ class CoinSelectionController: UIViewController {
     @IBAction func confirmTeamTapped(_ sender: Any) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        let updateValues = generateDictionary()
+        let updateValues = generateDictionary(selectedCoins: self.selectedCoins)
         reference.child("Teams").child(uid).child("portfolio").updateChildValues(updateValues)
+        
+        guard let selectedPool = selectedPool else { return }
+        PoolsListController().join(pool: selectedPool, userID: uid)
     }
     
-    fileprivate func generateDictionary() -> [String: Double] {
+    fileprivate func generateDictionary(selectedCoins: [Coin]) -> [String: Double] {
         
         var dictionary = [String: Double]()
         for coin in selectedCoins {
@@ -75,7 +79,37 @@ class CoinSelectionController: UIViewController {
         
         return dictionary
     }
-
+    
+    @IBAction func randomizePlayersAndTeams(_ sender: Any) {
+        guard let selectedPool = selectedPool else { return }
+        reference.child("Pools").child(selectedPool.id).observeSingleEvent(of: .value) { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            let pool = Pool(dictionary: dictionary)
+            let spotsLeft = pool.spotsLeft
+            
+            for _ in 0..<spotsLeft {
+                let randomPlayerUID = NSUUID().uuidString
+                var randomPortfolio = [Coin]()
+                
+                while randomPortfolio.count != 5 {
+                    guard let randomCoin = self.coins.randomElement() else { return }
+                    if !randomPortfolio.contains(randomCoin) {
+                        randomPortfolio.append(randomCoin)
+                    } else {
+                        print("old coin found")
+                    }
+                }
+                
+                let updateValues = self.generateDictionary(selectedCoins: randomPortfolio)
+                print("❣️", randomPortfolio, updateValues, "❣️")
+                self.reference.child("Teams").child(randomPlayerUID).child("portfolio").updateChildValues(updateValues)
+                self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : (pool.spotsLeft - 1)])
+                self.reference.child("Teams").child(randomPlayerUID).child("poolsJoined").updateChildValues([pool.id : Date().timeIntervalSince1970])
+                
+            }
+        }
+    }
+    
 }
 
 

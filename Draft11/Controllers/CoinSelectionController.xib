@@ -43,13 +43,22 @@
                                 <action selector="confirmTeamTapped:" destination="-1" eventType="touchUpInside" id="Myp-nI-VsA"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKN-Fv-l7f">
+                            <rect key="frame" x="169" y="86" width="76" height="30"/>
+                            <state key="normal" title="Randomize"/>
+                            <connections>
+                                <action selector="randomizePlayersAndTeams:" destination="-1" eventType="touchUpInside" id="1PI-oD-HX9"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.71372549019999998" green="0.1843137255" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="lKN-Fv-l7f" firstAttribute="centerX" secondItem="sQe-fl-xvm" secondAttribute="centerX" id="3oZ-X8-b0x"/>
                         <constraint firstAttribute="bottom" secondItem="dFD-P3-Gs2" secondAttribute="bottom" constant="8" id="6Df-pk-LQN"/>
                         <constraint firstAttribute="trailing" secondItem="dFD-P3-Gs2" secondAttribute="trailing" constant="8" id="NBX-t3-KNB"/>
                         <constraint firstItem="88m-O9-9Ka" firstAttribute="leading" secondItem="sQe-fl-xvm" secondAttribute="leading" constant="8" id="QFU-bw-Hlf"/>
                         <constraint firstAttribute="bottom" secondItem="88m-O9-9Ka" secondAttribute="bottom" constant="8" id="Qhh-Ga-7oz"/>
+                        <constraint firstItem="lKN-Fv-l7f" firstAttribute="centerY" secondItem="88m-O9-9Ka" secondAttribute="centerY" id="uTc-AT-PNm"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pII-H5-6Mt">
