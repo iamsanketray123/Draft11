@@ -14,9 +14,18 @@ class CoinSelectionController: UIViewController {
 
     @IBOutlet weak var coinsTable: UITableView!
     @IBOutlet weak var tableTopConstraint: NSLayoutConstraint!
+    @IBOutlet var selectedViews: [QuadrilateralView]!
+    @IBOutlet weak var selectionCountLabel: UILabel!
+    @IBOutlet weak var confirmButton: UIButton!
+    
     
     var coins = [Coin]()
-    var selectedCoins = [Coin]()
+    var selectedCoins = [Coin]() {
+        didSet {
+            changeSelectionCountText(count: selectedCoins.count)
+            displayConfirmButtonIfRequired()
+        }
+    }
     var reference: DatabaseReference!
     let coinCellId = "coinCellId"
     var selectedPool: Pool?
@@ -25,6 +34,7 @@ class CoinSelectionController: UIViewController {
         super.viewDidLoad()
         
         reference = Database.database().reference()
+        selectedCoins = [Coin]()
         
         coinsTable.delegate = self
         coinsTable.dataSource = self
@@ -47,6 +57,36 @@ class CoinSelectionController: UIViewController {
             }
         }
         
+        confirmButton.layer.cornerRadius = 6
+        confirmButton.layer.shadowColor = UIColor.lightGray.cgColor
+        confirmButton.layer.shadowOpacity = 3
+        confirmButton.layer.shadowOffset.width = 0
+        confirmButton.layer.shadowOffset.height = 3
+        
+        
+        
+    }
+    
+    fileprivate func displayConfirmButtonIfRequired() {
+        if selectedCoins.count == 5 {
+            UIView.animate(withDuration: 0.5) {
+                self.confirmButton.alpha = 1
+            }
+        } else {
+            UIView.animate(withDuration: 0.3) {
+                self.confirmButton.alpha = 0
+            }
+        }
+    }
+    
+    fileprivate func changeSelectionCountText(count: Int) {
+        let attributedString = NSMutableAttributedString()
+        let selectedCoins = NSAttributedString(string: "\(count)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 26, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor(white: 0.8, alpha: 1)])
+        let totalCoins = NSAttributedString(string: "/5", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .medium), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        
+        attributedString.append(selectedCoins)
+        attributedString.append(totalCoins)
+        selectionCountLabel.attributedText = attributedString
     }
     
     fileprivate func animateTopSection() {
@@ -80,7 +120,7 @@ class CoinSelectionController: UIViewController {
         return dictionary
     }
     
-    @IBAction func randomizePlayersAndTeams(_ sender: Any) {
+    fileprivate func randomizePlayersAndTeams(_ sender: Any) {
         guard let selectedPool = selectedPool else { return }
         reference.child("Pools").child(selectedPool.id).observeSingleEvent(of: .value) { (snapshot) in
             guard let dictionary = snapshot.value as? [String: Any] else { return }
@@ -131,23 +171,39 @@ extension CoinSelectionController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let coin = coins[indexPath.item]
         print(coin.symbol)
+       
+        
+        for view in selectedViews {
+            if !view.isSelected {
+                view.isSelected = true
+                view.setNeedsDisplay()
+                break
+            }
+        }
+        
+        
         if selectedCoins.count < 5 {
             selectedCoins.append(coin)
-//            print(selectedCoins)
         } else {
             tableView.deselectRow(at: indexPath, animated: true)
-//            print(selectedCoins, "max number of coins selected")
             print("max number of coins selected")
         }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
+        for view in selectedViews.reversed() {
+            if view.isSelected {
+                view.isSelected = false
+                view.setNeedsDisplay()
+                break
+            }
+        }
+        
         let coin = coins[indexPath.item]
         print("Coin already selected, must remove", coin.symbol)
         guard let indexToRemove = selectedCoins.firstIndex(of: coin) else { return }
         selectedCoins.remove(at: indexToRemove)
-//        print(selectedCoins)
-        
     }
     
     

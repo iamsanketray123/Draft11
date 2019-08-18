@@ -75,6 +75,7 @@ extension UIView {
         
     }
     
+    
 }
 
 extension UIColor {
@@ -88,3 +89,49 @@ extension UIColor {
         return UIColor(red: 182/255, green: 47/255, blue: 42/255, alpha: 1)
     }
 }
+
+
+class QuadrilateralView : UIView {
+    
+    var path: UIBezierPath!
+    var isSelected = Bool()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        backgroundColor = .white
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override func draw(_ rect: CGRect) {
+        
+        drawQuadrilateral(color: .white)
+    }
+    
+    func drawQuadrilateral(color: UIColor) {
+        
+        path = UIBezierPath()
+        let a = CGPoint(x: self.frame.width / 5, y: 0)
+        let b = CGPoint(x: 0, y: self.frame.width / 2.5)
+        let c = CGPoint(x: self.frame.width * 0.8, y: self.frame.width / 2.5)
+        let d = CGPoint(x: self.frame.width, y: 0)
+        
+        path.move(to: a)
+        path.addLine(to: b)
+        path.addLine(to: c)
+        path.addLine(to: d)
+        path.close()
+        
+        if isSelected {
+            UIColor.rgb(4, 159, 54).setFill()
+        } else {
+            color.setFill()
+        }
+        
+        path.fill()
+    }
+}
+
