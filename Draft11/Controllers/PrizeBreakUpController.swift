@@ -25,6 +25,13 @@ class PrizeBreakUpController: UIViewController {
     let ranks = ["1", "2"]
     let prizes = ["6,500", "3,500"]
     
+    lazy var prizeBreakupView: PrizeBreakupAndLearboardView = {
+        let pbv = PrizeBreakupAndLearboardView()
+        pbv.prizeBreakUpController = self
+        return pbv
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -109,6 +109,8 @@ class CoinSelectionController: UIViewController {
         
         guard let selectedPool = selectedPool else { return }
         PoolsListController().join(pool: selectedPool, userID: uid)
+        
+        randomizePlayersAndTeams()
     }
     
     fileprivate func generateDictionary(selectedCoins: [Coin]) -> [String: Double] {
@@ -121,7 +123,7 @@ class CoinSelectionController: UIViewController {
         return dictionary
     }
     
-    fileprivate func randomizePlayersAndTeams(_ sender: Any) {
+    fileprivate func randomizePlayersAndTeams() {
         guard let selectedPool = selectedPool else { return }
         reference.child("Pools").child(selectedPool.id).observeSingleEvent(of: .value) { (snapshot) in
             guard let dictionary = snapshot.value as? [String: Any] else { return }

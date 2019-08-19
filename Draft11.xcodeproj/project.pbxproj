@@ -14,6 +14,7 @@
 		194C4C9F2309F3FB00B036A5 /* PrizeBreakUpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 194C4C9D2309F3FB00B036A5 /* PrizeBreakUpController.xib */; };
 		194C4CA22309FF0000B036A5 /* PrizeBreakUpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194C4CA02309FF0000B036A5 /* PrizeBreakUpCell.swift */; };
 		194C4CA32309FF0000B036A5 /* PrizeBreakUpCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 194C4CA12309FF0000B036A5 /* PrizeBreakUpCell.xib */; };
+		1966BFB7230A711B009556EA /* PrizeBreakupAndLearboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1966BFB6230A711B009556EA /* PrizeBreakupAndLearboardView.swift */; };
 		1986EDAB2303E0CB00B04D30 /* PoolsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986EDA92303E0CB00B04D30 /* PoolsListController.swift */; };
 		1986EDAC2303E0CB00B04D30 /* PoolsListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1986EDAA2303E0CB00B04D30 /* PoolsListController.xib */; };
 		1986EDAF2303E41000B04D30 /* PoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986EDAD2303E41000B04D30 /* PoolCell.swift */; };
@@ -40,6 +41,7 @@
 		194C4C9D2309F3FB00B036A5 /* PrizeBreakUpController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrizeBreakUpController.xib; sourceTree = "<group>"; };
 		194C4CA02309FF0000B036A5 /* PrizeBreakUpCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrizeBreakUpCell.swift; sourceTree = "<group>"; };
 		194C4CA12309FF0000B036A5 /* PrizeBreakUpCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrizeBreakUpCell.xib; sourceTree = "<group>"; };
+		1966BFB6230A711B009556EA /* PrizeBreakupAndLearboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrizeBreakupAndLearboardView.swift; sourceTree = "<group>"; };
 		1986EDA92303E0CB00B04D30 /* PoolsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolsListController.swift; sourceTree = "<group>"; };
 		1986EDAA2303E0CB00B04D30 /* PoolsListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PoolsListController.xib; sourceTree = "<group>"; };
 		1986EDAD2303E41000B04D30 /* PoolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolCell.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 		19F179DD23068D9100FE118E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1966BFB6230A711B009556EA /* PrizeBreakupAndLearboardView.swift */,
 				194C4C982309555C00B036A5 /* CategoryView.swift */,
 				194C4C9A2309558300B036A5 /* CategoryCell.swift */,
 				1986EDAD2303E41000B04D30 /* PoolCell.swift */,
@@ -310,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19F179DB230688FC00FE118E /* Coin.swift in Sources */,
+				1966BFB7230A711B009556EA /* PrizeBreakupAndLearboardView.swift in Sources */,
 				19EFAE1823032BFF005E07B4 /* Pool.swift in Sources */,
 				19F179E023068DAA00FE118E /* CoinCell.swift in Sources */,
 				19F179D8230687EE00FE118E /* CoinSelectionController.swift in Sources */,
