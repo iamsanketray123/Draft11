@@ -69,6 +69,11 @@
                         <constraint firstAttribute="trailing" secondItem="3u3-7D-YaJ" secondAttribute="trailing" constant="8" id="gc0-Fy-2mM"/>
                         <constraint firstItem="5qv-Pv-ssP" firstAttribute="centerY" secondItem="a7E-z3-k3T" secondAttribute="centerY" id="pPW-VF-9Ws"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="3u3-7D-YaJ"/>
+                        </mask>
+                    </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ja9-fL-8BI">
                     <rect key="frame" x="0.0" y="124" width="375" height="60"/>

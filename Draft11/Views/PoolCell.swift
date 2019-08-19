@@ -21,6 +21,7 @@ class PoolCell: UICollectionViewCell {
     @IBOutlet weak var percentageOfWinners: UILabel!
     @IBOutlet weak var totalPrizePool: UILabel!
     @IBOutlet weak var progress: GradientProgressBar!
+    @IBOutlet weak var prizeDistribution: UIButton!
     
     var pool: Pool? {
         didSet {

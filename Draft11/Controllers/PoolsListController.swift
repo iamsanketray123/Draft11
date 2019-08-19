@@ -55,9 +55,7 @@ class PoolsListController: UIViewController {
         
     }
     @IBAction func test(_ sender: Any) {
-        let prizeBreakUpController = PrizeBreakUpController()
-        prizeBreakUpController.selectedPool = pools[1]
-        self.navigationController?.pushViewController(prizeBreakUpController, animated: true)
+        
     }
     
     fileprivate func joinPoolOrCreateTeam(id: Int) {
@@ -143,6 +141,13 @@ class PoolsListController: UIViewController {
         }
     }
     
+    @objc func handleDisplayPrizeDistribution(_ sender: UIButton) {
+        let pool = pools[sender.tag]
+        let prizeBreakUpController = PrizeBreakUpController()
+        prizeBreakUpController.selectedPool = pool
+        self.navigationController?.pushViewController(prizeBreakUpController, animated: true)
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -164,6 +169,8 @@ extension PoolsListController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poolCellId, for: indexPath) as! PoolCell
         cell.pool = pools[indexPath.row]
+        cell.prizeDistribution.tag = indexPath.item
+        cell.prizeDistribution.addTarget(self, action: #selector(handleDisplayPrizeDistribution(_:)), for: .touchUpInside)
         return cell
     }
     

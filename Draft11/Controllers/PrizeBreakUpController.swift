@@ -81,8 +81,14 @@ class PrizeBreakUpController: UIViewController {
             let formatter = NumberFormatter()
             formatter.numberStyle = .decimal
             amounts = sortedAmounts.map({formatter.string(from: NSNumber(value: $0))!})
-            amounts.count == 1 ? (trophyContainer.alpha = 1) : (trophyContainer.alpha = 0)
-            amounts.count == 1 ? (table.isHidden = true) : (table.isHidden = false)
+            
+            if rankStringRange.count == 1 && rankStringRange.first?.count == 1 {
+                trophyContainer.alpha = 1
+                table.isHidden = true
+            } else {
+                trophyContainer.alpha = 0
+                table.isHidden = false
+            }
         }
         
     }

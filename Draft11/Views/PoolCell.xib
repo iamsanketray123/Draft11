@@ -125,6 +125,9 @@
                                 <color key="progressTintColor" red="1" green="0.59998080799999998" blue="0.193664056" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaG-Hj-no5">
+                                <rect key="frame" x="0.0" y="73" width="351" height="103"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -134,11 +137,14 @@
                             <constraint firstItem="Ykn-YF-VG7" firstAttribute="top" secondItem="AUZ-Fc-ZxT" secondAttribute="top" constant="12" id="719-L7-QuU"/>
                             <constraint firstAttribute="trailing" secondItem="RbC-J3-V7h" secondAttribute="trailing" constant="12" id="CbK-wI-dzt"/>
                             <constraint firstAttribute="trailing" secondItem="Vdk-tf-f7o" secondAttribute="trailing" constant="12" id="GUV-X4-GHr"/>
+                            <constraint firstItem="GaG-Hj-no5" firstAttribute="leading" secondItem="AUZ-Fc-ZxT" secondAttribute="leading" id="MSe-rO-cWI"/>
                             <constraint firstItem="Vdk-tf-f7o" firstAttribute="top" secondItem="gRI-2t-fst" secondAttribute="bottom" constant="20" id="MTT-7P-Kzz"/>
                             <constraint firstItem="RbC-J3-V7h" firstAttribute="top" secondItem="AUZ-Fc-ZxT" secondAttribute="top" constant="12" id="McS-cy-3D4"/>
+                            <constraint firstAttribute="trailing" secondItem="GaG-Hj-no5" secondAttribute="trailing" id="Nc5-ug-CQ7"/>
                             <constraint firstItem="39J-9U-ncu" firstAttribute="top" secondItem="3v7-36-Haf" secondAttribute="bottom" constant="8" id="PIy-Hw-Oot"/>
                             <constraint firstItem="7Jo-Bf-EZZ" firstAttribute="top" secondItem="RbC-J3-V7h" secondAttribute="bottom" constant="12" id="PU3-KP-wGU"/>
                             <constraint firstAttribute="trailing" secondItem="7Jo-Bf-EZZ" secondAttribute="trailing" constant="12" id="UbM-A6-ZE8"/>
+                            <constraint firstAttribute="bottom" secondItem="GaG-Hj-no5" secondAttribute="bottom" id="VPj-HB-MbK"/>
                             <constraint firstItem="gRI-2t-fst" firstAttribute="top" secondItem="Ykn-YF-VG7" secondAttribute="bottom" constant="12" id="bWX-c3-7ol"/>
                             <constraint firstItem="9L2-w1-Cwe" firstAttribute="leading" secondItem="AUZ-Fc-ZxT" secondAttribute="leading" constant="12" id="eZZ-rU-bcb"/>
                             <constraint firstAttribute="bottom" secondItem="39J-9U-ncu" secondAttribute="bottom" id="ee5-0d-hjz"/>
@@ -146,6 +152,7 @@
                             <constraint firstAttribute="trailing" secondItem="3v7-36-Haf" secondAttribute="trailing" constant="12" id="oSG-nH-WFa"/>
                             <constraint firstItem="Ykn-YF-VG7" firstAttribute="leading" secondItem="AUZ-Fc-ZxT" secondAttribute="leading" constant="12" id="otZ-ak-hFU"/>
                             <constraint firstItem="Vdk-tf-f7o" firstAttribute="leading" secondItem="AUZ-Fc-ZxT" secondAttribute="leading" constant="12" id="uRv-IF-a6d"/>
+                            <constraint firstItem="GaG-Hj-no5" firstAttribute="top" secondItem="gRI-2t-fst" secondAttribute="bottom" constant="8" id="wdN-qO-tMa"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -165,6 +172,7 @@
                 <outlet property="container" destination="AUZ-Fc-ZxT" id="Sfg-ZJ-91J"/>
                 <outlet property="entryFee" destination="7Jo-Bf-EZZ" id="8DH-Jb-avM"/>
                 <outlet property="percentageOfWinners" destination="8Hc-Ly-nJ4" id="w21-ga-Dp5"/>
+                <outlet property="prizeDistribution" destination="GaG-Hj-no5" id="m7m-bL-tEN"/>
                 <outlet property="progress" destination="Vdk-tf-f7o" id="THG-Ld-WCW"/>
                 <outlet property="spotsLeft" destination="9L2-w1-Cwe" id="Ozd-I1-kfj"/>
                 <outlet property="totalPrizePool" destination="gRI-2t-fst" id="LsT-ho-ZQ3"/>
