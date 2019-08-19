@@ -19,11 +19,14 @@ class PrizeBreakUpController: UIViewController {
     @IBOutlet weak var totalPrizePool: UILabel!
     @IBOutlet weak var entryFee: UILabel!
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var prizeBreakupContainer: UIView!
+    @IBOutlet weak var trophyContainer: UIView!
     
     var selectedPool: Pool?
     let cellId = "cellId"
-    let ranks = ["1", "2"]
-    let prizes = ["6,500", "3,500"]
+
+    var rankStringRange = [String]()
+    var amounts = [String]()
     
     lazy var prizeBreakupView: PrizeBreakupAndLearboardView = {
         let pbv = PrizeBreakupAndLearboardView()
@@ -34,7 +37,15 @@ class PrizeBreakUpController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        createRankStringRange()
+        sortPrizeRange()
 
+        prizeBreakupContainer.addSubview(prizeBreakupView)
+        prizeBreakupView.anchor(top: prizeBreakupContainer.topAnchor, left: prizeBreakupContainer.leftAnchor, bottom: prizeBreakupContainer.bottomAnchor, right: prizeBreakupContainer.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        prizeBreakupView.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        
+        
         guard let pool = selectedPool else { return }
         
         self.spotsLeft.text = "\(pool.spotsLeft) spots left"
@@ -64,6 +75,34 @@ class PrizeBreakUpController: UIViewController {
         table.tableFooterView = UIView()
     }
     
+    fileprivate func sortPrizeRange() {
+        if let selectedPool = selectedPool {
+            let sortedAmounts = selectedPool.prizeRanges.sorted(by: {$0 > $1})
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .decimal
+            amounts = sortedAmounts.map({formatter.string(from: NSNumber(value: $0))!})
+            amounts.count == 1 ? (trophyContainer.alpha = 1) : (trophyContainer.alpha = 0)
+            amounts.count == 1 ? (table.isHidden = true) : (table.isHidden = false)
+        }
+        
+    }
+    
+    fileprivate func createRankStringRange() {
+        if let selectedPool = selectedPool {
+            let sortedWinnersRange = selectedPool.winnerRanges.sorted(by: { $0[0] < $1[0] })
+            
+            for range in sortedWinnersRange {
+                if range.count == 1 {
+                    rankStringRange.append("\(range[0])")
+                } else {
+                    rankStringRange.append("\(range[0]) - \(range[range.count - 1])")
+                }
+            }
+            
+            print(rankStringRange)
+        }
+    }
+    
     @IBAction func backButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -74,13 +113,13 @@ class PrizeBreakUpController: UIViewController {
 extension PrizeBreakUpController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return prizes.count
+        return rankStringRange.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PrizeBreakUpCell
-        cell.rankRange.text = ranks[indexPath.item]
-        cell.prizeMoney.text = "₹ \(prizes[indexPath.item])"
+        cell.rankRange.text = rankStringRange[indexPath.item]
+        cell.prizeMoney.text = "₹ \(amounts[indexPath.item])"
         return cell
     }
     

@@ -58,7 +58,7 @@ extension PrizeBreakupAndLearboardView : UICollectionViewDelegate, UICollectionV
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width / 3.4, height: frame.height - 16)
+        return CGSize(width: frame.width / 2.2, height: frame.height - 16)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10

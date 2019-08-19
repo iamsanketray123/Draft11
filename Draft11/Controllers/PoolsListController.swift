@@ -21,8 +21,6 @@ class PoolsListController: UIViewController {
     var pools = [Pool]()
     let poolCellId = "poolCellId"
     
-    let a = [String:String]()
-    
     lazy var categoryView: CategoryView = {
         let cv = CategoryView()
         cv.poolsListController = self
@@ -125,7 +123,7 @@ class PoolsListController: UIViewController {
         reference.child("Pools").observeSingleEvent(of: .value) { (snapshot) in
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach({ (key, value) in
-                guard let dictionary = value as? [String: Any] else { return }
+                guard let dictionary = value as? [String: Any] else { return }  
                 let pool = Pool(dictionary: dictionary)
                 self.pools.append(pool)
             })

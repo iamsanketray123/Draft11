@@ -16,6 +16,8 @@ struct Pool {
     let spotsLeft: Int
     let totalSpots: Int
     let totalWinningAmount: Int
+    var winnerRanges = [[Int]]()
+    var prizeRanges = [Int]()
     
     init(dictionary: [String: Any]) {
         self.entryFee = dictionary["entryFee"] as? Int ?? Int()
@@ -24,5 +26,28 @@ struct Pool {
         self.spotsLeft = dictionary["spotsLeft"] as? Int ?? Int()
         self.totalSpots = dictionary["totalSpots"] as? Int ?? Int()
         self.totalWinningAmount = dictionary["totalWinningAmount"] as? Int ?? Int()
+        
+        let prizeBreakupStrings = dictionary["prizeBreakup"] as? [String: Int] ?? [String: Int]()
+        setupPrizeRange(prizeBreakupStrings: prizeBreakupStrings)
+    }
+    
+    mutating func setupPrizeRange(prizeBreakupStrings: [String: Int]) {
+
+        for (key,value) in prizeBreakupStrings {
+            let a = key.replacingOccurrences(of: "\"", with: String())
+            
+            if a.contains("-") {
+                
+                let b = a.split(separator: "-")
+                let lowerBound = Int(b[0])!
+                let upperBound = Int(b[1])!
+                self.winnerRanges.append([Int](lowerBound...upperBound))
+                
+            } else {
+                self.winnerRanges.append([Int(a)!])
+            }
+            
+            self.prizeRanges.append(value)
+        }
     }
 }
