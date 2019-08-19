@@ -8,9 +8,11 @@
 
 import UIKit
 import GradientProgressBar
+import FirebaseDatabase
+import FirebaseAuth
 
 class PrizeBreakUpController: UIViewController {
-
+    
     @IBOutlet weak var progress: GradientProgressBar!
     @IBOutlet weak var spotsLeft: UILabel!
     @IBOutlet weak var totalSpots: UILabel!
@@ -24,7 +26,7 @@ class PrizeBreakUpController: UIViewController {
     
     var selectedPool: Pool?
     let cellId = "cellId"
-
+    var reference: DatabaseReference!
     var rankStringRange = [String]()
     var amounts = [String]()
     
@@ -38,14 +40,102 @@ class PrizeBreakUpController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        reference = Database.database().reference()
+        
         createRankStringRange()
         sortPrizeRange()
-
+        setupUI()
+        
+    }
+    
+    @IBAction func createTeamOrJoinPool(_ sender: Any) {
+        let uid = Auth.auth().currentUser!.uid
+        reference.child("Teams").child(uid).observeSingleEvent(of: .value) { (snaphot) in
+            let snap = snaphot.value as? [String: Any]
+            if snap == nil { // no team has been created
+                let coinSelectionController = CoinSelectionController()
+                coinSelectionController.selectedPool = self.selectedPool
+                self.navigationController?.pushViewController(coinSelectionController, animated: true)
+            } else {
+                self.joinPool()
+            }
+        }
+        
+    }
+    
+    fileprivate func joinPool() {
+        
+        guard let pool = selectedPool else { return }
+        
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        reference.child("Teams").child(userID).child("poolsJoined").observeSingleEvent(of: .value) { (snapshot) in
+            let snap = snapshot.value as? [String: Any]
+            
+            if snap == nil {
+                
+                self.join(pool: pool, userID: userID)
+                
+            } else { // user has previously created team
+                
+                if snap!["\(pool.id)"] == nil { // user has not joined this pool
+                    
+                    self.join(pool: pool, userID: userID)
+                    
+                } else {
+                    print("ALREADY JOINED ⚠️")
+                }
+                
+            }
+        }
+    }
+    
+    func join(pool: Pool, userID: String) {
+        print(pool, "☢️")
+        reference = Database.database().reference()
+        reference.child("Pools").child(pool.id).observeSingleEvent(of: .value) { (snapshot) in
+            guard let dictionary  = snapshot.value as? [String: Any] else { return }
+            print(dictionary, "🚦")
+            let pool = Pool(dictionary: dictionary)
+            if pool.spotsLeft >= 1 {
+                self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : (pool.spotsLeft - 1)])
+                self.reference.child("Teams").child(userID).child("poolsJoined").updateChildValues([pool.id: Date().timeIntervalSince1970])
+            } else {
+                print("Pool already filled, sorry!")
+            }
+        }
+    }
+    
+    
+    fileprivate func setupUI() {
+        
+        setupCell()
+        
         prizeBreakupContainer.addSubview(prizeBreakupView)
         prizeBreakupView.anchor(top: prizeBreakupContainer.topAnchor, left: prizeBreakupContainer.leftAnchor, bottom: prizeBreakupContainer.bottomAnchor, right: prizeBreakupContainer.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         prizeBreakupView.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
         
+        confirmedTag.layer.cornerRadius = 1.5
+        confirmedTag.layer.borderColor = UIColor(white: 0, alpha: 0.25).cgColor
+        confirmedTag.layer.borderWidth = 1.25
         
+        table.delegate = self
+        table.dataSource = self
+        table.register(UINib.init(nibName: "PrizeBreakUpCell", bundle: nil), forCellReuseIdentifier: cellId)
+        table.tableFooterView = UIView()
+        
+        let grayLine = UIView()
+        grayLine.backgroundColor = UIColor.rgb(200, 200, 200)
+        prizeBreakupContainer.addSubview(grayLine)
+        grayLine.anchor(top: prizeBreakupContainer.topAnchor, left: prizeBreakupContainer.leftAnchor, bottom: nil, right: prizeBreakupContainer.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 1)
+        
+        prizeBreakupContainer.layer.shadowColor = UIColor.lightGray.cgColor
+        prizeBreakupContainer.layer.shadowOpacity = 3
+        prizeBreakupContainer.layer.shadowOffset.width = 0
+        prizeBreakupContainer.layer.shadowOffset.height = 3
+    }
+    
+    fileprivate func setupCell() {
         guard let pool = selectedPool else { return }
         
         self.spotsLeft.text = "\(pool.spotsLeft) spots left"
@@ -64,15 +154,6 @@ class PrizeBreakUpController: UIViewController {
         progress.gradientColorList = [.orange, UIColor.rgb(200, 40, 30, 0.8)]
         progress.setProgress(0, animated: false)
         progress.setProgress( Float(pool.totalSpots - pool.spotsLeft) / Float(pool.totalSpots), animated: true)
-        
-        confirmedTag.layer.cornerRadius = 1.5
-        confirmedTag.layer.borderColor = UIColor(white: 0, alpha: 0.25).cgColor
-        confirmedTag.layer.borderWidth = 1.25
-        
-        table.delegate = self
-        table.dataSource = self
-        table.register(UINib.init(nibName: "PrizeBreakUpCell", bundle: nil), forCellReuseIdentifier: cellId)
-        table.tableFooterView = UIView()
     }
     
     fileprivate func sortPrizeRange() {
@@ -113,7 +194,7 @@ class PrizeBreakUpController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-
+    
 }
 
 extension PrizeBreakUpController: UITableViewDelegate, UITableViewDataSource {

@@ -184,6 +184,12 @@
                             <color key="progressTintColor" red="1" green="0.59998080799999998" blue="0.193664056" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <color key="trackTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </progressView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tjn-aY-x9P">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="136"/>
+                            <connections>
+                                <action selector="createTeamOrJoinPool:" destination="-1" eventType="touchUpInside" id="TgC-ef-Gdb"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -192,18 +198,22 @@
                         <constraint firstItem="3Yy-vT-dX7" firstAttribute="top" secondItem="4yg-GY-KXN" secondAttribute="bottom" constant="8" id="2TA-lg-WQg"/>
                         <constraint firstItem="q0Z-E2-s0o" firstAttribute="top" secondItem="3P3-cO-YSt" secondAttribute="top" constant="12" id="3PZ-VC-t3h"/>
                         <constraint firstAttribute="height" constant="176" id="8YV-HK-U9T"/>
+                        <constraint firstItem="Tjn-aY-x9P" firstAttribute="leading" secondItem="3P3-cO-YSt" secondAttribute="leading" id="G7c-qK-dvF"/>
                         <constraint firstAttribute="bottom" secondItem="3Yy-vT-dX7" secondAttribute="bottom" id="KaD-O1-OcZ"/>
+                        <constraint firstItem="3Yy-vT-dX7" firstAttribute="top" secondItem="Tjn-aY-x9P" secondAttribute="bottom" id="LQF-kU-HRv"/>
                         <constraint firstItem="GRt-td-q18" firstAttribute="top" secondItem="O17-Ms-ZHr" secondAttribute="bottom" constant="12" id="Lrm-nd-Cqm"/>
                         <constraint firstItem="aH4-zq-437" firstAttribute="top" secondItem="GRt-td-q18" secondAttribute="bottom" constant="20" id="OEP-w6-bV3"/>
                         <constraint firstAttribute="trailing" secondItem="q0Z-E2-s0o" secondAttribute="trailing" constant="12" id="PCS-6H-NNF"/>
                         <constraint firstAttribute="trailing" secondItem="aH4-zq-437" secondAttribute="trailing" constant="12" id="Ppn-PY-4fX"/>
                         <constraint firstAttribute="trailing" secondItem="Xm4-ox-3ub" secondAttribute="trailing" constant="12" id="SuK-bX-c7o"/>
                         <constraint firstAttribute="trailing" secondItem="jgT-L1-oBL" secondAttribute="trailing" constant="12" id="Xhm-WP-llx"/>
+                        <constraint firstItem="Tjn-aY-x9P" firstAttribute="top" secondItem="3P3-cO-YSt" secondAttribute="top" id="iPz-8m-dqI"/>
                         <constraint firstItem="GRt-td-q18" firstAttribute="leading" secondItem="3P3-cO-YSt" secondAttribute="leading" constant="12" id="kdU-Jm-lPy"/>
                         <constraint firstItem="3Yy-vT-dX7" firstAttribute="leading" secondItem="3P3-cO-YSt" secondAttribute="leading" id="lbp-e0-sHO"/>
                         <constraint firstItem="3Yy-vT-dX7" firstAttribute="top" secondItem="jgT-L1-oBL" secondAttribute="bottom" constant="8" id="oQ0-MR-f4o"/>
                         <constraint firstItem="Xm4-ox-3ub" firstAttribute="top" secondItem="q0Z-E2-s0o" secondAttribute="bottom" constant="12" id="pTs-K3-JIG"/>
                         <constraint firstItem="O17-Ms-ZHr" firstAttribute="leading" secondItem="3P3-cO-YSt" secondAttribute="leading" constant="12" id="udp-NG-bCE"/>
+                        <constraint firstAttribute="trailing" secondItem="Tjn-aY-x9P" secondAttribute="trailing" id="wMC-S6-eGo"/>
                         <constraint firstItem="O17-Ms-ZHr" firstAttribute="top" secondItem="3P3-cO-YSt" secondAttribute="top" constant="12" id="wbo-Af-ieQ"/>
                         <constraint firstItem="aH4-zq-437" firstAttribute="leading" secondItem="3P3-cO-YSt" secondAttribute="leading" constant="12" id="xgZ-DO-NN8"/>
                     </constraints>

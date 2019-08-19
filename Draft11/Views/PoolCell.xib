@@ -126,7 +126,7 @@
                                 <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaG-Hj-no5">
-                                <rect key="frame" x="0.0" y="73" width="351" height="103"/>
+                                <rect key="frame" x="0.0" y="136" width="351" height="40"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -150,9 +150,9 @@
                             <constraint firstAttribute="bottom" secondItem="39J-9U-ncu" secondAttribute="bottom" id="ee5-0d-hjz"/>
                             <constraint firstAttribute="trailing" secondItem="39J-9U-ncu" secondAttribute="trailing" id="ej1-Ri-ccO"/>
                             <constraint firstAttribute="trailing" secondItem="3v7-36-Haf" secondAttribute="trailing" constant="12" id="oSG-nH-WFa"/>
+                            <constraint firstItem="GaG-Hj-no5" firstAttribute="height" secondItem="39J-9U-ncu" secondAttribute="height" id="oWr-C9-aDA"/>
                             <constraint firstItem="Ykn-YF-VG7" firstAttribute="leading" secondItem="AUZ-Fc-ZxT" secondAttribute="leading" constant="12" id="otZ-ak-hFU"/>
                             <constraint firstItem="Vdk-tf-f7o" firstAttribute="leading" secondItem="AUZ-Fc-ZxT" secondAttribute="leading" constant="12" id="uRv-IF-a6d"/>
-                            <constraint firstItem="GaG-Hj-no5" firstAttribute="top" secondItem="gRI-2t-fst" secondAttribute="bottom" constant="8" id="wdN-qO-tMa"/>
                         </constraints>
                     </view>
                 </subviews>

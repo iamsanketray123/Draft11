@@ -20,6 +20,8 @@ class CoinSelectionController: UIViewController {
     @IBOutlet weak var stack: UIStackView!
     
     
+    var spotsLeftForPool = Int()
+    
     var coins = [Coin]()
     var selectedCoins = [Coin]() {
         didSet {
@@ -33,6 +35,8 @@ class CoinSelectionController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         reference = Database.database().reference()
         selectedCoins = [Coin]()
@@ -110,8 +114,25 @@ class CoinSelectionController: UIViewController {
         guard let selectedPool = selectedPool else { return }
         PoolsListController().join(pool: selectedPool, userID: uid)
         
-        randomizePlayersAndTeams()
+        
+        displayAlertForRandomization()
+        
     }
+    
+    fileprivate func displayAlertForRandomization() {
+        
+        let alert = UIAlertController(title: "Note!", message: "Total number of slots for this contest have not been filled. You may click on 'Randomize' to play against AI bots", preferredStyle: .alert)
+        let randomizeAction = UIAlertAction(title: "Play against AI", style: .default) { (_) in
+            self.randomizePlayersAndTeams()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+        alert.addAction(randomizeAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
     
     fileprivate func generateDictionary(selectedCoins: [Coin]) -> [String: Double] {
         
@@ -129,6 +150,7 @@ class CoinSelectionController: UIViewController {
             guard let dictionary = snapshot.value as? [String: Any] else { return }
             let pool = Pool(dictionary: dictionary)
             let spotsLeft = pool.spotsLeft
+            self.spotsLeftForPool = spotsLeft
             
             for _ in 0..<spotsLeft {
                 let randomPlayerUID = NSUUID().uuidString
@@ -147,8 +169,15 @@ class CoinSelectionController: UIViewController {
                 print("❣️", randomPortfolio, updateValues, "❣️")
                 self.reference.child("Teams").child(randomPlayerUID).child("portfolio").updateChildValues(updateValues)
                 self.reference.child("Teams").child(randomPlayerUID).child("poolsJoined").updateChildValues([pool.id : Date().timeIntervalSince1970])
+                self.spotsLeftForPool -= 1
+                self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : self.spotsLeftForPool])
+                
+                if let randomName = randomNames.randomElement() {
+                    self.reference.child("Users").child(randomPlayerUID).updateChildValues(["userName": randomName])
+                }
             }
-            self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : 0])
+//            self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : 0])
+            
         }
     }
     
@@ -211,3 +240,4 @@ extension CoinSelectionController : UITableViewDelegate, UITableViewDataSource {
     
     
 }
+

@@ -136,8 +136,11 @@ class PoolsListController: UIViewController {
                 if error != nil {
                     print(error!.localizedDescription, "❗️")
                 }
+                self.reference.child("Users").child(user!.user.uid).updateChildValues(["userName": "Sanket Ray"])
                 print(user!.user.uid, "✅")
             }
+        } else {
+            print("User already logged in")
         }
     }
     
@@ -193,4 +196,4 @@ extension PoolsListController: UICollectionViewDelegate, UICollectionViewDataSou
     
 }
 
-
+let randomNames = [ "Lovetta Mariotti", "Callie Shemwell", "Vertie Mayville", "China Lollar", "August Bridgewater", "Natividad Uy", "Sherril Bivens", "Will Madonna", "Virgen Champ", "Rickey Kennemer", "Eveline Arrellano", "Gabrielle Foerster", "Corie Almendarez", "Elvin Desch", "Jerold Metzger", "Alton Mallory", "Claire Borgman", "Hellen Quackenbush", "Shanna Ku", "Gonzalo Fagen", "Brad Darlington", "Tyler Turvey", "Laurice Hartline", "Berna Billy", "Cornelia Solorzano", "Karena Hendon", "Shantel Eveland", "Shanon Keeth", "Tameka Cooks", "Jeffie Feliciano", "Aubrey Kanode", "Terrell Walkup", "Ellis Swarts", "Irish Langton", "Lowell Bomberger", "Lyndon Foran", "Maragaret Raminez", "Wilda Baillargeon", "Reyna Muncie", "Lamont Bowie", "Elenore Grubb", "Star Collett", "Lurlene Acheson", "Mitzie Ferraro", "Ola Whitting", "Danette Riera", "Noella Meachum", "Cathy Venturini", "Katrina Burkle", "Moses Cyphers", "Therese Stutes", "Refugia Brumback", "Shellie Gabrielson", "Ginny Alsup", "Gloria Rockwell", "Wilford Dizon", "Shameka Lorenzen", "Lovie Grillo", "Grady Sarver", "Marylin Curfman", "Season Fowlkes", "Gerardo Celestine", "Vergie Zank", "Aida Tobias", "Dionna Kissel", "Gwenn Moye", "Merilyn Hertzler", "Ami Stalnaker", "Callie Bianco", "Sophia Paredes", "Elouise Daniel", "Wesley Beachy", "Shiloh Heesch", "Patsy Bagnell", "Latoria Maddy", "Joycelyn Preusser", "Mayola Britton", "Mathilde Jaco", "Adah Reinhard", "Yadira Candler", "Sun Erben", "Genesis Swank", "Ozell Teter", "Diann Lucero", "Elna Earnhardt", "Nova Sergio", "Lilly Severino", "Regan Flood", "Steffanie Aten", "Zenaida Dossett", "Dwain Leaf", "Adelle Nagao", "Felton Magruder", "Ava Ostler", "Melda Leeper", "Mack Leyendecker", "Ileen Garlock", "Queen Mulcahy", "Cornell Dao", "Connie Hoffmeister" ]
