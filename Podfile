@@ -12,5 +12,5 @@ pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'Firebase/RemoteConfig'
 pod 'GradientProgressBar'
-
+pod 'GradientLoadingBar'
 end

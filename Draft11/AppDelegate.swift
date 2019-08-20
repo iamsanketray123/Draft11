@@ -19,14 +19,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window = UIWindow()
-        let navigationController = UINavigationController(rootViewController: PoolsListController())
+        FirebaseApp.configure()
+        
+        var rootViewController = UIViewController()
+        
+        if Auth.auth().currentUser?.uid == nil {
+            print("User not logged in")
+            rootViewController = LoginController()
+        } else {
+            rootViewController = PoolsListController()
+        }
+        
+        let navigationController = UINavigationController(rootViewController: rootViewController)
         navigationController.isNavigationBarHidden = true
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-        
-        
-        
-        FirebaseApp.configure()
         
         return true
     }

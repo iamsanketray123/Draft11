@@ -22,6 +22,8 @@ class PoolCell: UICollectionViewCell {
     @IBOutlet weak var totalPrizePool: UILabel!
     @IBOutlet weak var progress: GradientProgressBar!
     @IBOutlet weak var prizeDistribution: UIButton!
+    @IBOutlet weak var redDot: UIView!
+    @IBOutlet weak var entryOrLiveLabel: UILabel!
     
     var pool: Pool? {
         didSet {
@@ -34,7 +36,7 @@ class PoolCell: UICollectionViewCell {
         
         self.spotsLeft.text = "\(pool.spotsLeft) spots left"
         self.totalSpots.text = "\(pool.totalSpots) spots"
-        self.percentageOfWinners.text = "\(pool.percentageOfWinners)%"
+        self.percentageOfWinners.text = "\(pool.percentageOfWinners)% Teams win"
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
@@ -49,6 +51,9 @@ class PoolCell: UICollectionViewCell {
         progress.setProgress(0, animated: false)
         progress.setProgress( Float(pool.totalSpots - pool.spotsLeft) / Float(pool.totalSpots), animated: true)
         
+        pool.isContestLive ? (redDot.isHidden = false) : (redDot.isHidden = true)
+        pool.isContestLive ? (entryOrLiveLabel.text = "Live") : (entryOrLiveLabel.text = "Entry")
+//        pool.isContestLive ? (self.entryFee.isHidden = true) : (self.entryFee.isHidden = false)
     }
     
 
@@ -68,7 +73,9 @@ class PoolCell: UICollectionViewCell {
         confirmedTag.layer.borderColor = UIColor(white: 0, alpha: 0.25).cgColor
         confirmedTag.layer.borderWidth = 1.25
         
-        progress.transform = CGAffineTransform.init(scaleX: 1, y: 1.5)
+        progress.transform = CGAffineTransform.init(scaleX: 1, y: 1.75)
+        progress.layer.cornerRadius = progress.frame.height / 2 * 1.75
+        progress.layer.masksToBounds = true
     }
 
 }

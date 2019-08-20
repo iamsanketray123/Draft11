@@ -18,6 +18,8 @@ struct Pool {
     let totalWinningAmount: Int
     var winnerRanges = [[Int]]()
     var prizeRanges = [Int]()
+    var playerUIDs = [String]()
+    var isContestLive = Bool()
     
     init(dictionary: [String: Any]) {
         self.entryFee = dictionary["entryFee"] as? Int ?? Int()
@@ -26,9 +28,14 @@ struct Pool {
         self.spotsLeft = dictionary["spotsLeft"] as? Int ?? Int()
         self.totalSpots = dictionary["totalSpots"] as? Int ?? Int()
         self.totalWinningAmount = dictionary["totalWinningAmount"] as? Int ?? Int()
-        
+        self.isContestLive = dictionary["isContestLive"] as? Bool ?? Bool()
         let prizeBreakupStrings = dictionary["prizeBreakup"] as? [String: Int] ?? [String: Int]()
         setupPrizeRange(prizeBreakupStrings: prizeBreakupStrings)
+        
+        let players = dictionary["players"] as? [String: Any] ?? [String: Any]()
+        for (key,_) in players {
+            self.playerUIDs.append(key)
+        }
     }
     
     mutating func setupPrizeRange(prizeBreakupStrings: [String: Int]) {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		191335FA230BF47E0016E197 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191335F8230BF47E0016E197 /* LoginController.swift */; };
+		191335FB230BF47E0016E197 /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 191335F9230BF47E0016E197 /* LoginController.xib */; };
 		194C4C9623094C7600B036A5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194C4C9523094C7600B036A5 /* Extensions.swift */; };
 		194C4C992309555C00B036A5 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194C4C982309555C00B036A5 /* CategoryView.swift */; };
 		194C4C9B2309558300B036A5 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194C4C9A2309558300B036A5 /* CategoryCell.swift */; };
@@ -19,6 +21,7 @@
 		1986EDAC2303E0CB00B04D30 /* PoolsListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1986EDAA2303E0CB00B04D30 /* PoolsListController.xib */; };
 		1986EDAF2303E41000B04D30 /* PoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986EDAD2303E41000B04D30 /* PoolCell.swift */; };
 		1986EDB02303E41000B04D30 /* PoolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1986EDAE2303E41000B04D30 /* PoolCell.xib */; };
+		19D4724E230C1AF7002C3CAD /* PortfolioCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D4724D230C1AF7002C3CAD /* PortfolioCoin.swift */; };
 		19EFAE0423031EB0005E07B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EFAE0323031EB0005E07B4 /* AppDelegate.swift */; };
 		19EFAE0B23031EB1005E07B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19EFAE0A23031EB1005E07B4 /* Assets.xcassets */; };
 		19EFAE0E23031EB1005E07B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19EFAE0C23031EB1005E07B4 /* LaunchScreen.storyboard */; };
@@ -34,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		191335F8230BF47E0016E197 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		191335F9230BF47E0016E197 /* LoginController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
 		194C4C9523094C7600B036A5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		194C4C982309555C00B036A5 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		194C4C9A2309558300B036A5 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -46,6 +51,7 @@
 		1986EDAA2303E0CB00B04D30 /* PoolsListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PoolsListController.xib; sourceTree = "<group>"; };
 		1986EDAD2303E41000B04D30 /* PoolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolCell.swift; sourceTree = "<group>"; };
 		1986EDAE2303E41000B04D30 /* PoolCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PoolCell.xib; sourceTree = "<group>"; };
+		19D4724D230C1AF7002C3CAD /* PortfolioCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCoin.swift; sourceTree = "<group>"; };
 		19EFAE0023031EB0005E07B4 /* Draft11.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Draft11.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19EFAE0323031EB0005E07B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19EFAE0A23031EB1005E07B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -124,6 +130,7 @@
 			children = (
 				19EFAE1723032BFF005E07B4 /* Pool.swift */,
 				19F179DA230688FC00FE118E /* Coin.swift */,
+				19D4724D230C1AF7002C3CAD /* PortfolioCoin.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -147,6 +154,8 @@
 		19F179E423071F2100FE118E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				191335F8230BF47E0016E197 /* LoginController.swift */,
+				191335F9230BF47E0016E197 /* LoginController.xib */,
 				1986EDA92303E0CB00B04D30 /* PoolsListController.swift */,
 				1986EDAA2303E0CB00B04D30 /* PoolsListController.xib */,
 				19F179D6230687EE00FE118E /* CoinSelectionController.swift */,
@@ -245,6 +254,7 @@
 				194C4C9F2309F3FB00B036A5 /* PrizeBreakUpController.xib in Resources */,
 				1986EDB02303E41000B04D30 /* PoolCell.xib in Resources */,
 				19EFAE0E23031EB1005E07B4 /* LaunchScreen.storyboard in Resources */,
+				191335FB230BF47E0016E197 /* LoginController.xib in Resources */,
 				1986EDAC2303E0CB00B04D30 /* PoolsListController.xib in Resources */,
 				19F179D9230687EE00FE118E /* CoinSelectionController.xib in Resources */,
 				19EFAE1623032263005E07B4 /* GoogleService-Info.plist in Resources */,
@@ -284,6 +294,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Draft11/Pods-Draft11-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/GradientLoadingBar/GradientLoadingBar.framework",
 				"${BUILT_PRODUCTS_DIR}/GradientProgressBar/GradientProgressBar.framework",
 				"${BUILT_PRODUCTS_DIR}/LightweightObservable/LightweightObservable.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -294,6 +305,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GradientLoadingBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GradientProgressBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LightweightObservable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -316,6 +328,8 @@
 				1966BFB7230A711B009556EA /* PrizeBreakupAndLearboardView.swift in Sources */,
 				19EFAE1823032BFF005E07B4 /* Pool.swift in Sources */,
 				19F179E023068DAA00FE118E /* CoinCell.swift in Sources */,
+				191335FA230BF47E0016E197 /* LoginController.swift in Sources */,
+				19D4724E230C1AF7002C3CAD /* PortfolioCoin.swift in Sources */,
 				19F179D8230687EE00FE118E /* CoinSelectionController.swift in Sources */,
 				194C4C9E2309F3FB00B036A5 /* PrizeBreakUpController.swift in Sources */,
 				194C4C992309555C00B036A5 /* CategoryView.swift in Sources */,

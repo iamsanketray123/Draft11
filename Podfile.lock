@@ -66,6 +66,8 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.2.5):
     - GoogleUtilities/Logger
+  - GradientLoadingBar (1.1.17):
+    - LightweightObservable (~> 1.0)
   - GradientProgressBar (1.2.9):
     - LightweightObservable (~> 1.0)
   - GTMSessionFetcher/Core (1.2.2)
@@ -82,6 +84,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - Firebase/RemoteConfig
+  - GradientLoadingBar
   - GradientProgressBar
 
 SPEC REPOS:
@@ -99,6 +102,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
+    - GradientLoadingBar
     - GradientProgressBar
     - GTMSessionFetcher
     - leveldb-library
@@ -120,6 +124,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: ffbadce4ab93c88fb9dd8e6366c47bfcb4a32193
   GoogleDataTransportCCTSupport: 3451e7d8ba19093e533362a6d78d6d9014c6a037
   GoogleUtilities: e7dc37039b19df7fe543479d3e4a02ac8d11bb69
+  GradientLoadingBar: a0e1855e4ba5051301027d5f4a129f38003cc2b9
   GradientProgressBar: a4d967bded9d749f2abbe657b600dfe0b34357d0
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
@@ -127,6 +132,6 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
 
-PODFILE CHECKSUM: d6cd18d995ffe0954a6e92038cf1d76264c28429
+PODFILE CHECKSUM: b740ce9875ccc4cc783babfcffa9790ca303b965
 
 COCOAPODS: 1.5.3

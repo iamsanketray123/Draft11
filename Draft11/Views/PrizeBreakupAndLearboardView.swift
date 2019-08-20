@@ -67,10 +67,7 @@ extension PrizeBreakupAndLearboardView : UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let prizeBreakUpController = prizeBreakUpController {
             if indexPath.item == 1 {
-                let reference = Database.database().reference()
-                reference.child("Teams").queryOrdered(byChild: "-LmEHqXT1HdOh6QsgF8R").queryEqual(toValue: "-LmEHqXT1HdOh6QsgF8R").observeSingleEvent(of: .value) { (snapshot) in
-                    print(snapshot)
-                }
+                prizeBreakUpController.getPlayers()
             }
         }
     }

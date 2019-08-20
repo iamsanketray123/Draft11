@@ -10,6 +10,9 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
+
+let sortedCoinString = "ADA,BCH,BNB,BTC,DASH,EOS,ETC,ETH,LEO,LINK,LTC,MIOTA,NEO,TRX,USDT,XEM,XLM,XMR,XRP,XTZ"
+
 class CoinSelectionController: UIViewController {
 
     @IBOutlet weak var coinsTable: UITableView!
@@ -46,12 +49,7 @@ class CoinSelectionController: UIViewController {
         coinsTable.allowsMultipleSelection = true
         coinsTable.register(UINib.init(nibName: "CoinCell", bundle: nil), forCellReuseIdentifier: coinCellId)
         
-        let coinsString = "BTC,ETH,XRP,BCH,LTC,BNB,USDT,EOS,XMR,XLM,LEO,ADA,TRX,DASH,LINK,XTZ,NEO,MIOTA,ETC,XEM"
-        var coinsArray = coinsString.split(separator: ",")
-        coinsArray.sort(by: {$0 < $1})
-        let sortedCoinsString = coinsArray.joined(separator: ",")
-        
-        getCryptoDetailsFor(coinsString: sortedCoinsString, currency: "INR", completionForError: { (errorMessage) in
+        getCryptoDetailsFor(coinsString: sortedCoinString, currency: "INR", completionForError: { (errorMessage) in
             print(errorMessage)
         }) { (coins) in
             self.coins = coins
@@ -168,7 +166,8 @@ class CoinSelectionController: UIViewController {
                 let updateValues = self.generateDictionary(selectedCoins: randomPortfolio)
                 print("❣️", randomPortfolio, updateValues, "❣️")
                 self.reference.child("Teams").child(randomPlayerUID).child("portfolio").updateChildValues(updateValues)
-                self.reference.child("Teams").child(randomPlayerUID).child("poolsJoined").updateChildValues([pool.id : Date().timeIntervalSince1970])
+                self.reference.child("Pools").child(pool.id).child("players").updateChildValues([randomPlayerUID: Date().timeIntervalSince1970])
+                
                 self.spotsLeftForPool -= 1
                 self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : self.spotsLeftForPool])
                 
@@ -176,7 +175,7 @@ class CoinSelectionController: UIViewController {
                     self.reference.child("Users").child(randomPlayerUID).updateChildValues(["userName": randomName])
                 }
             }
-//            self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : 0])
+            self.reference.child("Pools").child(pool.id).updateChildValues(["isContestLive": true])
             
         }
     }

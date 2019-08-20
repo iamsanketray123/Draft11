@@ -14,9 +14,11 @@
             <connections>
                 <outlet property="confirmedTag" destination="Ohl-PF-0v9" id="kst-v9-b5N"/>
                 <outlet property="entryFee" destination="Xm4-ox-3ub" id="djI-j5-pKJ"/>
+                <outlet property="entryOrLiveLabel" destination="q0Z-E2-s0o" id="KqR-le-uZ8"/>
                 <outlet property="percentageOfWinners" destination="ALd-zs-Bos" id="ZjT-Rm-RNc"/>
                 <outlet property="prizeBreakupContainer" destination="SKn-ZN-BI7" id="QVI-5J-CMR"/>
                 <outlet property="progress" destination="aH4-zq-437" id="Dvg-AF-bWH"/>
+                <outlet property="redDot" destination="hPU-Ng-tbH" id="WWX-xe-FpZ"/>
                 <outlet property="spotsLeft" destination="4yg-GY-KXN" id="U6W-Ed-bux"/>
                 <outlet property="table" destination="VW4-4b-q1I" id="6S3-Gg-jOP"/>
                 <outlet property="totalPrizePool" destination="GRt-td-q18" id="9a5-iT-9E7"/>
@@ -102,6 +104,19 @@
                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPU-Ng-tbH">
+                            <rect key="frame" x="358" y="17.5" width="6" height="6"/>
+                            <color key="backgroundColor" red="0.7843137255" green="0.15686274510000001" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="6" id="OkT-Jk-39L"/>
+                                <constraint firstAttribute="width" constant="6" id="wyO-bw-hqd"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₹ 100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xm4-ox-3ub">
                             <rect key="frame" x="322" y="41" width="80" height="24"/>
                             <color key="backgroundColor" red="0.0" green="0.69411764710000001" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -198,6 +213,7 @@
                         <constraint firstItem="3Yy-vT-dX7" firstAttribute="top" secondItem="4yg-GY-KXN" secondAttribute="bottom" constant="8" id="2TA-lg-WQg"/>
                         <constraint firstItem="q0Z-E2-s0o" firstAttribute="top" secondItem="3P3-cO-YSt" secondAttribute="top" constant="12" id="3PZ-VC-t3h"/>
                         <constraint firstAttribute="height" constant="176" id="8YV-HK-U9T"/>
+                        <constraint firstItem="q0Z-E2-s0o" firstAttribute="leading" secondItem="hPU-Ng-tbH" secondAttribute="trailing" constant="4" id="8hr-11-r1r"/>
                         <constraint firstItem="Tjn-aY-x9P" firstAttribute="leading" secondItem="3P3-cO-YSt" secondAttribute="leading" id="G7c-qK-dvF"/>
                         <constraint firstAttribute="bottom" secondItem="3Yy-vT-dX7" secondAttribute="bottom" id="KaD-O1-OcZ"/>
                         <constraint firstItem="3Yy-vT-dX7" firstAttribute="top" secondItem="Tjn-aY-x9P" secondAttribute="bottom" id="LQF-kU-HRv"/>
@@ -213,6 +229,7 @@
                         <constraint firstItem="3Yy-vT-dX7" firstAttribute="top" secondItem="jgT-L1-oBL" secondAttribute="bottom" constant="8" id="oQ0-MR-f4o"/>
                         <constraint firstItem="Xm4-ox-3ub" firstAttribute="top" secondItem="q0Z-E2-s0o" secondAttribute="bottom" constant="12" id="pTs-K3-JIG"/>
                         <constraint firstItem="O17-Ms-ZHr" firstAttribute="leading" secondItem="3P3-cO-YSt" secondAttribute="leading" constant="12" id="udp-NG-bCE"/>
+                        <constraint firstItem="hPU-Ng-tbH" firstAttribute="centerY" secondItem="O17-Ms-ZHr" secondAttribute="centerY" id="wKC-NY-YcS"/>
                         <constraint firstAttribute="trailing" secondItem="Tjn-aY-x9P" secondAttribute="trailing" id="wMC-S6-eGo"/>
                         <constraint firstItem="O17-Ms-ZHr" firstAttribute="top" secondItem="3P3-cO-YSt" secondAttribute="top" constant="12" id="wbo-Af-ieQ"/>
                         <constraint firstItem="aH4-zq-437" firstAttribute="leading" secondItem="3P3-cO-YSt" secondAttribute="leading" constant="12" id="xgZ-DO-NN8"/>

@@ -10,16 +10,19 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 import Firebase
+import GradientLoadingBar
 
 class PoolsListController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var categoryContainer: UIView!
     @IBOutlet weak var comingSoon: UILabel!
+    @IBOutlet weak var gradientContainer: UIView!
     
     var reference: DatabaseReference!
     var pools = [Pool]()
     let poolCellId = "poolCellId"
+    private var buttonGradientLoadingBar: GradientLoadingBar!
     
     lazy var categoryView: CategoryView = {
         let cv = CategoryView()
@@ -30,6 +33,15 @@ class PoolsListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let gradientColorList = [
+            #colorLiteral(red: 0.9490196078, green: 0.3215686275, blue: 0.431372549, alpha: 1), #colorLiteral(red: 0.9450980392, green: 0.4784313725, blue: 0.5921568627, alpha: 1), #colorLiteral(red: 0.9529411765, green: 0.737254902, blue: 0.7843137255, alpha: 1), #colorLiteral(red: 0.4274509804, green: 0.8666666667, blue: 0.9490196078, alpha: 1), #colorLiteral(red: 0.7568627451, green: 0.9411764706, blue: 0.9568627451, alpha: 1)
+        ]
+
+        buttonGradientLoadingBar = GradientLoadingBar(height: 3, gradientColorList: gradientColorList, onView: gradientContainer)
+        buttonGradientLoadingBar.show()
+        
+        
+        
         categoryContainer.addSubview(categoryView)
         categoryView.anchor(top: categoryContainer.topAnchor, left: categoryContainer.leftAnchor, bottom: categoryContainer.bottomAnchor, right: categoryContainer.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         categoryView.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
@@ -39,7 +51,7 @@ class PoolsListController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(UINib.init(nibName: "PoolCell", bundle: nil), forCellWithReuseIdentifier: poolCellId)
         reference = Database.database().reference()
-        login()
+//        login()
         
         fetchDataAndReload()
         
@@ -55,6 +67,7 @@ class PoolsListController: UIViewController {
         
     }
     @IBAction func test(_ sender: Any) {
+        try! Auth.auth().signOut()
         
     }
     
@@ -83,7 +96,8 @@ class PoolsListController: UIViewController {
             let pool = Pool(dictionary: dictionary)
             if pool.spotsLeft >= 1 {
                 self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : (pool.spotsLeft - 1)])
-                self.reference.child("Teams").child(userID).child("poolsJoined").updateChildValues([pool.id: Date().timeIntervalSince1970])
+//                self.reference.child("Teams").child(userID).child("poolsJoined").updateChildValues([pool.id: Date().timeIntervalSince1970])
+                self.reference.child("Pools").child(pool.id).child("players").updateChildValues([userID: Date().timeIntervalSince1970])
             } else {
                 print("Pool already filled, sorry!")
             }
@@ -127,6 +141,7 @@ class PoolsListController: UIViewController {
             })
             self.pools.sort(by: {$0.totalWinningAmount > $1.totalWinningAmount})
             self.collectionView.reloadData()
+            self.buttonGradientLoadingBar.hide()
         }
     }
     
@@ -197,3 +212,9 @@ extension PoolsListController: UICollectionViewDelegate, UICollectionViewDataSou
 }
 
 let randomNames = [ "Lovetta Mariotti", "Callie Shemwell", "Vertie Mayville", "China Lollar", "August Bridgewater", "Natividad Uy", "Sherril Bivens", "Will Madonna", "Virgen Champ", "Rickey Kennemer", "Eveline Arrellano", "Gabrielle Foerster", "Corie Almendarez", "Elvin Desch", "Jerold Metzger", "Alton Mallory", "Claire Borgman", "Hellen Quackenbush", "Shanna Ku", "Gonzalo Fagen", "Brad Darlington", "Tyler Turvey", "Laurice Hartline", "Berna Billy", "Cornelia Solorzano", "Karena Hendon", "Shantel Eveland", "Shanon Keeth", "Tameka Cooks", "Jeffie Feliciano", "Aubrey Kanode", "Terrell Walkup", "Ellis Swarts", "Irish Langton", "Lowell Bomberger", "Lyndon Foran", "Maragaret Raminez", "Wilda Baillargeon", "Reyna Muncie", "Lamont Bowie", "Elenore Grubb", "Star Collett", "Lurlene Acheson", "Mitzie Ferraro", "Ola Whitting", "Danette Riera", "Noella Meachum", "Cathy Venturini", "Katrina Burkle", "Moses Cyphers", "Therese Stutes", "Refugia Brumback", "Shellie Gabrielson", "Ginny Alsup", "Gloria Rockwell", "Wilford Dizon", "Shameka Lorenzen", "Lovie Grillo", "Grady Sarver", "Marylin Curfman", "Season Fowlkes", "Gerardo Celestine", "Vergie Zank", "Aida Tobias", "Dionna Kissel", "Gwenn Moye", "Merilyn Hertzler", "Ami Stalnaker", "Callie Bianco", "Sophia Paredes", "Elouise Daniel", "Wesley Beachy", "Shiloh Heesch", "Patsy Bagnell", "Latoria Maddy", "Joycelyn Preusser", "Mayola Britton", "Mathilde Jaco", "Adah Reinhard", "Yadira Candler", "Sun Erben", "Genesis Swank", "Ozell Teter", "Diann Lucero", "Elna Earnhardt", "Nova Sergio", "Lilly Severino", "Regan Flood", "Steffanie Aten", "Zenaida Dossett", "Dwain Leaf", "Adelle Nagao", "Felton Magruder", "Ava Ostler", "Melda Leeper", "Mack Leyendecker", "Ileen Garlock", "Queen Mulcahy", "Cornell Dao", "Connie Hoffmeister" ]
+
+//extension PoolsListController: UINavigationBarDelegate {
+//    func position(for _: UIBarPositioning) -> UIBarPosition {
+//        return .topAttached
+//    }
+//}

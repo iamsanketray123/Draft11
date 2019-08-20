@@ -23,6 +23,8 @@ class PrizeBreakUpController: UIViewController {
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var prizeBreakupContainer: UIView!
     @IBOutlet weak var trophyContainer: UIView!
+    @IBOutlet weak var entryOrLiveLabel: UILabel!
+    @IBOutlet weak var redDot: UIView!
     
     var selectedPool: Pool?
     let cellId = "cellId"
@@ -154,6 +156,14 @@ class PrizeBreakUpController: UIViewController {
         progress.gradientColorList = [.orange, UIColor.rgb(200, 40, 30, 0.8)]
         progress.setProgress(0, animated: false)
         progress.setProgress( Float(pool.totalSpots - pool.spotsLeft) / Float(pool.totalSpots), animated: true)
+        
+        if pool.isContestLive {
+            entryOrLiveLabel.text = "Live"
+            redDot.isHidden = false
+        } else {
+            entryOrLiveLabel.text = "Entry"
+            redDot.isHidden = true
+        }
     }
     
     fileprivate func sortPrizeRange() {
@@ -194,6 +204,47 @@ class PrizeBreakUpController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    func getPlayers() {
+        guard let pool = selectedPool else { return }
+        let playerIDs = pool.playerUIDs
+        if pool.isContestLive {
+            for playerID in playerIDs {
+                reference.child("Teams").child(playerID).child("portfolio").observeSingleEvent(of: .value) { (snap) in
+                    guard let allCoinsArray = snap.value as? [String: Any] else { return }
+                    let allCoinsForUser = self.generateCoinsAndUnits(allCoinsArray: allCoinsArray)
+                    
+                    getCryptoDetailsFor(coinsString: sortedCoinString, currency: "INR", completionForError: { (errorMessage) in
+                        print(errorMessage)
+                    }) { (coinsFromAPICall) in
+                        
+                        var totalValueOfUser = Double()
+                        
+                        for i in coinsFromAPICall {
+                            for j in allCoinsForUser {
+                                
+                                if i.symbol == j.symbol {
+                                    guard let price = i.price else { return }
+                                    totalValueOfUser += price * j.unitsPurchased
+                                }
+                            }
+                        }
+                        print("✅✅", totalValueOfUser, "✅✅", playerID)
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    func generateCoinsAndUnits(allCoinsArray: [String: Any])-> [PortfolioCoin] {
+        var allCoins = [PortfolioCoin]()
+        for coin in allCoinsArray {
+            allCoins.append(PortfolioCoin(symbol: coin.key, unitsPurchased: coin.value as! Double))
+        }
+        return allCoins
+    }
     
 }
 
