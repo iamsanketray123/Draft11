@@ -79,6 +79,7 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Protobuf (3.9.0)
+  - SkeletonView (1.7)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -86,6 +87,7 @@ DEPENDENCIES:
   - Firebase/RemoteConfig
   - GradientLoadingBar
   - GradientProgressBar
+  - SkeletonView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -109,6 +111,7 @@ SPEC REPOS:
     - LightweightObservable
     - nanopb
     - Protobuf
+    - SkeletonView
 
 SPEC CHECKSUMS:
   Firebase: a2b5951f30ff38fd3b3bdae9c7d340f940fd3c51
@@ -131,7 +134,8 @@ SPEC CHECKSUMS:
   LightweightObservable: d723535b481a5ac7853d4e423779c636534542ab
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
+  SkeletonView: 7d7378731b708f8a6e6b1ffefb68cc3903f10a03
 
-PODFILE CHECKSUM: b740ce9875ccc4cc783babfcffa9790ca303b965
+PODFILE CHECKSUM: 366fbc7634940030cd74bb6b8b2ee025dcaa8ce6
 
 COCOAPODS: 1.5.3

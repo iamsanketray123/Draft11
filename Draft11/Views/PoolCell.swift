@@ -76,6 +76,15 @@ class PoolCell: UICollectionViewCell {
         progress.transform = CGAffineTransform.init(scaleX: 1, y: 1.75)
         progress.layer.cornerRadius = progress.frame.height / 2 * 1.75
         progress.layer.masksToBounds = true
+        
+        
+        makeSkeletonable([entryFee, totalSpots, totalPrizePool, entryOrLiveLabel, spotsLeft, totalSpots, container, confirmedTag])
+    }
+    
+    func makeSkeletonable(_ views: [UIView]) {
+        for view in views {
+            view.isSkeletonable = true
+        }
     }
 
 }

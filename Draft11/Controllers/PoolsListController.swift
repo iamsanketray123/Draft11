@@ -11,6 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import Firebase
 import GradientLoadingBar
+import SkeletonView
 
 class PoolsListController: UIViewController {
     
@@ -33,14 +34,18 @@ class PoolsListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        collectionView.isSkeletonable = true
+        collectionView.prepareSkeleton { (completed) in
+            completed ? (self.collectionView.showAnimatedSkeleton()) : ()
+        }
+        
         let gradientColorList = [
             #colorLiteral(red: 0.9490196078, green: 0.3215686275, blue: 0.431372549, alpha: 1), #colorLiteral(red: 0.9450980392, green: 0.4784313725, blue: 0.5921568627, alpha: 1), #colorLiteral(red: 0.9529411765, green: 0.737254902, blue: 0.7843137255, alpha: 1), #colorLiteral(red: 0.4274509804, green: 0.8666666667, blue: 0.9490196078, alpha: 1), #colorLiteral(red: 0.7568627451, green: 0.9411764706, blue: 0.9568627451, alpha: 1)
         ]
 
         buttonGradientLoadingBar = GradientLoadingBar(height: 3, gradientColorList: gradientColorList, onView: gradientContainer)
         buttonGradientLoadingBar.show()
-        
-        
         
         categoryContainer.addSubview(categoryView)
         categoryView.anchor(top: categoryContainer.topAnchor, left: categoryContainer.leftAnchor, bottom: categoryContainer.bottomAnchor, right: categoryContainer.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
@@ -51,7 +56,6 @@ class PoolsListController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(UINib.init(nibName: "PoolCell", bundle: nil), forCellWithReuseIdentifier: poolCellId)
         reference = Database.database().reference()
-//        login()
         
         fetchDataAndReload()
         
@@ -66,24 +70,51 @@ class PoolsListController: UIViewController {
         }
         
     }
+    
     @IBAction func test(_ sender: Any) {
         try! Auth.auth().signOut()
         
     }
     
-    fileprivate func joinPoolOrCreateTeam(id: Int) {
+    fileprivate func checkIfUserHasCreatedATeam(id: Int) {
         let uid = Auth.auth().currentUser!.uid
         reference.child("Teams").child(uid).observeSingleEvent(of: .value) { (snaphot) in
             let snap = snaphot.value as? [String: Any]
             if snap == nil { // no team has been created
                 let coinSelectionController = CoinSelectionController()
                 coinSelectionController.selectedPool = self.pools[id]
-                self.navigationController?.pushViewController(coinSelectionController, animated: true)
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(coinSelectionController, animated: true)
+                }
             } else {
-                self.joinPool(with: id)
+                self.checkIfUserHasJoinedPool(with: id)
             }
         }
         
+    }
+
+    
+    fileprivate func checkIfUserHasJoinedPool(with id: Int) {
+        
+        let pool = pools[id]
+        
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        reference.child("Pools").child(pool.id).child("players").observeSingleEvent(of: .value) { (snapshot) in
+            let snap = snapshot.value as? [String: Any]
+            print("♊️", snapshot, "♊️")
+            if snap == nil { // no player has joined the pool yet.
+                self.join(pool: pool, userID: userID)
+            } else {
+                guard let snap = snap else { return }
+                for (key, _) in snap {
+                    if key == userID { // player has joined this pool
+                        print("ALREADY JOINED ⚠️") // probably proceed to next screen with start game button.
+                        return
+                    }
+                }
+                self.join(pool: pool, userID: userID)
+            }
+        }
     }
     
     
@@ -96,40 +127,13 @@ class PoolsListController: UIViewController {
             let pool = Pool(dictionary: dictionary)
             if pool.spotsLeft >= 1 {
                 self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : (pool.spotsLeft - 1)])
-//                self.reference.child("Teams").child(userID).child("poolsJoined").updateChildValues([pool.id: Date().timeIntervalSince1970])
+                //                self.reference.child("Teams").child(userID).child("poolsJoined").updateChildValues([pool.id: Date().timeIntervalSince1970])
                 self.reference.child("Pools").child(pool.id).child("players").updateChildValues([userID: Date().timeIntervalSince1970])
             } else {
                 print("Pool already filled, sorry!")
             }
         }
     }
-    
-    fileprivate func joinPool(with id: Int) {
-        
-        let pool = pools[id]
-        
-        guard let userID = Auth.auth().currentUser?.uid else { return }
-        reference.child("Teams").child(userID).child("poolsJoined").observeSingleEvent(of: .value) { (snapshot) in
-            let snap = snapshot.value as? [String: Any]
-            
-            if snap == nil {
-                
-                self.join(pool: pool, userID: userID)
-                
-            } else { // user has joined
-                
-                if snap!["\(pool.id)"] == nil { // user has not joined this pool
-                    
-                    self.join(pool: pool, userID: userID)
-                    
-                } else {
-                    print("ALREADY JOINED ⚠️")
-                }
-                
-            }
-        }
-    }
-    
     
     fileprivate func fetchDataAndReload() {
         reference.child("Pools").observeSingleEvent(of: .value) { (snapshot) in
@@ -142,20 +146,6 @@ class PoolsListController: UIViewController {
             self.pools.sort(by: {$0.totalWinningAmount > $1.totalWinningAmount})
             self.collectionView.reloadData()
             self.buttonGradientLoadingBar.hide()
-        }
-    }
-    
-    fileprivate func login() {
-        if Auth.auth().currentUser?.uid == nil {
-            Firebase.Auth.auth().signInAnonymously { (user, error) in
-                if error != nil {
-                    print(error!.localizedDescription, "❗️")
-                }
-                self.reference.child("Users").child(user!.user.uid).updateChildValues(["userName": "Sanket Ray"])
-                print(user!.user.uid, "✅")
-            }
-        } else {
-            print("User already logged in")
         }
     }
     
@@ -172,11 +162,23 @@ class PoolsListController: UIViewController {
     
 }
 
-extension PoolsListController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension PoolsListController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SkeletonCollectionViewDataSource {
     
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return poolCellId
+    }
+    
+    
+    func numSections(in collectionSkeletonView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return pools.count
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        joinPoolOrCreateTeam(id: indexPath.item)
+        checkIfUserHasCreatedATeam(id: indexPath.item)
     }
     
     
@@ -209,12 +211,20 @@ extension PoolsListController: UICollectionViewDelegate, UICollectionViewDataSou
         collectionView.reloadData()
     }
     
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.2) {
+            let cell = collectionView.cellForItem(at: indexPath) as! PoolCell
+            cell.contentView.backgroundColor = UIColor(red: 0.90, green: 0.90, blue: 0.90, alpha: 1)
+            cell.container.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.2) {
+            let cell = collectionView.cellForItem(at: indexPath) as! PoolCell
+            cell.contentView.backgroundColor = .clear
+            cell.container.transform = .identity
+        }
+    }
+    
 }
-
-let randomNames = [ "Lovetta Mariotti", "Callie Shemwell", "Vertie Mayville", "China Lollar", "August Bridgewater", "Natividad Uy", "Sherril Bivens", "Will Madonna", "Virgen Champ", "Rickey Kennemer", "Eveline Arrellano", "Gabrielle Foerster", "Corie Almendarez", "Elvin Desch", "Jerold Metzger", "Alton Mallory", "Claire Borgman", "Hellen Quackenbush", "Shanna Ku", "Gonzalo Fagen", "Brad Darlington", "Tyler Turvey", "Laurice Hartline", "Berna Billy", "Cornelia Solorzano", "Karena Hendon", "Shantel Eveland", "Shanon Keeth", "Tameka Cooks", "Jeffie Feliciano", "Aubrey Kanode", "Terrell Walkup", "Ellis Swarts", "Irish Langton", "Lowell Bomberger", "Lyndon Foran", "Maragaret Raminez", "Wilda Baillargeon", "Reyna Muncie", "Lamont Bowie", "Elenore Grubb", "Star Collett", "Lurlene Acheson", "Mitzie Ferraro", "Ola Whitting", "Danette Riera", "Noella Meachum", "Cathy Venturini", "Katrina Burkle", "Moses Cyphers", "Therese Stutes", "Refugia Brumback", "Shellie Gabrielson", "Ginny Alsup", "Gloria Rockwell", "Wilford Dizon", "Shameka Lorenzen", "Lovie Grillo", "Grady Sarver", "Marylin Curfman", "Season Fowlkes", "Gerardo Celestine", "Vergie Zank", "Aida Tobias", "Dionna Kissel", "Gwenn Moye", "Merilyn Hertzler", "Ami Stalnaker", "Callie Bianco", "Sophia Paredes", "Elouise Daniel", "Wesley Beachy", "Shiloh Heesch", "Patsy Bagnell", "Latoria Maddy", "Joycelyn Preusser", "Mayola Britton", "Mathilde Jaco", "Adah Reinhard", "Yadira Candler", "Sun Erben", "Genesis Swank", "Ozell Teter", "Diann Lucero", "Elna Earnhardt", "Nova Sergio", "Lilly Severino", "Regan Flood", "Steffanie Aten", "Zenaida Dossett", "Dwain Leaf", "Adelle Nagao", "Felton Magruder", "Ava Ostler", "Melda Leeper", "Mack Leyendecker", "Ileen Garlock", "Queen Mulcahy", "Cornell Dao", "Connie Hoffmeister" ]
-
-//extension PoolsListController: UINavigationBarDelegate {
-//    func position(for _: UIBarPositioning) -> UIBarPosition {
-//        return .topAttached
-//    }
-//}

@@ -25,6 +25,7 @@ class PrizeBreakUpController: UIViewController {
     @IBOutlet weak var trophyContainer: UIView!
     @IBOutlet weak var entryOrLiveLabel: UILabel!
     @IBOutlet weak var redDot: UIView!
+    @IBOutlet weak var leaderboardTable: UITableView!
     
     var selectedPool: Pool?
     let cellId = "cellId"
@@ -51,7 +52,7 @@ class PrizeBreakUpController: UIViewController {
         
     }
     
-    @IBAction func createTeamOrJoinPool(_ sender: Any) {
+    @IBAction func checkIfUserHasCreatedATeam(_ sender: Any) {
         let uid = Auth.auth().currentUser!.uid
         reference.child("Teams").child(uid).observeSingleEvent(of: .value) { (snaphot) in
             let snap = snaphot.value as? [String: Any]
@@ -60,13 +61,13 @@ class PrizeBreakUpController: UIViewController {
                 coinSelectionController.selectedPool = self.selectedPool
                 self.navigationController?.pushViewController(coinSelectionController, animated: true)
             } else {
-                self.joinPool()
+                self.checkIfUserHasJoinedPool()
             }
         }
         
     }
     
-    fileprivate func joinPool() {
+    fileprivate func checkIfUserHasJoinedPool() {
         
         guard let pool = selectedPool else { return }
         
@@ -126,6 +127,12 @@ class PrizeBreakUpController: UIViewController {
         table.register(UINib.init(nibName: "PrizeBreakUpCell", bundle: nil), forCellReuseIdentifier: cellId)
         table.tableFooterView = UIView()
         
+        leaderboardTable.delegate = self
+        leaderboardTable.dataSource = self
+        leaderboardTable.register(UINib.init(nibName: "PrizeBreakUpCell", bundle: nil), forCellReuseIdentifier: cellId)
+        leaderboardTable.tableFooterView = UIView()
+        
+        
         let grayLine = UIView()
         grayLine.backgroundColor = UIColor.rgb(200, 200, 200)
         prizeBreakupContainer.addSubview(grayLine)
@@ -160,6 +167,12 @@ class PrizeBreakUpController: UIViewController {
         if pool.isContestLive {
             entryOrLiveLabel.text = "Live"
             redDot.isHidden = false
+            
+            self.redDot.alpha = 0
+            UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse], animations: {
+                self.redDot.alpha = 1
+            })
+            
         } else {
             entryOrLiveLabel.text = "Entry"
             redDot.isHidden = true
@@ -251,14 +264,25 @@ class PrizeBreakUpController: UIViewController {
 extension PrizeBreakUpController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rankStringRange.count
+        if tableView == self.table {
+            return rankStringRange.count
+        } else { // leaderboard table
+            return 2
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PrizeBreakUpCell
-        cell.rankRange.text = rankStringRange[indexPath.item]
-        cell.prizeMoney.text = "₹ \(amounts[indexPath.item])"
-        return cell
+        if tableView == self.table {
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PrizeBreakUpCell
+            cell.rankRange.text = rankStringRange[indexPath.item]
+            cell.prizeMoney.text = "₹ \(amounts[indexPath.item])"
+            return cell
+        } else { // leaderboard table
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PrizeBreakUpCell
+            cell.rankRange.text = "rankStringRange[indexPath.item]"
+            cell.prizeMoney.text = "100"
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

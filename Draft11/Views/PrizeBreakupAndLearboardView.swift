@@ -67,7 +67,12 @@ extension PrizeBreakupAndLearboardView : UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let prizeBreakUpController = prizeBreakUpController {
             if indexPath.item == 1 {
+                prizeBreakUpController.table.isHidden = true
+                prizeBreakUpController.leaderboardTable.isHidden = false
                 prizeBreakUpController.getPlayers()
+            } else {
+                prizeBreakUpController.table.isHidden = false
+                prizeBreakUpController.leaderboardTable.isHidden = true                
             }
         }
     }

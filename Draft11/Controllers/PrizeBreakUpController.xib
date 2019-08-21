@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,6 +11,7 @@
                 <outlet property="confirmedTag" destination="Ohl-PF-0v9" id="kst-v9-b5N"/>
                 <outlet property="entryFee" destination="Xm4-ox-3ub" id="djI-j5-pKJ"/>
                 <outlet property="entryOrLiveLabel" destination="q0Z-E2-s0o" id="KqR-le-uZ8"/>
+                <outlet property="leaderboardTable" destination="nQP-Js-UH4" id="Ihz-5g-qPw"/>
                 <outlet property="percentageOfWinners" destination="ALd-zs-Bos" id="ZjT-Rm-RNc"/>
                 <outlet property="prizeBreakupContainer" destination="SKn-ZN-BI7" id="QVI-5J-CMR"/>
                 <outlet property="progress" destination="aH4-zq-437" id="Dvg-AF-bWH"/>
@@ -33,19 +30,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VW4-4b-q1I">
-                    <rect key="frame" x="0.0" y="360" width="414" height="502"/>
+                    <rect key="frame" x="0.0" y="336" width="414" height="560"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                 </tableView>
+                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nQP-Js-UH4">
+                    <rect key="frame" x="0.0" y="336" width="414" height="560"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SKn-ZN-BI7">
-                    <rect key="frame" x="0.0" y="300" width="414" height="60"/>
+                    <rect key="frame" x="0.0" y="276" width="414" height="60"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="aFh-Aq-9IC"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SWQ-hZ-5ab">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="124"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contest Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YL5-Zh-uV1">
                             <rect key="frame" x="136.5" y="43" width="141" height="24"/>
@@ -81,7 +82,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3P3-cO-YSt">
-                    <rect key="frame" x="0.0" y="124" width="414" height="176"/>
+                    <rect key="frame" x="0.0" y="100" width="414" height="176"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prize Pool" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O17-Ms-ZHr">
                             <rect key="frame" x="12" y="12" width="65" height="17"/>
@@ -202,7 +203,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tjn-aY-x9P">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="136"/>
                             <connections>
-                                <action selector="createTeamOrJoinPool:" destination="-1" eventType="touchUpInside" id="TgC-ef-Gdb"/>
+                                <action selector="checkIfUserHasCreatedATeam:" destination="-1" eventType="touchUpInside" id="TgC-ef-Gdb"/>
                             </connections>
                         </button>
                     </subviews>
@@ -236,7 +237,7 @@
                     </constraints>
                 </view>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hN-w1-zrC">
-                    <rect key="frame" x="87" y="400" width="240" height="210"/>
+                    <rect key="frame" x="87" y="376" width="240" height="210"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYF-zh-CXt">
                             <rect key="frame" x="92" y="20" width="56" height="22"/>
@@ -277,6 +278,7 @@
                 <constraint firstItem="VW4-4b-q1I" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="316" id="5QB-8K-4hj"/>
                 <constraint firstItem="5hN-w1-zrC" firstAttribute="centerX" secondItem="VW4-4b-q1I" secondAttribute="centerX" id="CYw-7n-7Kt"/>
                 <constraint firstItem="5hN-w1-zrC" firstAttribute="top" secondItem="SKn-ZN-BI7" secondAttribute="bottom" constant="40" id="DHr-Fs-RJK"/>
+                <constraint firstItem="nQP-Js-UH4" firstAttribute="leading" secondItem="VW4-4b-q1I" secondAttribute="leading" id="F0S-Yr-Taw"/>
                 <constraint firstItem="SWQ-hZ-5ab" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="FeQ-Cx-tPX"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3P3-cO-YSt" secondAttribute="trailing" id="Foo-po-SfC"/>
                 <constraint firstItem="VW4-4b-q1I" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="GeV-g2-qFe"/>
@@ -286,9 +288,12 @@
                 <constraint firstItem="VW4-4b-q1I" firstAttribute="top" secondItem="SKn-ZN-BI7" secondAttribute="bottom" id="YlC-yJ-t42"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SWQ-hZ-5ab" secondAttribute="trailing" id="ZBf-yj-a43"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VW4-4b-q1I" secondAttribute="trailing" id="ahK-hc-Nqh"/>
+                <constraint firstItem="nQP-Js-UH4" firstAttribute="bottom" secondItem="VW4-4b-q1I" secondAttribute="bottom" id="cYj-bL-1Ab"/>
                 <constraint firstItem="SWQ-hZ-5ab" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="g75-KQ-xTK"/>
                 <constraint firstItem="SKn-ZN-BI7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gBK-k2-I0O"/>
                 <constraint firstItem="3P3-cO-YSt" firstAttribute="top" secondItem="SWQ-hZ-5ab" secondAttribute="bottom" id="lVp-ce-JPJ"/>
+                <constraint firstItem="nQP-Js-UH4" firstAttribute="trailing" secondItem="VW4-4b-q1I" secondAttribute="trailing" id="mwp-lW-4DJ"/>
+                <constraint firstItem="nQP-Js-UH4" firstAttribute="top" secondItem="VW4-4b-q1I" secondAttribute="top" id="pP0-Tu-98q"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="47.826086956521742" y="35.491071428571423"/>
