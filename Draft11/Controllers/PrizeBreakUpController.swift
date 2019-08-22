@@ -263,32 +263,8 @@ class PrizeBreakUpController: UIViewController {
         
         guard let pool = selectedPool else { return }
         let playerIDs = pool.playerUIDs
+        print(playerIDs, "🆔")
         if pool.isContestLive {
-//            for playerID in playerIDs {
-//                reference.child("Teams").child(playerID).child("portfolio").observeSingleEvent(of: .value) { (snap) in
-//                    guard let allCoinsArray = snap.value as? [String: Any] else { return }
-//                    let allCoinsForUser = self.generateCoinsAndUnits(allCoinsArray: allCoinsArray)
-//
-//                    getCryptoDetailsFor(coinsString: sortedCoinString, currency: "INR", completionForError: { (errorMessage) in
-//                        print(errorMessage)
-//                    }) { (coinsFromAPICall) in
-//
-//                        var totalValueOfUser = Double()
-//
-//                        for i in coinsFromAPICall {
-//                            for j in allCoinsForUser {
-//
-//                                if i.symbol == j.symbol {
-//                                    guard let price = i.price else { return }
-//                                    totalValueOfUser += price * j.unitsPurchased
-//                                }
-//                            }
-//                        }
-//                        self.getNameOfUserFrom(uid: playerID, value: totalValueOfUser)
-//                    }
-//                }
-//            }
-            
             getCryptoDetailsFor(coinsString: sortedCoinString, currency: "INR", completionForError: { (errorMessage) in
                 print(errorMessage)
             }) { (coinsFromAPICall) in

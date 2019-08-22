@@ -98,36 +98,60 @@ class PoolsListController: UIViewController {
     }
     
     
+    fileprivate func executeContestLiveFlow(pool: Pool) {
+        print("Game is already live")
+        let prizeBreakUpController = PrizeBreakUpController()
+        prizeBreakUpController.selectedPool = pool
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(prizeBreakUpController, animated: true)
+            return
+        }
+    }
+    
+    fileprivate func executeContestIsNotLiveFlow(pool: Pool) {
+        print("User has joined this pool but contest isn't live. Start the game.")
+        DispatchQueue.main.async {
+            let coinSelectionController = CoinSelectionController()
+            coinSelectionController.shouldStartGame = true
+            coinSelectionController.selectedPool = pool
+            self.navigationController?.pushViewController(coinSelectionController, animated: true)
+            return
+        }
+    }
+    
     fileprivate func checkIfUserHasJoinedPool(with id: Int) {
-        
+
         let pool = pools[id]
+        if pool.isContestLive {
+            executeContestLiveFlow(pool: pool)
+        }
         
         guard let userID = Auth.auth().currentUser?.uid else { return }
         reference.child("Pools").child(pool.id).child("players").observeSingleEvent(of: .value) { (snapshot) in
             let snap = snapshot.value as? [String: Any]
-            print("♊️", snapshot, "♊️")
-            if snap == nil { // no player has joined the pool yet.
+            
+            if snap == nil {
                 self.join(pool: pool, userID: userID)
             } else {
                 guard let snap = snap else { return }
+                var hasLoggedInUserJoined = false
                 for (key, _) in snap {
-                    if key == userID { // player has joined this pool
+                    if key == userID {
+                        print("Already join this pool")
                         
-                        if !pool.isContestLive { // need to start game
-                            DispatchQueue.main.async {
-                                let coinSelectionController = CoinSelectionController()
-                                coinSelectionController.shouldStartGame = true
-                                self.navigationController?.pushViewController(coinSelectionController, animated: true)
-                                return
-                            }
+                        hasLoggedInUserJoined = true
+                        
+                        if !pool.isContestLive {
+                            self.executeContestIsNotLiveFlow(pool: pool)
                         } else {
-                            print("ALREADY JOINED ⚠️")
-                            return
+                            self.executeContestLiveFlow(pool: pool)
                         }
-                        
                     }
                 }
-                self.join(pool: pool, userID: userID)
+                if !hasLoggedInUserJoined {
+                    print("User has not joined this pool")
+                    self.join(pool: pool, userID: userID)
+                }
             }
         }
     }

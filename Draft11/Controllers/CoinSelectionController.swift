@@ -60,6 +60,9 @@ class CoinSelectionController: UIViewController {
                     self.animateTopSection()
                 } else {
                     self.confirmButton.setTitle("START", for: .normal)
+                    UIView.animate(withDuration: 0.5) {
+                        self.confirmButton.alpha = 1
+                    }
                 }
             }
         }
@@ -108,16 +111,20 @@ class CoinSelectionController: UIViewController {
     }
     
     @IBAction func confirmTeamTapped(_ sender: Any) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        let updateValues = generateDictionary(selectedCoins: self.selectedCoins)
-        reference.child("Teams").child(uid).child("portfolio").updateChildValues(updateValues)
+        if let _ = shouldStartGame {
+            print("Current user has already joined the game. User can now start game")
+            displayAlertForRandomization()
+        } else {
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            let updateValues = generateDictionary(selectedCoins: self.selectedCoins)
+            reference.child("Teams").child(uid).child("portfolio").updateChildValues(updateValues)
+            guard let selectedPool = selectedPool else { return }
+            join(pool: selectedPool, userID: uid)
+            displayAlertForRandomization()
+        }
         
-        guard let selectedPool = selectedPool else { return }
-        join(pool: selectedPool, userID: uid)
         
-        
-        displayAlertForRandomization()
         
     }
     
