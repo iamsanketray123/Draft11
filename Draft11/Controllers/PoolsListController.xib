@@ -54,7 +54,11 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3u3-7D-YaJ">
-                            <rect key="frame" x="337" y="86" width="30" height="30"/>
+                            <rect key="frame" x="316" y="89" width="51" height="27"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                            <state key="normal" title="Sign Out">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
                             <connections>
                                 <action selector="test:" destination="-1" eventType="touchUpInside" id="uaj-WA-8ba"/>
                             </connections>

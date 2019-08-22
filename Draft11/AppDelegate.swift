@@ -21,16 +21,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         FirebaseApp.configure()
         
-        var rootViewController = UIViewController()
-        
-        if Auth.auth().currentUser?.uid == nil {
+        var navigationController = UINavigationController()
+        let userID = Auth.auth().currentUser?.uid
+        if userID == nil {
             print("User not logged in")
-            rootViewController = LoginController()
+            navigationController = UINavigationController(rootViewController: LoginController())
         } else {
-            rootViewController = PoolsListController()
+            print("Logged in user", userID as Any)
+            navigationController.viewControllers = [LoginController(), PoolsListController()]
         }
-        
-        let navigationController = UINavigationController(rootViewController: rootViewController)
+
         navigationController.isNavigationBarHidden = true
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

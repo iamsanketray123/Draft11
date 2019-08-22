@@ -24,7 +24,7 @@ class CoinSelectionController: UIViewController {
     
     
     var spotsLeftForPool = Int()
-    
+    var shouldStartGame: Bool?
     var coins = [Coin]()
     var selectedCoins = [Coin]() {
         didSet {
@@ -56,7 +56,11 @@ class CoinSelectionController: UIViewController {
             self.coins.sort(by: {$0.symbol < $1.symbol})
             DispatchQueue.main.async {
                 self.coinsTable.reloadData()
-                self.animateTopSection()
+                if self.shouldStartGame == nil {
+                    self.animateTopSection()
+                } else {
+                    self.confirmButton.setTitle("START", for: .normal)
+                }
             }
         }
         
@@ -110,20 +114,45 @@ class CoinSelectionController: UIViewController {
         reference.child("Teams").child(uid).child("portfolio").updateChildValues(updateValues)
         
         guard let selectedPool = selectedPool else { return }
-        PoolsListController().join(pool: selectedPool, userID: uid)
+        join(pool: selectedPool, userID: uid)
         
         
         displayAlertForRandomization()
         
     }
     
+    func join(pool: Pool, userID: String) {
+        print(pool, "☢️")
+        reference = Database.database().reference()
+        reference.child("Pools").child(pool.id).observeSingleEvent(of: .value) { (snapshot) in
+            guard let dictionary  = snapshot.value as? [String: Any] else { return }
+            print(dictionary, "🚦")
+            let pool = Pool(dictionary: dictionary)
+            if pool.spotsLeft >= 1 {
+                self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : (pool.spotsLeft - 1)])
+                self.reference.child("Pools").child(pool.id).child("players").updateChildValues([userID: Date().timeIntervalSince1970])
+                self.handleDeselectionAndStartGame()
+            } else {
+                print("Pool already filled, sorry!")
+            }
+        }
+    }
+
+    fileprivate func handleDeselectionAndStartGame() {
+        guard let indexPathsForSelectedRows = self.coinsTable.indexPathsForSelectedRows else { return }
+        indexPathsForSelectedRows.forEach({self.coinsTable.deselectRow(at: $0, animated: false)})
+        confirmButton.setTitle("START", for: .normal)
+        selectedViews.forEach({$0.isSelected = false})
+    }
+    
+    
     fileprivate func displayAlertForRandomization() {
         
-        let alert = UIAlertController(title: "Note!", message: "Total number of slots for this contest have not been filled. You may click on 'Randomize' to play against AI bots", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Successfully Joined Contest", message: "The total number of slots for this contest have not been filled. Click on 'Randomize' to play against AI bots or wait for others to join", preferredStyle: .alert)
         let randomizeAction = UIAlertAction(title: "Play against AI", style: .default) { (_) in
             self.randomizePlayersAndTeams()
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+        let cancelAction = UIAlertAction(title: "Wait for other Players", style: .destructive)
         alert.addAction(randomizeAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
@@ -176,6 +205,12 @@ class CoinSelectionController: UIViewController {
                 }
             }
             self.reference.child("Pools").child(pool.id).updateChildValues(["isContestLive": true])
+            
+            DispatchQueue.main.async {
+                let prizeBreakUpController = PrizeBreakUpController()
+                prizeBreakUpController.selectedPool = selectedPool
+                self.navigationController?.viewControllers = [PoolsListController(), prizeBreakUpController]
+            }
             
         }
     }

@@ -59,7 +59,9 @@ class PrizeBreakUpController: UIViewController {
             if snap == nil { // no team has been created
                 let coinSelectionController = CoinSelectionController()
                 coinSelectionController.selectedPool = self.selectedPool
-                self.navigationController?.pushViewController(coinSelectionController, animated: true)
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(coinSelectionController, animated: true)
+                }
             } else {
                 self.checkIfUserHasJoinedPool()
             }
@@ -116,7 +118,9 @@ class PrizeBreakUpController: UIViewController {
         
         prizeBreakupContainer.addSubview(prizeBreakupView)
         prizeBreakupView.anchor(top: prizeBreakupContainer.topAnchor, left: prizeBreakupContainer.leftAnchor, bottom: prizeBreakupContainer.bottomAnchor, right: prizeBreakupContainer.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
         prizeBreakupView.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        
         
         confirmedTag.layer.cornerRadius = 1.5
         confirmedTag.layer.borderColor = UIColor(white: 0, alpha: 0.25).cgColor
@@ -179,20 +183,23 @@ class PrizeBreakUpController: UIViewController {
         }
     }
     
+    func displayTrophyIfRequired() {
+        if rankStringRange.count == 1 && rankStringRange.first?.count == 1 {
+            trophyContainer.alpha = 1
+            table.isHidden = true
+        } else {
+            trophyContainer.alpha = 0
+            table.isHidden = false
+        }
+    }
+    
     fileprivate func sortPrizeRange() {
         if let selectedPool = selectedPool {
             let sortedAmounts = selectedPool.prizeRanges.sorted(by: {$0 > $1})
             let formatter = NumberFormatter()
             formatter.numberStyle = .decimal
             amounts = sortedAmounts.map({formatter.string(from: NSNumber(value: $0))!})
-            
-            if rankStringRange.count == 1 && rankStringRange.first?.count == 1 {
-                trophyContainer.alpha = 1
-                table.isHidden = true
-            } else {
-                trophyContainer.alpha = 0
-                table.isHidden = false
-            }
+            displayTrophyIfRequired()
         }
         
     }

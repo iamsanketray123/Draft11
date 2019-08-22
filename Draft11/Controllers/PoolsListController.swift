@@ -43,7 +43,7 @@ class PoolsListController: UIViewController {
         let gradientColorList = [
             #colorLiteral(red: 0.9490196078, green: 0.3215686275, blue: 0.431372549, alpha: 1), #colorLiteral(red: 0.9450980392, green: 0.4784313725, blue: 0.5921568627, alpha: 1), #colorLiteral(red: 0.9529411765, green: 0.737254902, blue: 0.7843137255, alpha: 1), #colorLiteral(red: 0.4274509804, green: 0.8666666667, blue: 0.9490196078, alpha: 1), #colorLiteral(red: 0.7568627451, green: 0.9411764706, blue: 0.9568627451, alpha: 1)
         ]
-
+        
         buttonGradientLoadingBar = GradientLoadingBar(height: 3, gradientColorList: gradientColorList, onView: gradientContainer)
         buttonGradientLoadingBar.show()
         
@@ -72,8 +72,12 @@ class PoolsListController: UIViewController {
     }
     
     @IBAction func test(_ sender: Any) {
-        try! Auth.auth().signOut()
-        
+        do {
+            try Auth.auth().signOut()
+            self.navigationController?.popViewController(animated: true)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     fileprivate func checkIfUserHasCreatedATeam(id: Int) {
@@ -92,7 +96,7 @@ class PoolsListController: UIViewController {
         }
         
     }
-
+    
     
     fileprivate func checkIfUserHasJoinedPool(with id: Int) {
         
@@ -108,8 +112,19 @@ class PoolsListController: UIViewController {
                 guard let snap = snap else { return }
                 for (key, _) in snap {
                     if key == userID { // player has joined this pool
-                        print("ALREADY JOINED ⚠️") // probably proceed to next screen with start game button.
-                        return
+                        
+                        if !pool.isContestLive { // need to start game
+                            DispatchQueue.main.async {
+                                let coinSelectionController = CoinSelectionController()
+                                coinSelectionController.shouldStartGame = true
+                                self.navigationController?.pushViewController(coinSelectionController, animated: true)
+                                return
+                            }
+                        } else {
+                            print("ALREADY JOINED ⚠️")
+                            return
+                        }
+                        
                     }
                 }
                 self.join(pool: pool, userID: userID)
@@ -127,7 +142,6 @@ class PoolsListController: UIViewController {
             let pool = Pool(dictionary: dictionary)
             if pool.spotsLeft >= 1 {
                 self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : (pool.spotsLeft - 1)])
-                //                self.reference.child("Teams").child(userID).child("poolsJoined").updateChildValues([pool.id: Date().timeIntervalSince1970])
                 self.reference.child("Pools").child(pool.id).child("players").updateChildValues([userID: Date().timeIntervalSince1970])
             } else {
                 print("Pool already filled, sorry!")
