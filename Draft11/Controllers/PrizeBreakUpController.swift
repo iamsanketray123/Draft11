@@ -10,6 +10,7 @@ import UIKit
 import GradientProgressBar
 import FirebaseDatabase
 import FirebaseAuth
+import GradientLoadingBar
 
 class PrizeBreakUpController: UIViewController {
     
@@ -26,12 +27,29 @@ class PrizeBreakUpController: UIViewController {
     @IBOutlet weak var entryOrLiveLabel: UILabel!
     @IBOutlet weak var redDot: UIView!
     @IBOutlet weak var leaderboardTable: UITableView!
+    @IBOutlet weak var gradientContainer: UIView!
     
     var selectedPool: Pool?
     let cellId = "cellId"
+    let leaderBoardCellId = "leaderBoardCellId"
     var reference: DatabaseReference!
+    private var buttonGradientLoadingBar: GradientLoadingBar!
     var rankStringRange = [String]()
     var amounts = [String]()
+    
+    
+    var portfolioValues = [PortfolioValue]() {
+        didSet {
+            guard let selectedPool = selectedPool else { return }
+            if portfolioValues.count == selectedPool.totalSpots {
+                portfolioValues.sort(by: {$0.value > $1.value})
+                DispatchQueue.main.async {
+                    self.buttonGradientLoadingBar.hide()
+                    self.leaderboardTable.reloadData()
+                }
+            }
+        }
+    }
     
     lazy var prizeBreakupView: PrizeBreakupAndLearboardView = {
         let pbv = PrizeBreakupAndLearboardView()
@@ -42,6 +60,12 @@ class PrizeBreakUpController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let gradientColorList = [
+            #colorLiteral(red: 0.9490196078, green: 0.3215686275, blue: 0.431372549, alpha: 1), #colorLiteral(red: 0.9450980392, green: 0.4784313725, blue: 0.5921568627, alpha: 1), #colorLiteral(red: 0.9529411765, green: 0.737254902, blue: 0.7843137255, alpha: 1), #colorLiteral(red: 0.4274509804, green: 0.8666666667, blue: 0.9490196078, alpha: 1), #colorLiteral(red: 0.7568627451, green: 0.9411764706, blue: 0.9568627451, alpha: 1)
+        ]
+        
+        buttonGradientLoadingBar = GradientLoadingBar(height: 3, gradientColorList: gradientColorList, onView: gradientContainer)
         
         
         reference = Database.database().reference()
@@ -133,7 +157,7 @@ class PrizeBreakUpController: UIViewController {
         
         leaderboardTable.delegate = self
         leaderboardTable.dataSource = self
-        leaderboardTable.register(UINib.init(nibName: "PrizeBreakUpCell", bundle: nil), forCellReuseIdentifier: cellId)
+        leaderboardTable.register(UINib.init(nibName: "PortfolioValueCell", bundle: nil), forCellReuseIdentifier: leaderBoardCellId)
         leaderboardTable.tableFooterView = UIView()
         
         
@@ -149,6 +173,11 @@ class PrizeBreakUpController: UIViewController {
     }
     
     fileprivate func setupCell() {
+        
+        progress.transform = CGAffineTransform.init(scaleX: 1, y: 1.75)
+        progress.layer.cornerRadius = progress.frame.height
+        progress.layer.masksToBounds = true
+        
         guard let pool = selectedPool else { return }
         
         self.spotsLeft.text = "\(pool.spotsLeft) spots left"
@@ -167,6 +196,7 @@ class PrizeBreakUpController: UIViewController {
         progress.gradientColorList = [.orange, UIColor.rgb(200, 40, 30, 0.8)]
         progress.setProgress(0, animated: false)
         progress.setProgress( Float(pool.totalSpots - pool.spotsLeft) / Float(pool.totalSpots), animated: true)
+        
         
         if pool.isContestLive {
             entryOrLiveLabel.text = "Live"
@@ -225,6 +255,12 @@ class PrizeBreakUpController: UIViewController {
     }
     
     func getPlayers() {
+        buttonGradientLoadingBar.show()
+        portfolioValues = [PortfolioValue]() // remove everything before
+        DispatchQueue.main.async {
+            self.leaderboardTable.reloadData()
+        }
+        
         guard let pool = selectedPool else { return }
         let playerIDs = pool.playerUIDs
         if pool.isContestLive {
@@ -248,13 +284,24 @@ class PrizeBreakUpController: UIViewController {
                                 }
                             }
                         }
-                        print("✅✅", totalValueOfUser, "✅✅", playerID)
+                        self.getNameOfUserFrom(uid: playerID, value: totalValueOfUser)
                     }
                 }
             }
         }
     }
     
+    func getNameOfUserFrom(uid: String, value: Double) {
+        
+        reference.child("Users").child(uid).observe(.value) { (snapshot) in
+            guard let snap = snapshot.value as? [String: String] else { return }
+            if let userName = snap["userName"] {
+                print("✅✅", uid, userName, "✅✅", value)
+                let portfolioValue = PortfolioValue(nameOfPlayer: userName, value: value)
+                self.portfolioValues.append(portfolioValue)
+            }
+        }
+    }
     
     
     
@@ -274,7 +321,7 @@ extension PrizeBreakUpController: UITableViewDelegate, UITableViewDataSource {
         if tableView == self.table {
             return rankStringRange.count
         } else { // leaderboard table
-            return 2
+            return portfolioValues.count
         }
     }
     
@@ -285,9 +332,9 @@ extension PrizeBreakUpController: UITableViewDelegate, UITableViewDataSource {
             cell.prizeMoney.text = "₹ \(amounts[indexPath.item])"
             return cell
         } else { // leaderboard table
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PrizeBreakUpCell
-            cell.rankRange.text = "rankStringRange[indexPath.item]"
-            cell.prizeMoney.text = "100"
+            let cell = tableView.dequeueReusableCell(withIdentifier: leaderBoardCellId, for: indexPath) as! PortfolioValueCell
+            cell.portfolio = portfolioValues[indexPath.row]
+            cell.rank.text = "\(indexPath.row + 1)"
             return cell
         }
     }

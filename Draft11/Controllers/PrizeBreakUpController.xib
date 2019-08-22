@@ -15,6 +15,7 @@
                 <outlet property="confirmedTag" destination="Ohl-PF-0v9" id="kst-v9-b5N"/>
                 <outlet property="entryFee" destination="Xm4-ox-3ub" id="djI-j5-pKJ"/>
                 <outlet property="entryOrLiveLabel" destination="q0Z-E2-s0o" id="KqR-le-uZ8"/>
+                <outlet property="gradientContainer" destination="9Qg-oj-vik" id="kGD-pI-rAE"/>
                 <outlet property="leaderboardTable" destination="nQP-Js-UH4" id="Ihz-5g-qPw"/>
                 <outlet property="percentageOfWinners" destination="ALd-zs-Bos" id="ZjT-Rm-RNc"/>
                 <outlet property="prizeBreakupContainer" destination="SKn-ZN-BI7" id="QVI-5J-CMR"/>
@@ -80,9 +81,21 @@
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SKn-ZN-BI7">
                     <rect key="frame" x="0.0" y="300" width="414" height="60"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Qg-oj-vik">
+                            <rect key="frame" x="0.0" y="60" width="414" height="0.0"/>
+                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" id="4WJ-se-9hh"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="9Qg-oj-vik" secondAttribute="trailing" id="MuN-uE-Ixa"/>
                         <constraint firstAttribute="height" constant="60" id="aFh-Aq-9IC"/>
+                        <constraint firstItem="9Qg-oj-vik" firstAttribute="leading" secondItem="SKn-ZN-BI7" secondAttribute="leading" id="dO5-e0-aDL"/>
+                        <constraint firstAttribute="bottom" secondItem="9Qg-oj-vik" secondAttribute="bottom" id="orQ-cc-XVK"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SWQ-hZ-5ab">
@@ -233,7 +246,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.60000002384185791" translatesAutoresizingMaskIntoConstraints="NO" id="aH4-zq-437" customClass="GradientProgressBar" customModule="GradientProgressBar">
-                            <rect key="frame" x="12" y="85" width="390" height="4"/>
+                            <rect key="frame" x="12" y="89" width="390" height="4"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="4" id="WdL-83-exN"/>
                             </constraints>
@@ -259,7 +272,7 @@
                         <constraint firstAttribute="bottom" secondItem="3Yy-vT-dX7" secondAttribute="bottom" id="KaD-O1-OcZ"/>
                         <constraint firstItem="3Yy-vT-dX7" firstAttribute="top" secondItem="Tjn-aY-x9P" secondAttribute="bottom" id="LQF-kU-HRv"/>
                         <constraint firstItem="GRt-td-q18" firstAttribute="top" secondItem="O17-Ms-ZHr" secondAttribute="bottom" constant="12" id="Lrm-nd-Cqm"/>
-                        <constraint firstItem="aH4-zq-437" firstAttribute="top" secondItem="GRt-td-q18" secondAttribute="bottom" constant="20" id="OEP-w6-bV3"/>
+                        <constraint firstItem="aH4-zq-437" firstAttribute="top" secondItem="GRt-td-q18" secondAttribute="bottom" constant="24" id="OEP-w6-bV3"/>
                         <constraint firstAttribute="trailing" secondItem="q0Z-E2-s0o" secondAttribute="trailing" constant="12" id="PCS-6H-NNF"/>
                         <constraint firstAttribute="trailing" secondItem="aH4-zq-437" secondAttribute="trailing" constant="12" id="Ppn-PY-4fX"/>
                         <constraint firstAttribute="trailing" secondItem="Xm4-ox-3ub" secondAttribute="trailing" constant="12" id="SuK-bX-c7o"/>

@@ -21,6 +21,9 @@
 		1986EDAC2303E0CB00B04D30 /* PoolsListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1986EDAA2303E0CB00B04D30 /* PoolsListController.xib */; };
 		1986EDAF2303E41000B04D30 /* PoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986EDAD2303E41000B04D30 /* PoolCell.swift */; };
 		1986EDB02303E41000B04D30 /* PoolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1986EDAE2303E41000B04D30 /* PoolCell.xib */; };
+		19ADC588230E752D00771FA7 /* PortfolioValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADC587230E752D00771FA7 /* PortfolioValue.swift */; };
+		19ADC58B230E75F500771FA7 /* PortfolioValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADC589230E75F500771FA7 /* PortfolioValueCell.swift */; };
+		19ADC58C230E75F500771FA7 /* PortfolioValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19ADC58A230E75F500771FA7 /* PortfolioValueCell.xib */; };
 		19D4724E230C1AF7002C3CAD /* PortfolioCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D4724D230C1AF7002C3CAD /* PortfolioCoin.swift */; };
 		19EFAE0423031EB0005E07B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EFAE0323031EB0005E07B4 /* AppDelegate.swift */; };
 		19EFAE0B23031EB1005E07B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19EFAE0A23031EB1005E07B4 /* Assets.xcassets */; };
@@ -51,6 +54,9 @@
 		1986EDAA2303E0CB00B04D30 /* PoolsListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PoolsListController.xib; sourceTree = "<group>"; };
 		1986EDAD2303E41000B04D30 /* PoolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolCell.swift; sourceTree = "<group>"; };
 		1986EDAE2303E41000B04D30 /* PoolCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PoolCell.xib; sourceTree = "<group>"; };
+		19ADC587230E752D00771FA7 /* PortfolioValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioValue.swift; sourceTree = "<group>"; };
+		19ADC589230E75F500771FA7 /* PortfolioValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioValueCell.swift; sourceTree = "<group>"; };
+		19ADC58A230E75F500771FA7 /* PortfolioValueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PortfolioValueCell.xib; sourceTree = "<group>"; };
 		19D4724D230C1AF7002C3CAD /* PortfolioCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCoin.swift; sourceTree = "<group>"; };
 		19EFAE0023031EB0005E07B4 /* Draft11.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Draft11.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19EFAE0323031EB0005E07B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +137,7 @@
 				19EFAE1723032BFF005E07B4 /* Pool.swift */,
 				19F179DA230688FC00FE118E /* Coin.swift */,
 				19D4724D230C1AF7002C3CAD /* PortfolioCoin.swift */,
+				19ADC587230E752D00771FA7 /* PortfolioValue.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -147,6 +154,8 @@
 				19F179DF23068DAA00FE118E /* CoinCell.xib */,
 				194C4CA02309FF0000B036A5 /* PrizeBreakUpCell.swift */,
 				194C4CA12309FF0000B036A5 /* PrizeBreakUpCell.xib */,
+				19ADC589230E75F500771FA7 /* PortfolioValueCell.swift */,
+				19ADC58A230E75F500771FA7 /* PortfolioValueCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -253,6 +262,7 @@
 			files = (
 				194C4C9F2309F3FB00B036A5 /* PrizeBreakUpController.xib in Resources */,
 				1986EDB02303E41000B04D30 /* PoolCell.xib in Resources */,
+				19ADC58C230E75F500771FA7 /* PortfolioValueCell.xib in Resources */,
 				19EFAE0E23031EB1005E07B4 /* LaunchScreen.storyboard in Resources */,
 				191335FB230BF47E0016E197 /* LoginController.xib in Resources */,
 				1986EDAC2303E0CB00B04D30 /* PoolsListController.xib in Resources */,
@@ -334,6 +344,7 @@
 				19D4724E230C1AF7002C3CAD /* PortfolioCoin.swift in Sources */,
 				19F179D8230687EE00FE118E /* CoinSelectionController.swift in Sources */,
 				194C4C9E2309F3FB00B036A5 /* PrizeBreakUpController.swift in Sources */,
+				19ADC58B230E75F500771FA7 /* PortfolioValueCell.swift in Sources */,
 				194C4C992309555C00B036A5 /* CategoryView.swift in Sources */,
 				19EFAE0423031EB0005E07B4 /* AppDelegate.swift in Sources */,
 				19F179E32306A6DF00FE118E /* CryptoDetails.swift in Sources */,
@@ -342,6 +353,7 @@
 				1986EDAF2303E41000B04D30 /* PoolCell.swift in Sources */,
 				194C4C9623094C7600B036A5 /* Extensions.swift in Sources */,
 				194C4C9B2309558300B036A5 /* CategoryCell.swift in Sources */,
+				19ADC588230E752D00771FA7 /* PortfolioValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

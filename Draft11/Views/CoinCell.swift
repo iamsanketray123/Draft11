@@ -29,12 +29,6 @@ class CoinCell: UITableViewCell {
         coinImage.image = UIImage(named: coin.symbol)
         coinName.text = coin.name
         symbol.text = coin.symbol
-//        if coin.isSelected {
-//            checked.isHidden = false
-//        } else {
-//            checked.isHidden = true
-//        }
-        
         if let change24Hours = coin.percentageChange24h {
             self.change24Hours.text = "\(String(format: "%0.2f", change24Hours))%"
             change24Hours >= 0 ? (self.change24Hours.textColor = UIColor.init(red: 64/255, green: 132/255, blue: 51/255, alpha: 1)): (self.change24Hours.textColor = UIColor.init(red: 1, green: 38/255, blue: 0, alpha: 1))
