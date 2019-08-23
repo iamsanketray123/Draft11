@@ -14,5 +14,6 @@ pod 'Firebase/RemoteConfig'
 pod 'GradientProgressBar'
 pod 'GradientLoadingBar'
 pod 'SkeletonView'
+pod 'PieCharts'
 
 end

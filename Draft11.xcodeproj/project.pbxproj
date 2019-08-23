@@ -24,6 +24,8 @@
 		19ADC588230E752D00771FA7 /* PortfolioValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADC587230E752D00771FA7 /* PortfolioValue.swift */; };
 		19ADC58B230E75F500771FA7 /* PortfolioValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADC589230E75F500771FA7 /* PortfolioValueCell.swift */; };
 		19ADC58C230E75F500771FA7 /* PortfolioValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19ADC58A230E75F500771FA7 /* PortfolioValueCell.xib */; };
+		19ADC593230F0DCD00771FA7 /* RevenueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADC591230F0DCD00771FA7 /* RevenueController.swift */; };
+		19ADC594230F0DCD00771FA7 /* RevenueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19ADC592230F0DCD00771FA7 /* RevenueController.xib */; };
 		19D4724E230C1AF7002C3CAD /* PortfolioCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D4724D230C1AF7002C3CAD /* PortfolioCoin.swift */; };
 		19EFAE0423031EB0005E07B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EFAE0323031EB0005E07B4 /* AppDelegate.swift */; };
 		19EFAE0B23031EB1005E07B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19EFAE0A23031EB1005E07B4 /* Assets.xcassets */; };
@@ -57,6 +59,8 @@
 		19ADC587230E752D00771FA7 /* PortfolioValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioValue.swift; sourceTree = "<group>"; };
 		19ADC589230E75F500771FA7 /* PortfolioValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioValueCell.swift; sourceTree = "<group>"; };
 		19ADC58A230E75F500771FA7 /* PortfolioValueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PortfolioValueCell.xib; sourceTree = "<group>"; };
+		19ADC591230F0DCD00771FA7 /* RevenueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueController.swift; sourceTree = "<group>"; };
+		19ADC592230F0DCD00771FA7 /* RevenueController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RevenueController.xib; sourceTree = "<group>"; };
 		19D4724D230C1AF7002C3CAD /* PortfolioCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCoin.swift; sourceTree = "<group>"; };
 		19EFAE0023031EB0005E07B4 /* Draft11.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Draft11.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19EFAE0323031EB0005E07B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +175,8 @@
 				19F179D7230687EE00FE118E /* CoinSelectionController.xib */,
 				194C4C9C2309F3FB00B036A5 /* PrizeBreakUpController.swift */,
 				194C4C9D2309F3FB00B036A5 /* PrizeBreakUpController.xib */,
+				19ADC591230F0DCD00771FA7 /* RevenueController.swift */,
+				19ADC592230F0DCD00771FA7 /* RevenueController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -264,6 +270,7 @@
 				1986EDB02303E41000B04D30 /* PoolCell.xib in Resources */,
 				19ADC58C230E75F500771FA7 /* PortfolioValueCell.xib in Resources */,
 				19EFAE0E23031EB1005E07B4 /* LaunchScreen.storyboard in Resources */,
+				19ADC594230F0DCD00771FA7 /* RevenueController.xib in Resources */,
 				191335FB230BF47E0016E197 /* LoginController.xib in Resources */,
 				1986EDAC2303E0CB00B04D30 /* PoolsListController.xib in Resources */,
 				19F179D9230687EE00FE118E /* CoinSelectionController.xib in Resources */,
@@ -307,6 +314,7 @@
 				"${BUILT_PRODUCTS_DIR}/GradientLoadingBar/GradientLoadingBar.framework",
 				"${BUILT_PRODUCTS_DIR}/GradientProgressBar/GradientProgressBar.framework",
 				"${BUILT_PRODUCTS_DIR}/LightweightObservable/LightweightObservable.framework",
+				"${BUILT_PRODUCTS_DIR}/PieCharts/PieCharts.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -319,6 +327,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GradientLoadingBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GradientProgressBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LightweightObservable.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PieCharts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -353,6 +362,7 @@
 				1986EDAF2303E41000B04D30 /* PoolCell.swift in Sources */,
 				194C4C9623094C7600B036A5 /* Extensions.swift in Sources */,
 				194C4C9B2309558300B036A5 /* CategoryCell.swift in Sources */,
+				19ADC593230F0DCD00771FA7 /* RevenueController.swift in Sources */,
 				19ADC588230E752D00771FA7 /* PortfolioValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

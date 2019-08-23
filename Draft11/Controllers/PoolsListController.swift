@@ -72,12 +72,15 @@ class PoolsListController: UIViewController {
     }
     
     @IBAction func test(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            self.navigationController?.popViewController(animated: true)
-        } catch {
-            print(error.localizedDescription)
-        }
+//        do {
+//            try Auth.auth().signOut()
+//            self.navigationController?.popViewController(animated: true)
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+        let revenueController = RevenueController()
+        revenueController.pool = pools[[Int](0...3).randomElement()!]
+        self.navigationController?.pushViewController(revenueController, animated: true)
     }
     
     fileprivate func checkIfUserHasCreatedATeam(id: Int) {
@@ -94,7 +97,6 @@ class PoolsListController: UIViewController {
                 self.checkIfUserHasJoinedPool(with: id)
             }
         }
-        
     }
     
     
@@ -124,6 +126,7 @@ class PoolsListController: UIViewController {
         let pool = pools[id]
         if pool.isContestLive {
             executeContestLiveFlow(pool: pool)
+            return
         }
         
         guard let userID = Auth.auth().currentUser?.uid else { return }

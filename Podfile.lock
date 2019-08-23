@@ -78,6 +78,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - PieCharts (0.0.7)
   - Protobuf (3.9.0)
   - SkeletonView (1.7)
 
@@ -87,6 +88,7 @@ DEPENDENCIES:
   - Firebase/RemoteConfig
   - GradientLoadingBar
   - GradientProgressBar
+  - PieCharts
   - SkeletonView
 
 SPEC REPOS:
@@ -110,6 +112,7 @@ SPEC REPOS:
     - leveldb-library
     - LightweightObservable
     - nanopb
+    - PieCharts
     - Protobuf
     - SkeletonView
 
@@ -133,9 +136,10 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   LightweightObservable: d723535b481a5ac7853d4e423779c636534542ab
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  PieCharts: 30e50dfa7dc19e5b84e9878d32089673ef5d0453
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
   SkeletonView: 7d7378731b708f8a6e6b1ffefb68cc3903f10a03
 
-PODFILE CHECKSUM: 366fbc7634940030cd74bb6b8b2ee025dcaa8ce6
+PODFILE CHECKSUM: 95b33ce64379a6c69ecadb74040f8938c1392b23
 
 COCOAPODS: 1.5.3

@@ -28,7 +28,7 @@ class LoginController: UIViewController {
     
     fileprivate func executeAnimation() {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
             self.trophyTopConstraint.constant = 180
             self.draft11CenterConstraint.constant = 0
             self.worldsBiggestCenterConstraint.constant = 0
