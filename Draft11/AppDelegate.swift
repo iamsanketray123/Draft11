@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navigationController = UINavigationController(rootViewController: LoginController())
         } else {
             print("Logged in user", userID as Any)
-            navigationController.viewControllers = [LoginController(), PoolsListController()]
+            navigationController.setViewControllers([LoginController(), PoolsListController()], animated: true)
         }
 
         navigationController.isNavigationBarHidden = true

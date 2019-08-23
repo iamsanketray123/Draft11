@@ -72,15 +72,13 @@ class PoolsListController: UIViewController {
     }
     
     @IBAction func test(_ sender: Any) {
-//        do {
-//            try Auth.auth().signOut()
-//            self.navigationController?.popViewController(animated: true)
-//        } catch {
-//            print(error.localizedDescription)
-//        }
-        let revenueController = RevenueController()
-        revenueController.pool = pools[[Int](0...3).randomElement()!]
-        self.navigationController?.pushViewController(revenueController, animated: true)
+        do {
+            try Auth.auth().signOut()
+            self.navigationController?.popViewController(animated: true)
+        } catch {
+            print(error.localizedDescription)
+        }
+        
     }
     
     fileprivate func checkIfUserHasCreatedATeam(id: Int) {

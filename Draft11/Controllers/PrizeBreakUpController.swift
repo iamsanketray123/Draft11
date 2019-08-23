@@ -28,6 +28,7 @@ class PrizeBreakUpController: UIViewController {
     @IBOutlet weak var redDot: UIView!
     @IBOutlet weak var leaderboardTable: UITableView!
     @IBOutlet weak var gradientContainer: UIView!
+    @IBOutlet weak var endGameButton: UIButton!
     
     var selectedPool: Pool?
     let cellId = "cellId"
@@ -74,6 +75,26 @@ class PrizeBreakUpController: UIViewController {
         sortPrizeRange()
         setupUI()
         
+        
+        if let selectedPool = selectedPool {
+            reference.child("Pools").child(selectedPool.id).observe(.childChanged) { (snapshot) in
+                self.reference.child("Pools").child(selectedPool.id).observe(.value, with: { (snapshot) in
+                    guard let dictionary = snapshot.value as? [String: Any] else { return }
+                    let pool = Pool(dictionary: dictionary)
+                    self.selectedPool = pool
+                    self.setupCell()
+                })
+            }
+        }
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        animateRedDot()
+        
+        prizeBreakupView.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
     }
     
     @IBAction func checkIfUserHasCreatedATeam(_ sender: Any) {
@@ -135,6 +156,11 @@ class PrizeBreakUpController: UIViewController {
         }
     }
     
+    @IBAction func endGameTapped(_ sender: Any) {
+        let revenueController = RevenueController()
+        revenueController.pool = selectedPool
+        self.navigationController?.pushViewController(revenueController, animated: true)
+    }
     
     fileprivate func setupUI() {
         
@@ -142,8 +168,6 @@ class PrizeBreakUpController: UIViewController {
         
         prizeBreakupContainer.addSubview(prizeBreakupView)
         prizeBreakupView.anchor(top: prizeBreakupContainer.topAnchor, left: prizeBreakupContainer.leftAnchor, bottom: prizeBreakupContainer.bottomAnchor, right: prizeBreakupContainer.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        prizeBreakupView.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
         
         
         confirmedTag.layer.cornerRadius = 1.5
@@ -170,9 +194,22 @@ class PrizeBreakUpController: UIViewController {
         prizeBreakupContainer.layer.shadowOpacity = 3
         prizeBreakupContainer.layer.shadowOffset.width = 0
         prizeBreakupContainer.layer.shadowOffset.height = 3
+        
+    }
+    
+    
+    fileprivate func animateRedDot() {
+        self.redDot.alpha = 0
+        UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse], animations: {
+            self.redDot.alpha = 1
+        })
     }
     
     fileprivate func setupCell() {
+        
+        if let pool = selectedPool {
+            pool.isContestLive ? (endGameButton.isHidden = false) : (endGameButton.isHidden = true)
+        }
         
         progress.transform = CGAffineTransform.init(scaleX: 1, y: 1.75)
         progress.layer.cornerRadius = progress.frame.height
@@ -197,16 +234,9 @@ class PrizeBreakUpController: UIViewController {
         progress.setProgress(0, animated: false)
         progress.setProgress( Float(pool.totalSpots - pool.spotsLeft) / Float(pool.totalSpots), animated: true)
         
-        
         if pool.isContestLive {
             entryOrLiveLabel.text = "Live"
             redDot.isHidden = false
-            
-            self.redDot.alpha = 0
-            UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse], animations: {
-                self.redDot.alpha = 1
-            })
-            
         } else {
             entryOrLiveLabel.text = "Entry"
             redDot.isHidden = true

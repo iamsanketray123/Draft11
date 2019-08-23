@@ -216,7 +216,7 @@ class CoinSelectionController: UIViewController {
             DispatchQueue.main.async {
                 let prizeBreakUpController = PrizeBreakUpController()
                 prizeBreakUpController.selectedPool = selectedPool
-                self.navigationController?.viewControllers = [PoolsListController(), prizeBreakUpController]
+                self.navigationController?.setViewControllers([PoolsListController(), prizeBreakUpController], animated: true)
             }
             
         }

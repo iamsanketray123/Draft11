@@ -8,17 +8,28 @@
 
 import UIKit
 import PieCharts
+import FirebaseDatabase
 
 class RevenueController: UIViewController, PieChartDelegate {
-
+    
     @IBOutlet weak var pie: PieChart!
     
     var pool: Pool?
-    
+    var reference: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        reference = Database.database().reference()
+        
+        refreshTheContest()
+    }
+    
+    fileprivate func refreshTheContest() {
+        
+        guard let pool = pool else { return }
+        reference.child("Pools").child(pool.id).child("players").removeValue()
+        reference.child("Pools").child(pool.id).updateChildValues(["isContestLive": false, "spotsLeft": pool.totalSpots])
         
     }
     
@@ -59,14 +70,12 @@ class RevenueController: UIViewController, PieChartDelegate {
         ]
     }
     
-    // MARK: - Layers
-    
     fileprivate func createCustomViewsLayer() -> PieCustomViewsLayer {
         let viewLayer = PieCustomViewsLayer()
         
         let settings = PieCustomViewsLayerSettings()
         settings.viewRadius = 135
-        settings.hideOnOverflow = true
+        settings.hideOnOverflow = false
         viewLayer.settings = settings
         
         viewLayer.viewGenerator = createViewGenerator()
@@ -94,7 +103,7 @@ class RevenueController: UIViewController, PieChartDelegate {
     
     fileprivate func createViewGenerator() -> (PieSlice, CGPoint) -> UIView {
         return {slice, center in
-
+            
             let container = UIView()
             container.frame.size = CGSize(width: 100, height: 40)
             container.center = center
@@ -116,7 +125,6 @@ class RevenueController: UIViewController, PieChartDelegate {
             return UIView()
         }
         
-        
-        
     }
+    
 }
