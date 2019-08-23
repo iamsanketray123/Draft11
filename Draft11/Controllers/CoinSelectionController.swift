@@ -73,6 +73,19 @@ class CoinSelectionController: UIViewController {
         confirmButton.layer.shadowOffset.width = 0
         confirmButton.layer.shadowOffset.height = 3
         
+        
+        if let selectedPool = selectedPool {
+            reference.child("Pools").child(selectedPool.id).observe(.childChanged) { (snapshot) in
+                self.reference.child("Pools").child(selectedPool.id).observe(.value, with: { (snapshot) in
+                    guard let dictionary = snapshot.value as? [String: Any] else { return }
+                    let pool = Pool(dictionary: dictionary)
+                    self.selectedPool = pool
+                })
+            }
+        }
+        
+        
+        
     }
     
     fileprivate func displayConfirmButtonIfRequired() {
@@ -112,15 +125,28 @@ class CoinSelectionController: UIViewController {
     
     @IBAction func confirmTeamTapped(_ sender: Any) {
         
+        if confirmButton.titleLabel?.text == "START" {
+            guard let selectedPool = selectedPool else { return }
+            reference.child("Pools").child(selectedPool.id).updateChildValues(["isContestLive": true])
+            let prizeBreakUpController = PrizeBreakUpController()
+            prizeBreakUpController.selectedPool = selectedPool
+            self.navigationController?.setViewControllers([PoolsListController(), prizeBreakUpController], animated: true)
+            return
+        }
+        
         if let _ = shouldStartGame {
-            print("Current user has already joined the game. User can now start game")
+            print("Current user has already joined the game, but contest is not live. User can now start game")
             displayAlertForRandomization()
         } else {
             guard let uid = Auth.auth().currentUser?.uid else { return }
-            let updateValues = generateDictionary(selectedCoins: self.selectedCoins)
-            reference.child("Teams").child(uid).child("portfolio").updateChildValues(updateValues)
             guard let selectedPool = selectedPool else { return }
-            join(pool: selectedPool, userID: uid)
+            
+            if !selectedPool.playerUIDs.contains(uid) { // if player has not joined the pool
+                let updateValues = generateDictionary(selectedCoins: self.selectedCoins)
+                reference.child("Teams").child(uid).child("portfolio").updateChildValues(updateValues)
+                join(pool: selectedPool, userID: uid)
+            }
+            
             displayAlertForRandomization()
         }
         
@@ -242,6 +268,7 @@ extension CoinSelectionController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let coin = coins[indexPath.item]
         print(coin.symbol)
        
