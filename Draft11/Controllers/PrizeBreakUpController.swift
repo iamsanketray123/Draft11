@@ -59,6 +59,15 @@ class PrizeBreakUpController: UIViewController {
     }()
     
     
+    fileprivate func fetchPoolDetails(selectedPool: Pool) {
+        reference.child("Pools").child(selectedPool.id).observe(.value, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            let pool = Pool(dictionary: dictionary)
+            self.selectedPool = pool
+            self.setupCell()
+        })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,15 +84,12 @@ class PrizeBreakUpController: UIViewController {
         sortPrizeRange()
         setupUI()
         
-        
         if let selectedPool = selectedPool {
+            
+            fetchPoolDetails(selectedPool: selectedPool)
+            
             reference.child("Pools").child(selectedPool.id).observe(.childChanged) { (snapshot) in
-                self.reference.child("Pools").child(selectedPool.id).observe(.value, with: { (snapshot) in
-                    guard let dictionary = snapshot.value as? [String: Any] else { return }
-                    let pool = Pool(dictionary: dictionary)
-                    self.selectedPool = pool
-                    self.setupCell()
-                })
+                self.fetchPoolDetails(selectedPool: selectedPool)
             }
         }
         
@@ -116,26 +122,6 @@ class PrizeBreakUpController: UIViewController {
     fileprivate func checkIfUserHasJoinedPool() {
         
         guard let pool = selectedPool else { return }
-//
-//        reference.child("Teams").child(userID).child("poolsJoined").observeSingleEvent(of: .value) { (snapshot) in
-//            let snap = snapshot.value as? [String: Any]
-//
-//            if snap == nil {
-//
-//                self.join(pool: pool, userID: userID)
-//
-//            } else { // user has previously created team
-//
-//                if snap!["\(pool.id)"] == nil { // user has not joined this pool
-//
-//                    self.join(pool: pool, userID: userID)
-//
-//                } else {
-//                    print("ALREADY JOINED ⚠️")
-//                }
-//
-//            }
-//        }
 
         guard let userID = Auth.auth().currentUser?.uid else { return }
         reference.child("Pools").child(pool.id).child("players").observeSingleEvent(of: .value) { (snapshot) in
@@ -169,7 +155,6 @@ class PrizeBreakUpController: UIViewController {
         print("User has joined this pool but contest isn't live. Start the game.")
         DispatchQueue.main.async {
             let coinSelectionController = CoinSelectionController()
-            coinSelectionController.shouldStartGame = true
             coinSelectionController.selectedPool = pool
             self.navigationController?.pushViewController(coinSelectionController, animated: true)
             return
@@ -199,8 +184,6 @@ class PrizeBreakUpController: UIViewController {
     }
     
     fileprivate func setupUI() {
-        
-        setupCell()
         
         prizeBreakupContainer.addSubview(prizeBreakupView)
         prizeBreakupView.anchor(top: prizeBreakupContainer.topAnchor, left: prizeBreakupContainer.leftAnchor, bottom: prizeBreakupContainer.bottomAnchor, right: prizeBreakupContainer.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
@@ -354,6 +337,8 @@ class PrizeBreakUpController: UIViewController {
                     })
                 }
             }
+        } else {
+            print("Waiting for other players to join")
         }
     }
     

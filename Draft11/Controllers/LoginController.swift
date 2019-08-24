@@ -47,11 +47,19 @@ class LoginController: UIViewController {
     }
     
     @IBAction func login(_ sender: Any) {
+        
+        
+        let userName = UIDevice.current.name
+        print(userName, "🍶", userName.contains("’"))
+        let a = userName.split(separator: "’")
+        print(a[0])
+        
+        
         Firebase.Auth.auth().signInAnonymously { (user, error) in
             if error != nil {
                 print(error!.localizedDescription, "❗️")
             }
-            self.reference.child("Users").child(user!.user.uid).updateChildValues(["userName": "Sanket Ray"])
+            self.reference.child("Users").child(user!.user.uid).updateChildValues(["userName": "\(a[0])"])
             print(user!.user.uid, "✅")
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(PoolsListController(), animated: true)

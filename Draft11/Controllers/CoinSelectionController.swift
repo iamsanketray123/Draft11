@@ -24,7 +24,7 @@ class CoinSelectionController: UIViewController {
     
     
     var spotsLeftForPool = Int()
-    var shouldStartGame: Bool?
+//    var shouldStartGame: Bool?
     var coins = [Coin]()
     var selectedCoins = [Coin]() {
         didSet {
@@ -34,12 +34,21 @@ class CoinSelectionController: UIViewController {
     }
     var reference: DatabaseReference!
     let coinCellId = "coinCellId"
-    var selectedPool: Pool?
+    var selectedPool: Pool? {
+        didSet {
+            guard let selectedPool = selectedPool else { return }
+            if selectedPool.spotsLeft == 0 && selectedPool.playerUIDs.contains(Auth.auth().currentUser!.uid) && !selectedPool.isContestLive {
+                confirmButton.setTitle("START", for: .normal)
+            }
+            // other cases : contest started while on the page.
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        guard let selectedPool = selectedPool else { return }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         
         reference = Database.database().reference()
         selectedCoins = [Coin]()
@@ -56,10 +65,11 @@ class CoinSelectionController: UIViewController {
             self.coins.sort(by: {$0.symbol < $1.symbol})
             DispatchQueue.main.async {
                 self.coinsTable.reloadData()
-                if self.shouldStartGame == nil {
+                if !selectedPool.playerUIDs.contains(uid) {
                     self.animateTopSection()
                 } else {
                     self.confirmButton.setTitle("START", for: .normal)
+                    self.coinsTable.allowsSelection = false
                     UIView.animate(withDuration: 0.5) {
                         self.confirmButton.alpha = 1
                     }
@@ -74,15 +84,15 @@ class CoinSelectionController: UIViewController {
         confirmButton.layer.shadowOffset.height = 3
         
         
-        if let selectedPool = selectedPool {
-            reference.child("Pools").child(selectedPool.id).observe(.childChanged) { (snapshot) in
-                self.reference.child("Pools").child(selectedPool.id).observe(.value, with: { (snapshot) in
-                    guard let dictionary = snapshot.value as? [String: Any] else { return }
-                    let pool = Pool(dictionary: dictionary)
-                    self.selectedPool = pool
-                })
-            }
+        
+        reference.child("Pools").child(selectedPool.id).observe(.childChanged) { (snapshot) in
+            self.reference.child("Pools").child(selectedPool.id).observe(.value, with: { (snapshot) in
+                guard let dictionary = snapshot.value as? [String: Any] else { return }
+                let pool = Pool(dictionary: dictionary)
+                self.selectedPool = pool
+            })
         }
+    
         
         
         
@@ -125,33 +135,25 @@ class CoinSelectionController: UIViewController {
     
     @IBAction func confirmTeamTapped(_ sender: Any) {
         
-        if confirmButton.titleLabel?.text == "START" {
-            guard let selectedPool = selectedPool else { return }
-            reference.child("Pools").child(selectedPool.id).updateChildValues(["isContestLive": true])
-            let prizeBreakUpController = PrizeBreakUpController()
-            prizeBreakUpController.selectedPool = selectedPool
-            self.navigationController?.setViewControllers([PoolsListController(), prizeBreakUpController], animated: true)
-            return
-        }
+        guard let selectedPool = selectedPool else { return }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        if let _ = shouldStartGame {
-            print("Current user has already joined the game, but contest is not live. User can now start game")
+        if !selectedPool.playerUIDs.contains(uid)  {
+            let updateValues = generateDictionary(selectedCoins: self.selectedCoins)
+            reference.child("Teams").child(uid).child("portfolio").updateChildValues(updateValues)
+            join(pool: selectedPool, userID: uid)
             displayAlertForRandomization()
         } else {
-            guard let uid = Auth.auth().currentUser?.uid else { return }
-            guard let selectedPool = selectedPool else { return }
-            
-            if !selectedPool.playerUIDs.contains(uid) { // if player has not joined the pool
-                let updateValues = generateDictionary(selectedCoins: self.selectedCoins)
-                reference.child("Teams").child(uid).child("portfolio").updateChildValues(updateValues)
-                join(pool: selectedPool, userID: uid)
+            if selectedPool.spotsLeft == 0 {
+                reference.child("Pools").child(selectedPool.id).updateChildValues(["isContestLive": true])
+                let prizeBreakUpController = PrizeBreakUpController()
+                prizeBreakUpController.selectedPool = selectedPool
+                self.navigationController?.setViewControllers([PoolsListController(), prizeBreakUpController], animated: true)
+                return
+            } else {
+                displayAlertForRandomization()
             }
-            
-            displayAlertForRandomization()
         }
-        
-        
-        
     }
     
     func join(pool: Pool, userID: String) {
@@ -181,11 +183,11 @@ class CoinSelectionController: UIViewController {
     
     fileprivate func displayAlertForRandomization() {
         
-        let alert = UIAlertController(title: "Successfully Joined Contest", message: "The total number of slots for this contest have not been filled. Click on 'Randomize' to play against AI bots or wait for others to join", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Success", message: "The total number of slots for this contest have't been filled. Click on 'Randomize' to play against AI bots or wait for others to join", preferredStyle: .actionSheet)
         let randomizeAction = UIAlertAction(title: "Play against AI", style: .default) { (_) in
             self.randomizePlayersAndTeams()
         }
-        let cancelAction = UIAlertAction(title: "Wait for other Players", style: .destructive)
+        let cancelAction = UIAlertAction(title: "Wait for other Players", style: .cancel)
         alert.addAction(randomizeAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)

@@ -67,6 +67,7 @@ class PoolsListController: UIViewController {
             self.pools.remove(at: indexOfPoolToReplace)
             self.pools.insert(changedPool, at: indexOfPoolToReplace)
             self.collectionView.reloadItems(at: [IndexPath(item: indexOfPoolToReplace, section: 0)])
+            print(self.pools[indexOfPoolToReplace])
         }
         
     }
@@ -112,7 +113,7 @@ class PoolsListController: UIViewController {
         print("User has joined this pool but contest isn't live. Start the game.")
         DispatchQueue.main.async {
             let coinSelectionController = CoinSelectionController()
-            coinSelectionController.shouldStartGame = true
+//            coinSelectionController.shouldStartGame = true
             coinSelectionController.selectedPool = pool
             self.navigationController?.pushViewController(coinSelectionController, animated: true)
             return
@@ -230,6 +231,14 @@ extension PoolsListController: UICollectionViewDelegate, UICollectionViewDataSou
         cell.pool = pools[indexPath.row]
         cell.prizeDistribution.tag = indexPath.item
         cell.prizeDistribution.addTarget(self, action: #selector(handleDisplayPrizeDistribution(_:)), for: .touchUpInside)
+        
+        if pools[indexPath.item].isContestLive {
+            cell.redDot.alpha = 0
+            UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse], animations: {
+                cell.redDot.alpha = 1
+            })
+        }
+        
         return cell
     }
     
@@ -265,5 +274,19 @@ extension PoolsListController: UICollectionViewDelegate, UICollectionViewDataSou
             cell.container.transform = .identity
         }
     }
+
+}
+extension String {
     
+    func index(at position: Int, from start: Index? = nil) -> Index? {
+        let startingIndex = start ?? startIndex
+        return index(startingIndex, offsetBy: position, limitedBy: endIndex)
+    }
+    
+    func character(at position: Int) -> Character? {
+        guard position >= 0, let indexPosition = index(at: position) else {
+            return nil
+        }
+        return self[indexPosition]
+    }
 }
