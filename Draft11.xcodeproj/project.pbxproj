@@ -26,6 +26,10 @@
 		19ADC58C230E75F500771FA7 /* PortfolioValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19ADC58A230E75F500771FA7 /* PortfolioValueCell.xib */; };
 		19ADC593230F0DCD00771FA7 /* RevenueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADC591230F0DCD00771FA7 /* RevenueController.swift */; };
 		19ADC594230F0DCD00771FA7 /* RevenueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19ADC592230F0DCD00771FA7 /* RevenueController.xib */; };
+		19C1CE952312CC1D00FA3D7E /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C1CE932312CC1D00FA3D7E /* ProfileController.swift */; };
+		19C1CE962312CC1D00FA3D7E /* ProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19C1CE942312CC1D00FA3D7E /* ProfileController.xib */; };
+		19C1CE992312F33700FA3D7E /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C1CE972312F33700FA3D7E /* SettingsCell.swift */; };
+		19C1CE9A2312F33700FA3D7E /* SettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19C1CE982312F33700FA3D7E /* SettingsCell.xib */; };
 		19D4724E230C1AF7002C3CAD /* PortfolioCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D4724D230C1AF7002C3CAD /* PortfolioCoin.swift */; };
 		19EFAE0423031EB0005E07B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EFAE0323031EB0005E07B4 /* AppDelegate.swift */; };
 		19EFAE0B23031EB1005E07B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19EFAE0A23031EB1005E07B4 /* Assets.xcassets */; };
@@ -61,6 +65,10 @@
 		19ADC58A230E75F500771FA7 /* PortfolioValueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PortfolioValueCell.xib; sourceTree = "<group>"; };
 		19ADC591230F0DCD00771FA7 /* RevenueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueController.swift; sourceTree = "<group>"; };
 		19ADC592230F0DCD00771FA7 /* RevenueController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RevenueController.xib; sourceTree = "<group>"; };
+		19C1CE932312CC1D00FA3D7E /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		19C1CE942312CC1D00FA3D7E /* ProfileController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileController.xib; sourceTree = "<group>"; };
+		19C1CE972312F33700FA3D7E /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		19C1CE982312F33700FA3D7E /* SettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsCell.xib; sourceTree = "<group>"; };
 		19D4724D230C1AF7002C3CAD /* PortfolioCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCoin.swift; sourceTree = "<group>"; };
 		19EFAE0023031EB0005E07B4 /* Draft11.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Draft11.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19EFAE0323031EB0005E07B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +168,8 @@
 				194C4CA12309FF0000B036A5 /* PrizeBreakUpCell.xib */,
 				19ADC589230E75F500771FA7 /* PortfolioValueCell.swift */,
 				19ADC58A230E75F500771FA7 /* PortfolioValueCell.xib */,
+				19C1CE972312F33700FA3D7E /* SettingsCell.swift */,
+				19C1CE982312F33700FA3D7E /* SettingsCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -167,6 +177,8 @@
 		19F179E423071F2100FE118E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				19C1CE932312CC1D00FA3D7E /* ProfileController.swift */,
+				19C1CE942312CC1D00FA3D7E /* ProfileController.xib */,
 				191335F8230BF47E0016E197 /* LoginController.swift */,
 				191335F9230BF47E0016E197 /* LoginController.xib */,
 				1986EDA92303E0CB00B04D30 /* PoolsListController.swift */,
@@ -266,7 +278,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19C1CE9A2312F33700FA3D7E /* SettingsCell.xib in Resources */,
 				194C4C9F2309F3FB00B036A5 /* PrizeBreakUpController.xib in Resources */,
+				19C1CE962312CC1D00FA3D7E /* ProfileController.xib in Resources */,
 				1986EDB02303E41000B04D30 /* PoolCell.xib in Resources */,
 				19ADC58C230E75F500771FA7 /* PortfolioValueCell.xib in Resources */,
 				19EFAE0E23031EB1005E07B4 /* LaunchScreen.storyboard in Resources */,
@@ -357,7 +371,9 @@
 				19F179E32306A6DF00FE118E /* CryptoDetails.swift in Sources */,
 				1986EDAB2303E0CB00B04D30 /* PoolsListController.swift in Sources */,
 				194C4CA22309FF0000B036A5 /* PrizeBreakUpCell.swift in Sources */,
+				19C1CE992312F33700FA3D7E /* SettingsCell.swift in Sources */,
 				1986EDAF2303E41000B04D30 /* PoolCell.swift in Sources */,
+				19C1CE952312CC1D00FA3D7E /* ProfileController.swift in Sources */,
 				194C4C9623094C7600B036A5 /* Extensions.swift in Sources */,
 				194C4C9B2309558300B036A5 /* CategoryCell.swift in Sources */,
 				19ADC593230F0DCD00771FA7 /* RevenueController.swift in Sources */,

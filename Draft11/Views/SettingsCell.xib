@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="96" id="KGk-i7-Jjw" customClass="SettingsCell" customModule="Draft11" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="95.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bWB-Iw-Skb">
+                        <rect key="frame" x="12" y="36" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="uOg-wc-dWd"/>
+                            <constraint firstAttribute="width" constant="24" id="v9j-y5-yOz"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1p-FT-81W">
+                        <rect key="frame" x="48" y="38" width="354" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" white="0.199958975456621" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="A1p-FT-81W" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="48z-bq-g5f"/>
+                    <constraint firstItem="bWB-Iw-Skb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="9U2-Bq-3E3"/>
+                    <constraint firstItem="A1p-FT-81W" firstAttribute="leading" secondItem="bWB-Iw-Skb" secondAttribute="trailing" constant="12" id="Pej-rA-Aee"/>
+                    <constraint firstAttribute="trailing" secondItem="A1p-FT-81W" secondAttribute="trailing" constant="12" id="Y0j-nn-JfC"/>
+                    <constraint firstItem="bWB-Iw-Skb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="eET-mg-yXH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="option" destination="A1p-FT-81W" id="ncc-6p-8Au"/>
+                <outlet property="optionImage" destination="bWB-Iw-Skb" id="d94-cS-2e1"/>
+            </connections>
+            <point key="canvasLocation" x="205.79710144927537" y="169.41964285714286"/>
+        </tableViewCell>
+    </objects>
+</document>

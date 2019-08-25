@@ -66,13 +66,7 @@ class PoolsListController: UIViewController {
     }
     
     @IBAction func test(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            self.navigationController?.popViewController(animated: true)
-        } catch {
-            print(error.localizedDescription)
-        }
-        
+        self.navigationController?.pushViewController(ProfileController(), animated: true)
     }
     
     fileprivate func checkIfUserHasCreatedATeam(id: Int) {
