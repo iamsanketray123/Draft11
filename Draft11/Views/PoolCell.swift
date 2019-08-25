@@ -53,7 +53,6 @@ class PoolCell: UICollectionViewCell {
         
         pool.isContestLive ? (redDot.isHidden = false) : (redDot.isHidden = true)
         pool.isContestLive ? (entryOrLiveLabel.text = "Live") : (entryOrLiveLabel.text = "Entry")
-//        pool.isContestLive ? (self.entryFee.isHidden = true) : (self.entryFee.isHidden = false)
     }
     
 
@@ -77,14 +76,6 @@ class PoolCell: UICollectionViewCell {
         progress.layer.cornerRadius = progress.frame.height / 2 * 1.75
         progress.layer.masksToBounds = true
         
-        
-        makeSkeletonable([entryFee, totalSpots, totalPrizePool, entryOrLiveLabel, spotsLeft, totalSpots, container, confirmedTag])
-    }
-    
-    func makeSkeletonable(_ views: [UIView]) {
-        for view in views {
-            view.isSkeletonable = true
-        }
     }
 
 }

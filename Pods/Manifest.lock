@@ -80,7 +80,6 @@ PODS:
   - nanopb/encode (0.3.901)
   - PieCharts (0.0.7)
   - Protobuf (3.9.0)
-  - SkeletonView (1.7)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -89,7 +88,6 @@ DEPENDENCIES:
   - GradientLoadingBar
   - GradientProgressBar
   - PieCharts
-  - SkeletonView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -114,7 +112,6 @@ SPEC REPOS:
     - nanopb
     - PieCharts
     - Protobuf
-    - SkeletonView
 
 SPEC CHECKSUMS:
   Firebase: a2b5951f30ff38fd3b3bdae9c7d340f940fd3c51
@@ -138,8 +135,7 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PieCharts: 30e50dfa7dc19e5b84e9878d32089673ef5d0453
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
-  SkeletonView: 7d7378731b708f8a6e6b1ffefb68cc3903f10a03
 
-PODFILE CHECKSUM: 95b33ce64379a6c69ecadb74040f8938c1392b23
+PODFILE CHECKSUM: 85055edfd37fc2774cceeb39ad6b71b7db431ab2
 
 COCOAPODS: 1.5.3
