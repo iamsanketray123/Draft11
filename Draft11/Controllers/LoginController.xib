@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,13 +23,13 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stockMarket" translatesAutoresizingMaskIntoConstraints="NO" id="0sh-0a-eMh">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Draft11Launcher" translatesAutoresizingMaskIntoConstraints="NO" id="0sh-0a-eMh">
+                    <rect key="frame" x="0.0" y="0.0" width="414.00000000000045" height="896"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wk-HE-sWa">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4v-FT-bVo" customClass="GradientView" customModule="Draft11" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4v-FT-bVo">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dream11WhiteLogo" translatesAutoresizingMaskIntoConstraints="NO" id="ilX-KZ-qrh">
@@ -100,7 +99,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.78431372549019607" green="0.090196078431372548" blue="0.062745098039215685" alpha="0.79647367294520544" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="x4v-FT-bVo" secondAttribute="bottom" id="SFd-gA-P4p"/>
                         <constraint firstItem="x4v-FT-bVo" firstAttribute="top" secondItem="0wk-HE-sWa" secondAttribute="top" id="g0F-1z-6I3"/>
@@ -121,10 +120,11 @@
                 <constraint firstItem="0wk-HE-sWa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uAR-8M-zdn"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="58" y="31"/>
         </view>
     </objects>
     <resources>
+        <image name="Draft11Launcher" width="1618" height="1086"/>
         <image name="dream11WhiteLogo" width="383" height="371"/>
-        <image name="stockMarket" width="1920" height="1280"/>
     </resources>
 </document>
