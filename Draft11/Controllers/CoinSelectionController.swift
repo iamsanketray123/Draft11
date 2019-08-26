@@ -34,15 +34,7 @@ class CoinSelectionController: UIViewController {
     }
     var reference: DatabaseReference!
     let coinCellId = "coinCellId"
-    var selectedPool: Pool? {
-        didSet {
-            guard let selectedPool = selectedPool else { return }
-            if selectedPool.spotsLeft == 0 && selectedPool.playerUIDs.contains(Auth.auth().currentUser!.uid) && !selectedPool.isContestLive {
-                confirmButton.setTitle("START", for: .normal)
-            }
-            // other cases : contest started while on the page.
-        }
-    }
+    var selectedPool: Pool?
     
     override func viewDidLoad() {
         super.viewDidLoad()

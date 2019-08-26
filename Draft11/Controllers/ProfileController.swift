@@ -33,14 +33,16 @@ class ProfileController: UIViewController {
         nameTextField.delegate = self
         self.navigationController?.navigationBar.isTranslucent = false
         reference = Database.database().reference()
-
+        
         container.layer.cornerRadius = 4
         container.layer.masksToBounds = true
         
         guard let userID = Auth.auth().currentUser?.uid else { return }
         reference.child("Users").child(userID).observeSingleEvent(of: .value) { (snap) in
             guard let dict = snap.value as? [String: String] else { return }
-            self.userName.text = dict["userName"]
+            UIView.transition(with: self.userName, duration: 0.3, options: .transitionCrossDissolve, animations: { [weak self] in
+                self?.userName.text = dict["userName"]
+            })
         }
     }
     
@@ -81,7 +83,7 @@ class ProfileController: UIViewController {
         alert.addAction(continueAction)
         self.present(alert, animated: true, completion: nil)
     }
-
+    
     
     func deleteMyTeam() {
         guard let userID = Auth.auth().currentUser?.uid else { return }
@@ -107,7 +109,7 @@ class ProfileController: UIViewController {
     func signout() {
         do {
             try Auth.auth().signOut()
-            self.navigationController?.popToRootViewController(animated: true)
+            self.navigationController?.setViewControllers([LoginController()], animated: true)
         } catch {
             print(error.localizedDescription)
         }
@@ -167,7 +169,7 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! SettingsCell
         
         cell.option.text = options[indexPath.row]

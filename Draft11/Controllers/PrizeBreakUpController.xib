@@ -258,7 +258,7 @@
                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.60000002384185791" translatesAutoresizingMaskIntoConstraints="NO" id="aH4-zq-437" customClass="GradientProgressBar" customModule="GradientProgressBar">
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aH4-zq-437" customClass="GradientProgressBar" customModule="GradientProgressBar">
                             <rect key="frame" x="12" y="89" width="351" height="4"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="4" id="WdL-83-exN"/>

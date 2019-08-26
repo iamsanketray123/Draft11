@@ -140,7 +140,7 @@ class PrizeBreakUpController: UIViewController {
                         
                         if !pool.isContestLive {
                             self.executeContestIsNotLiveFlow(pool: pool)
-                        } 
+                        }
                     }
                 }
                 if !hasLoggedInUserJoined {
@@ -170,7 +170,7 @@ class PrizeBreakUpController: UIViewController {
             let pool = Pool(dictionary: dictionary)
             if pool.spotsLeft >= 1 {
                 self.reference.child("Pools").child(pool.id).updateChildValues(["spotsLeft" : (pool.spotsLeft - 1)])
-                self.reference.child("Teams").child(userID).child("poolsJoined").updateChildValues([pool.id: Date().timeIntervalSince1970])
+                self.reference.child("Pools").child(pool.id).child("players").updateChildValues([userID: Date().timeIntervalSince1970])
             } else {
                 print("Pool already filled, sorry!")
             }

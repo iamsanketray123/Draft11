@@ -65,7 +65,7 @@ class PoolsListController: UIViewController {
         
     }
     
-    @IBAction func test(_ sender: Any) {
+    @IBAction func goToSettings(_ sender: Any) {
         self.navigationController?.pushViewController(ProfileController(), animated: true)
     }
     
@@ -144,6 +144,7 @@ class PoolsListController: UIViewController {
             }
         }
     }
+    
     
     
     func join(pool: Pool, userID: String) {
@@ -248,6 +249,7 @@ extension PoolsListController: UICollectionViewDelegate, UICollectionViewDelegat
             cell.container.transform = .identity
         }
     }
+    
 
 }
 extension String {

@@ -63,7 +63,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
-                                <action selector="test:" destination="-1" eventType="touchUpInside" id="uaj-WA-8ba"/>
+                                <action selector="goToSettings:" destination="-1" eventType="touchUpInside" id="PFn-il-kpU"/>
                             </connections>
                         </button>
                     </subviews>
