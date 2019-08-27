@@ -37,7 +37,7 @@ class PortfolioValueCell: UITableViewCell {
     
     func setupUI(portfolio: PortfolioValue) {
         self.name.text = "\(portfolio.nameOfPlayer)"
-        self.portfolioValue.text = "\(portfolio.value.numberToFormattedString(number: portfolio.value))"
+        self.portfolioValue.text = "\(portfolio.value.numberToFormattedString(number: portfolio.value, format: "%.03f"))"
     }
     
 }

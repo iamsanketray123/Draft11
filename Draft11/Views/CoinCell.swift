@@ -55,10 +55,10 @@ class CoinCell: UITableViewCell {
 }
 extension Double {
     
-    func numberToFormattedString(number: Double) -> String {
+    func numberToFormattedString(number: Double, format: String = "%.02f") -> String {
         
-        let truncatedNumber = Double(Int(number*100))/100
-        let twoDecimalPlacesNumber = String(format: "%.02f", truncatedNumber)
+        let truncatedNumber = Double(Int(number*1000))/1000
+        let twoDecimalPlacesNumber = String(format: format, truncatedNumber)
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal

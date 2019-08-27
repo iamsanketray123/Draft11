@@ -88,6 +88,7 @@ class PoolsListController: UIViewController {
             }
         } else {
             print("Pool already live")
+            executeContestLiveFlow(pool: pool)
         }
     }
     
