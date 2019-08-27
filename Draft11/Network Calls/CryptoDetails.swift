@@ -51,7 +51,7 @@ func getCryptoDetailsFor(coinsString: String, currency: String, completionForErr
         for response in responses {
 
             let coinCodable = response.value
-            let coin = Coin(id: coinCodable.id, symbol: coinCodable.symbol, name: coinCodable.name, price: coinCodable.quote.inr.price, percentageChange24h: coinCodable.quote.inr.percentChange24H, percentageChange7d: coinCodable.quote.inr.percentChange7D)
+            let coin = Coin(id: coinCodable.id, symbol: coinCodable.symbol, name: coinCodable.name, price: coinCodable.quote.usd.price, percentageChange24h: coinCodable.quote.usd.percentChange24H, percentageChange7d: coinCodable.quote.usd.percentChange7D)
             coins.append(coin)
         }
         

@@ -50,7 +50,7 @@ class CoinSelectionController: UIViewController {
         coinsTable.allowsMultipleSelection = true
         coinsTable.register(UINib.init(nibName: "CoinCell", bundle: nil), forCellReuseIdentifier: coinCellId)
         
-        getCryptoDetailsFor(coinsString: sortedCoinString, currency: "INR", completionForError: { (errorMessage) in
+        getCryptoDetailsFor(coinsString: sortedCoinString, currency: "USD", completionForError: { (errorMessage) in
             print(errorMessage)
         }) { (coins) in
             self.coins = coins

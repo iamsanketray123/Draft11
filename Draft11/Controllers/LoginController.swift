@@ -16,6 +16,7 @@ class LoginController: UIViewController {
     @IBOutlet weak var trophy: UIImageView!
     @IBOutlet weak var draft11CenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var worldsBiggestCenterConstraint: NSLayoutConstraint!
+    @IBOutlet weak var loginButton: UIButton!
     
     var reference: DatabaseReference!
 
@@ -54,14 +55,20 @@ class LoginController: UIViewController {
         let a = userName.split(separator: "’")
         print(a[0])
         
+        loginButton.isEnabled = false
         
         Firebase.Auth.auth().signInAnonymously { (user, error) in
             if error != nil {
                 print(error!.localizedDescription, "❗️")
+                DispatchQueue.main.async {
+                    Alert.showBasic(title: "Alert", message: error!.localizedDescription, vc: self)
+                }
+                self.loginButton.isEnabled = true
             }
             self.reference.child("Users").child(user!.user.uid).updateChildValues(["userName": "\(a[0])"])
             print(user!.user.uid, "✅")
             DispatchQueue.main.async {
+                self.loginButton.isEnabled = true
                 self.navigationController?.pushViewController(PoolsListController(), animated: true)
             }
             

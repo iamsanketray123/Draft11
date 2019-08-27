@@ -42,10 +42,11 @@
 		19F179E023068DAA00FE118E /* CoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F179DE23068DAA00FE118E /* CoinCell.swift */; };
 		19F179E123068DAA00FE118E /* CoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19F179DF23068DAA00FE118E /* CoinCell.xib */; };
 		19F179E32306A6DF00FE118E /* CryptoDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F179E22306A6DF00FE118E /* CryptoDetails.swift */; };
-		92D3FDE3287B942E4F0AFDEE /* Pods_Draft11.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1093360D6F660618C27FEA7 /* Pods_Draft11.framework */; };
+		76AD31AF6356BD038AB19FCD /* Pods_Draft11.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 513E422DF972421FA2EEFC75 /* Pods_Draft11.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A6DB8B97DA70FF49979D13F /* Pods-Draft11.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Draft11.release.xcconfig"; path = "Pods/Target Support Files/Pods-Draft11/Pods-Draft11.release.xcconfig"; sourceTree = "<group>"; };
 		191335F8230BF47E0016E197 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		191335F9230BF47E0016E197 /* LoginController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
 		194C4C9523094C7600B036A5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -83,9 +84,8 @@
 		19F179DE23068DAA00FE118E /* CoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCell.swift; sourceTree = "<group>"; };
 		19F179DF23068DAA00FE118E /* CoinCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoinCell.xib; sourceTree = "<group>"; };
 		19F179E22306A6DF00FE118E /* CryptoDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetails.swift; sourceTree = "<group>"; };
-		2470507A1E04C19B98AFD569 /* Pods-Draft11.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Draft11.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Draft11/Pods-Draft11.debug.xcconfig"; sourceTree = "<group>"; };
-		84E17193FFE5954F792F5112 /* Pods-Draft11.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Draft11.release.xcconfig"; path = "Pods/Target Support Files/Pods-Draft11/Pods-Draft11.release.xcconfig"; sourceTree = "<group>"; };
-		A1093360D6F660618C27FEA7 /* Pods_Draft11.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Draft11.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		351B194A2AD13E0799B7F00B /* Pods-Draft11.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Draft11.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Draft11/Pods-Draft11.debug.xcconfig"; sourceTree = "<group>"; };
+		513E422DF972421FA2EEFC75 /* Pods_Draft11.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Draft11.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92D3FDE3287B942E4F0AFDEE /* Pods_Draft11.framework in Frameworks */,
+				76AD31AF6356BD038AB19FCD /* Pods_Draft11.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,8 +113,8 @@
 			children = (
 				19EFAE0223031EB0005E07B4 /* Draft11 */,
 				19EFAE0123031EB0005E07B4 /* Products */,
-				4E0FFD55755B2A9A06C6606B /* Pods */,
-				A18CE27E1C32754576AAFEBB /* Frameworks */,
+				5C62BE560CD1357DE3A16D77 /* Pods */,
+				8BD6359DCB206ACED1CD7059 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -201,19 +201,19 @@
 			path = "Network Calls";
 			sourceTree = "<group>";
 		};
-		4E0FFD55755B2A9A06C6606B /* Pods */ = {
+		5C62BE560CD1357DE3A16D77 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2470507A1E04C19B98AFD569 /* Pods-Draft11.debug.xcconfig */,
-				84E17193FFE5954F792F5112 /* Pods-Draft11.release.xcconfig */,
+				351B194A2AD13E0799B7F00B /* Pods-Draft11.debug.xcconfig */,
+				0A6DB8B97DA70FF49979D13F /* Pods-Draft11.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		A18CE27E1C32754576AAFEBB /* Frameworks */ = {
+		8BD6359DCB206ACED1CD7059 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A1093360D6F660618C27FEA7 /* Pods_Draft11.framework */,
+				513E422DF972421FA2EEFC75 /* Pods_Draft11.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -225,12 +225,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 19EFAE1223031EB1005E07B4 /* Build configuration list for PBXNativeTarget "Draft11" */;
 			buildPhases = (
-				1A31357E43A3C59B35AE87C3 /* [CP] Check Pods Manifest.lock */,
+				5E4E11F9CC5C49F04FB006A1 /* [CP] Check Pods Manifest.lock */,
 				19EFADFC23031EB0005E07B4 /* Sources */,
 				19EFADFD23031EB0005E07B4 /* Frameworks */,
 				19EFADFE23031EB0005E07B4 /* Resources */,
-				B91B14AA96F81ED9ADD0920A /* [CP] Embed Pods Frameworks */,
 				1941B59F2313DAED00D7E395 /* SwiftLint */,
+				A85248FB37E111A9EDDBE394 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -304,20 +304,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 			);
 			name = SwiftLint;
-			outputFileListPaths = (
-			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#if which swiftlint >/dev/null; then\n#    swiftlint\n#else\n#    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#if which swiftlint >/dev/null; then\n#    swiftlint\n#else\n#echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi\n";
 		};
-		1A31357E43A3C59B35AE87C3 /* [CP] Check Pods Manifest.lock */ = {
+		5E4E11F9CC5C49F04FB006A1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -335,7 +331,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B91B14AA96F81ED9ADD0920A /* [CP] Embed Pods Frameworks */ = {
+		A85248FB37E111A9EDDBE394 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -532,18 +528,18 @@
 		};
 		19EFAE1323031EB1005E07B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2470507A1E04C19B98AFD569 /* Pods-Draft11.debug.xcconfig */;
+			baseConfigurationReference = 351B194A2AD13E0799B7F00B /* Pods-Draft11.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GB6X7RL6GX;
+				DEVELOPMENT_TEAM = J4H33JVA49;
 				INFOPLIST_FILE = Draft11/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Chingel.Draft11;
+				PRODUCT_BUNDLE_IDENTIFIER = Chingel.Draft11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -552,18 +548,18 @@
 		};
 		19EFAE1423031EB1005E07B4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84E17193FFE5954F792F5112 /* Pods-Draft11.release.xcconfig */;
+			baseConfigurationReference = 0A6DB8B97DA70FF49979D13F /* Pods-Draft11.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GB6X7RL6GX;
+				DEVELOPMENT_TEAM = J4H33JVA49;
 				INFOPLIST_FILE = Draft11/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Chingel.Draft11;
+				PRODUCT_BUNDLE_IDENTIFIER = Chingel.Draft11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

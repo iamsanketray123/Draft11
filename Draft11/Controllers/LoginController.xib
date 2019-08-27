@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginController" customModule="Draft11" customModuleProvider="target">
             <connections>
                 <outlet property="draft11CenterConstraint" destination="MMC-1H-mxf" id="FEA-gi-X8b"/>
+                <outlet property="loginButton" destination="Pxz-vW-Df0" id="3Ca-wY-0uD"/>
                 <outlet property="trophy" destination="ilX-KZ-qrh" id="a9w-bu-Zb2"/>
                 <outlet property="trophyTopConstraint" destination="O5K-tY-KN7" id="Gd2-uz-n3c"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -24,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Draft11Launcher" translatesAutoresizingMaskIntoConstraints="NO" id="0sh-0a-eMh">
-                    <rect key="frame" x="0.0" y="0.0" width="414.00000000000045" height="896"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wk-HE-sWa">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>

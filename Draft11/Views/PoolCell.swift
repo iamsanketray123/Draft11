@@ -42,8 +42,8 @@ class PoolCell: UICollectionViewCell {
         numberFormatter.numberStyle = .decimal
         guard let entryFee = numberFormatter.string(from: pool.entryFee as NSNumber) else { return }
         guard let totalWinningAmount = numberFormatter.string(from: pool.totalWinningAmount as NSNumber) else { return }
-        self.totalPrizePool.text = "₹ \(totalWinningAmount)"
-        self.entryFee.text = "₹ \(entryFee)"
+        self.totalPrizePool.text = "$ \(totalWinningAmount)"
+        self.entryFee.text = "$ \(entryFee)"
         
         
         progress.animationDuration = 1

@@ -45,15 +45,15 @@ struct CoinCodable: Codable {
 
 // MARK: - Quote
 struct Quote: Codable {
-    let inr: Inr
+    let usd: USD
     
     enum CodingKeys: String, CodingKey {
-        case inr = "INR"
+        case usd = "USD"
     }
 }
 
-// MARK: - Inr
-struct Inr: Codable {
+// MARK: - USD
+struct USD: Codable {
     let price, volume24H, percentChange1H, percentChange24H: Double
     let percentChange7D: Double
     let lastUpdated: String

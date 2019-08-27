@@ -104,18 +104,23 @@ class PrizeBreakUpController: UIViewController {
     }
     
     @IBAction func checkIfUserHasCreatedATeam(_ sender: Any) {
-        let uid = Auth.auth().currentUser!.uid
-        reference.child("Teams").child(uid).observeSingleEvent(of: .value) { (snaphot) in
-            let snap = snaphot.value as? [String: Any]
-            if snap == nil { // no team has been created
-                let coinSelectionController = CoinSelectionController()
-                coinSelectionController.selectedPool = self.selectedPool
-                DispatchQueue.main.async {
-                    self.navigationController?.pushViewController(coinSelectionController, animated: true)
+        guard let pool = selectedPool else { return }
+        if !pool.isContestLive {
+            let uid = Auth.auth().currentUser!.uid
+            reference.child("Teams").child(uid).observeSingleEvent(of: .value) { (snaphot) in
+                let snap = snaphot.value as? [String: Any]
+                if snap == nil { // no team has been created
+                    let coinSelectionController = CoinSelectionController()
+                    coinSelectionController.selectedPool = self.selectedPool
+                    DispatchQueue.main.async {
+                        self.navigationController?.pushViewController(coinSelectionController, animated: true)
+                    }
+                } else {
+                    self.checkIfUserHasJoinedPool()
                 }
-            } else {
-                self.checkIfUserHasJoinedPool()
             }
+        } else {
+            print("Contest is alrady live")
         }
     }
     
@@ -244,8 +249,8 @@ class PrizeBreakUpController: UIViewController {
         numberFormatter.numberStyle = .decimal
         guard let entryFee = numberFormatter.string(from: pool.entryFee as NSNumber) else { return }
         guard let totalWinningAmount = numberFormatter.string(from: pool.totalWinningAmount as NSNumber) else { return }
-        self.totalPrizePool.text = "₹ \(totalWinningAmount)"
-        self.entryFee.text = "₹ \(entryFee)"
+        self.totalPrizePool.text = "$ \(totalWinningAmount)"
+        self.entryFee.text = "$ \(entryFee)"
         
         
         progress.animationDuration = 1
@@ -314,7 +319,7 @@ class PrizeBreakUpController: UIViewController {
         let playerIDs = pool.playerUIDs
         print(playerIDs, "🆔")
         if pool.isContestLive {
-            getCryptoDetailsFor(coinsString: sortedCoinString, currency: "INR", completionForError: { (errorMessage) in
+            getCryptoDetailsFor(coinsString: sortedCoinString, currency: "USD", completionForError: { (errorMessage) in
                 print(errorMessage)
             }) { (coinsFromAPICall) in
                 
@@ -380,7 +385,7 @@ extension PrizeBreakUpController: UITableViewDelegate, UITableViewDataSource {
         if tableView == self.table {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PrizeBreakUpCell
             cell.rankRange.text = rankStringRange[indexPath.item]
-            cell.prizeMoney.text = "₹ \(amounts[indexPath.item])"
+            cell.prizeMoney.text = "$ \(amounts[indexPath.item])"
             return cell
         } else { // leaderboard table
             let cell = tableView.dequeueReusableCell(withIdentifier: leaderBoardCellId, for: indexPath) as! PortfolioValueCell

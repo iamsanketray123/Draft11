@@ -35,7 +35,7 @@ class CoinCell: UITableViewCell {
         }
         
         if let price = coin.price {
-            self.currentPrice.text = "₹ \(price.numberToFormattedString(number: price))"
+            self.currentPrice.text = "$ \(price.numberToFormattedString(number: price))"
         }
         
         

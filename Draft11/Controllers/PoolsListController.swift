@@ -70,18 +70,24 @@ class PoolsListController: UIViewController {
     }
     
     fileprivate func checkIfUserHasCreatedATeam(id: Int) {
-        let uid = Auth.auth().currentUser!.uid
-        reference.child("Teams").child(uid).observeSingleEvent(of: .value) { (snaphot) in
-            let snap = snaphot.value as? [String: Any]
-            if snap == nil { // no team has been created
-                let coinSelectionController = CoinSelectionController()
-                coinSelectionController.selectedPool = self.pools[id]
-                DispatchQueue.main.async {
-                    self.navigationController?.pushViewController(coinSelectionController, animated: true)
+        let pool = pools[id]
+        
+        if !pool.isContestLive {
+            let uid = Auth.auth().currentUser!.uid
+            reference.child("Teams").child(uid).observeSingleEvent(of: .value) { (snaphot) in
+                let snap = snaphot.value as? [String: Any]
+                if snap == nil { // no team has been created
+                    let coinSelectionController = CoinSelectionController()
+                    coinSelectionController.selectedPool = self.pools[id]
+                    DispatchQueue.main.async {
+                        self.navigationController?.pushViewController(coinSelectionController, animated: true)
+                    }
+                } else {
+                    self.checkIfUserHasJoinedPool(with: id)
                 }
-            } else {
-                self.checkIfUserHasJoinedPool(with: id)
             }
+        } else {
+            print("Pool already live")
         }
     }
     

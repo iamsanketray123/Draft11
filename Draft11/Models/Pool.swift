@@ -31,7 +31,7 @@ struct Pool {
         self.isContestLive = dictionary["isContestLive"] as? Bool ?? Bool()
         let prizeBreakupStrings = dictionary["prizeBreakup"] as? [String: Int] ?? [String: Int]()
         setupPrizeRange(prizeBreakupStrings: prizeBreakupStrings)
-        
+
         let players = dictionary["players"] as? [String: Any] ?? [String: Any]()
         for (key,_) in players {
             self.playerUIDs.append(key)
