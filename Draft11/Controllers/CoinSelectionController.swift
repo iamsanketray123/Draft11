@@ -207,9 +207,6 @@ class CoinSelectionController: UIViewController {
                 }
             }
         }
-        
-        
-        
     }
     
     

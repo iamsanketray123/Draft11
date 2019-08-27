@@ -65,11 +65,19 @@ class PoolsListController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        collectionView.isUserInteractionEnabled = true
+    }
+    
     @IBAction func goToSettings(_ sender: Any) {
         self.navigationController?.pushViewController(ProfileController(), animated: true)
     }
     
     fileprivate func checkIfUserHasCreatedATeam(id: Int) {
+        
+        collectionView.isUserInteractionEnabled = false
         let pool = pools[id]
         
         if !pool.isContestLive {
@@ -80,6 +88,7 @@ class PoolsListController: UIViewController {
                     let coinSelectionController = CoinSelectionController()
                     coinSelectionController.selectedPool = self.pools[id]
                     DispatchQueue.main.async {
+                        self.collectionView.isUserInteractionEnabled = true
                         self.navigationController?.pushViewController(coinSelectionController, animated: true)
                     }
                 } else {
@@ -107,8 +116,8 @@ class PoolsListController: UIViewController {
         print("User has joined this pool but contest isn't live. Start the game.")
         DispatchQueue.main.async {
             let coinSelectionController = CoinSelectionController()
-//            coinSelectionController.shouldStartGame = true
             coinSelectionController.selectedPool = pool
+            self.collectionView.isUserInteractionEnabled = true
             self.navigationController?.pushViewController(coinSelectionController, animated: true)
             return
         }
