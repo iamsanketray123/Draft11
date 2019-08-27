@@ -21,6 +21,7 @@ class CoinSelectionController: UIViewController {
     @IBOutlet weak var selectionCountLabel: UILabel!
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var stack: UIStackView!
+    @IBOutlet weak var downImage: UIImageView!
     
     
     var spotsLeftForPool = Int()
@@ -84,9 +85,6 @@ class CoinSelectionController: UIViewController {
                 self.selectedPool = pool
             })
         }
-    
-        
-        
         
     }
     
@@ -186,6 +184,34 @@ class CoinSelectionController: UIViewController {
         
     }
     
+    @IBAction func sortCoins(_ sender: Any) {
+        
+        if coins[0].percentageChange24h! > coins[1].percentageChange24h! {
+            coins.sort(by: {$0.percentageChange24h! < $1.percentageChange24h!})
+            UIView.animate(withDuration: 0.3) {
+                self.downImage.transform = self.downImage.transform.rotated(by: CGFloat.pi)
+            }
+        } else {
+            coins.sort(by: {$0.percentageChange24h! > $1.percentageChange24h!})
+            UIView.animate(withDuration: 0.3) {
+                self.downImage.transform = self.downImage.transform.rotated(by: CGFloat.pi)
+            }
+        }
+        
+        DispatchQueue.main.async {
+            self.coinsTable.reloadData()
+            if self.selectedCoins.count > 0 {
+                for coin in self.selectedCoins {
+                    guard let indexPath = self.coins.firstIndex(of: coin) else { return }
+                    self.coinsTable.selectRow(at: IndexPath(item: indexPath, section: 0), animated: true, scrollPosition: .none)
+                }
+            }
+        }
+        
+        
+        
+    }
+    
     
     
     fileprivate func generateDictionary(selectedCoins: [Coin]) -> [String: Double] {
@@ -276,7 +302,7 @@ extension CoinSelectionController : UITableViewDelegate, UITableViewDataSource {
         }
         
         
-        if selectedCoins.count < 5 {
+        if selectedCoins.count < 5 && !selectedCoins.contains(coin) {
             selectedCoins.append(coin)
         } else {
             tableView.deselectRow(at: indexPath, animated: true)
