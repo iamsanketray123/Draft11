@@ -73,6 +73,7 @@ extension PrizeBreakupAndLearboardView : UICollectionViewDelegate, UICollectionV
             } else {
                 prizeBreakUpController.table.isHidden = false
                 prizeBreakUpController.leaderboardTable.isHidden = true
+                prizeBreakUpController.waitingLabel.alpha = 0
                 prizeBreakUpController.displayTrophyIfRequired()
             }
         }

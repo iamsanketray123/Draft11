@@ -29,6 +29,7 @@ class PrizeBreakUpController: UIViewController {
     @IBOutlet weak var leaderboardTable: UITableView!
     @IBOutlet weak var gradientContainer: UIView!
     @IBOutlet weak var endGameButton: UIButton!
+    @IBOutlet weak var waitingLabel: UILabel!
     
     var selectedPool: Pool?
     let cellId = "cellId"
@@ -100,7 +101,6 @@ class PrizeBreakUpController: UIViewController {
         
         animateRedDot()
         
-        prizeBreakupView.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
     }
     
     @IBAction func checkIfUserHasCreatedATeam(_ sender: Any) {
@@ -192,7 +192,7 @@ class PrizeBreakUpController: UIViewController {
         
         prizeBreakupContainer.addSubview(prizeBreakupView)
         prizeBreakupView.anchor(top: prizeBreakupContainer.topAnchor, left: prizeBreakupContainer.leftAnchor, bottom: prizeBreakupContainer.bottomAnchor, right: prizeBreakupContainer.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
+        prizeBreakupView.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
         
         confirmedTag.layer.cornerRadius = 1.5
         confirmedTag.layer.borderColor = UIColor(white: 0, alpha: 0.25).cgColor
@@ -319,6 +319,7 @@ class PrizeBreakUpController: UIViewController {
         let playerIDs = pool.playerUIDs
         print(playerIDs, "🆔")
         if pool.isContestLive {
+            waitingLabel.alpha = 0
             getCryptoDetailsFor(coinsString: sortedCoinString, currency: "USD", completionForError: { (errorMessage) in
                 print(errorMessage)
             }) { (coinsFromAPICall) in
@@ -343,6 +344,10 @@ class PrizeBreakUpController: UIViewController {
                 }
             }
         } else {
+            buttonGradientLoadingBar.hide()
+            UIView.animate(withDuration: 1) {
+                self.waitingLabel.alpha = 1
+            }
             print("Waiting for other players to join")
         }
     }
