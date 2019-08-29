@@ -43,8 +43,8 @@
                                 <constraint firstAttribute="width" constant="30" id="LVn-zk-2uw"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Draft11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qv-Pv-ssP">
-                            <rect key="frame" x="170.66666666666666" y="50" width="66" height="24"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fanrex" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qv-Pv-ssP">
+                            <rect key="frame" x="170.66666666666666" y="50" width="61.666666666666657" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="iRk-vS-EnB"/>
                             </constraints>

@@ -73,11 +73,10 @@ class PrizeBreakUpController: UIViewController {
         super.viewDidLoad()
         
         let gradientColorList = [
-            #colorLiteral(red: 0.9490196078, green: 0.3215686275, blue: 0.431372549, alpha: 1), #colorLiteral(red: 0.9450980392, green: 0.4784313725, blue: 0.5921568627, alpha: 1), #colorLiteral(red: 0.9529411765, green: 0.737254902, blue: 0.7843137255, alpha: 1), #colorLiteral(red: 0.4274509804, green: 0.8666666667, blue: 0.9490196078, alpha: 1), #colorLiteral(red: 0.7568627451, green: 0.9411764706, blue: 0.9568627451, alpha: 1)
+            #colorLiteral(red: 0.9577245116, green: 0, blue: 0.2201176882, alpha: 1), #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), #colorLiteral(red: 0.937110126, green: 0.818107307, blue: 0.3834404945, alpha: 1), #colorLiteral(red: 0.5141299367, green: 0.9479157329, blue: 0.1380886734, alpha: 1), #colorLiteral(red: 0, green: 0.9703634381, blue: 0, alpha: 1)
         ]
         
         buttonGradientLoadingBar = GradientLoadingBar(height: 3, gradientColorList: gradientColorList, onView: gradientContainer)
-        
         
         reference = Database.database().reference()
         
