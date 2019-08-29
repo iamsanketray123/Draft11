@@ -1,6 +1,6 @@
 //
 //  RevenueController.swift
-//  Draft11
+//  Fanrex
 //
 //  Created by Sanket Ray on 8/22/19.
 //  Copyright © 2019 Sanket Ray. All rights reserved.
@@ -112,7 +112,7 @@ class RevenueController: UIViewController, PieChartDelegate {
                 let specialTextLabel = UILabel()
                 specialTextLabel.textAlignment = .center
                 specialTextLabel.textColor = UIColor.draft11Red()
-                specialTextLabel.text = "Draft11 Gross Margin"
+                specialTextLabel.text = "Fanrex Gross Margin"
                 specialTextLabel.numberOfLines = 0
                 specialTextLabel.font = UIFont.boldSystemFont(ofSize: 14)
                 specialTextLabel.sizeToFit()

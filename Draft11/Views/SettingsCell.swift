@@ -1,6 +1,6 @@
 //
 //  SettingsCell.swift
-//  Draft11
+//  Fanrex
 //
 //  Created by Sanket Ray on 8/25/19.
 //  Copyright © 2019 Sanket Ray. All rights reserved.

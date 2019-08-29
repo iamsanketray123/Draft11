@@ -68,8 +68,8 @@
                                         <action selector="login:" destination="-1" eventType="touchUpInside" id="EOW-Cg-Yf5"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DRAFT11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huh-VU-Adl">
-                                    <rect key="frame" x="-132" y="276" width="78" height="22"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FANREX" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huh-VU-Adl">
+                                    <rect key="frame" x="-129" y="276" width="71.5" height="22"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="22" id="XR8-Ru-hd0"/>
                                     </constraints>
@@ -90,14 +90,6 @@
                                 <constraint firstItem="Mav-s5-06H" firstAttribute="top" secondItem="x4v-FT-bVo" secondAttribute="top" constant="300" id="dvF-Hm-zLl"/>
                                 <constraint firstItem="Pxz-vW-Df0" firstAttribute="leading" secondItem="x4v-FT-bVo" secondAttribute="leading" constant="16" id="k26-Eu-1wZ"/>
                             </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                    <color key="value" red="0.039215686270000001" green="0.039215686270000001" blue="0.078431372549019607" alpha="0.82927547089999998" colorSpace="calibratedRGB"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

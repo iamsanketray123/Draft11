@@ -1,6 +1,6 @@
 //
 //  PoolsListController.swift
-//  Draft11
+//  Fanrex
 //
 //  Created by Sanket Ray on 8/14/19.
 //  Copyright © 2019 Sanket Ray. All rights reserved.

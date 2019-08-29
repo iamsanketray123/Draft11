@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_Draft11VersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_Draft11VersionString[];
+FOUNDATION_EXPORT double Pods_FanrexVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_FanrexVersionString[];
 
