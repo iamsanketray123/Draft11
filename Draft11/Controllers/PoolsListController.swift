@@ -62,7 +62,7 @@ class PoolsListController: UIViewController {
             self.collectionView.reloadItems(at: [IndexPath(item: indexOfPoolToReplace, section: 0)])
             print(self.pools[indexOfPoolToReplace])
         }
-        
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -285,18 +285,15 @@ extension String {
 
 
 /*
+ 
  Phase - 1
- It all started in 2016, when I took a leap of faith to drop out of college and kickoff my start up. Little did I know what I was getting into. After about 9 months, due to lack of funds and no co-founder or a mentor, I took a major hit. The project ended in the infant stage. Having spent all my savings, I had no other option but to get a job.
+ It all started in 2016, when I took a leap of faith, to drop out of college and kickstart, "LetsDraft" - a fantasy sports website. Little did I know what I was getting into. After about 9 months of developing the product, with limited funds and no co-founder or a mentor, I took a major hit. The project ended abruptly in its infancy. Having spent all my savings, I had no other option but to take up a job.
  
  Phase - 2
+ Joining a startup was the best way to understand how things worked and why I failed. CashRich provided the right platform and Sougata, the required mentorship. I teamed up with Aditya, a finance and strategy MBA graduate from Boston University. We were initially clueless about the idea we wanted to work upon. After months of brainstorming, we decided to revamp my old idea of "Fantasy sports" into "Fantasy Finance". Fantasy sports now was a saturated market and the market for Fantasy finance; well it doesn't exist yet! After some research we found 108 million potential customers.
  
- Joining a startup was the best way to understand how things worked. CashRich provided the right platform and Sougata, the required mentorship.
- 
- 
+ Phase - 3
+ This time with a mentor and an experienced co-founder, I am starting from scratch. Hope you get onboard ;)
+ There are no wrong decisions in life, you have to take a decision and make it right.
 
-
-
-this time with a mentor and co-founder I am ready to spring into action. Again!
-
- 
  */

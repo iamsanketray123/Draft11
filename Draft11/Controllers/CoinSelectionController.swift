@@ -216,7 +216,7 @@ class CoinSelectionController: UIViewController {
         
         var dictionary = [String: Double]()
         for coin in selectedCoins {
-            dictionary["\(coin.symbol)"] = (20000 / coin.price!)
+            dictionary["\(coin.symbol)"] = (2000 / coin.price!)
         }
         
         return dictionary

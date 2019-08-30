@@ -12,7 +12,6 @@ class CoinCell: UITableViewCell {
 
     @IBOutlet weak var coinImage: UIImageView!
     @IBOutlet weak var coinName: UILabel!
-//    @IBOutlet weak var checked: UIImageView!
     @IBOutlet weak var change24Hours: UILabel!
     @IBOutlet weak var symbol: UILabel!
     @IBOutlet weak var currentPrice: UILabel!

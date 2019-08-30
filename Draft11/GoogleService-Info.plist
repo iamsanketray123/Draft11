@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>340212022476-t6l0b5ogci1iiq9okovndr0d5clubsna.apps.googleusercontent.com</string>
+	<string>340212022476-vsphd6bjb7cvirc1l3cjecfh7mke6qnd.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.340212022476-t6l0b5ogci1iiq9okovndr0d5clubsna</string>
+	<string>com.googleusercontent.apps.340212022476-vsphd6bjb7cvirc1l3cjecfh7mke6qnd</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBtQU3pyXX59DerfCygvDdZ428yjssacds</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,23 +13,23 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>Chingel.Draft11</string>
+	<string>com.Chingel.Fanrex</string>
 	<key>PROJECT_ID</key>
 	<string>draft11-fe7ed</string>
 	<key>STORAGE_BUCKET</key>
 	<string>draft11-fe7ed.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:340212022476:ios:1fe51ffc96b461e3</string>
+	<string>1:340212022476:ios:784d6b8a7d61a5eb</string>
 	<key>DATABASE_URL</key>
 	<string>https://draft11-fe7ed.firebaseio.com</string>
 </dict>
