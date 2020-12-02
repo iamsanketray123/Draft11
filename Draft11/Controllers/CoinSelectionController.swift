@@ -46,11 +46,12 @@ class CoinSelectionController: UIViewController {
         reference = Database.database().reference()
         selectedCoins = [Coin]()
         
-        coinsTable.delegate = self
-        coinsTable.dataSource = self
-        coinsTable.allowsMultipleSelection = true
-        coinsTable.register(UINib.init(nibName: "CoinCell", bundle: nil), forCellReuseIdentifier: coinCellId)
+        setupCoinsTableView()
+        fetchDetails(selectedPool, uid)
         
+    }
+    
+    fileprivate func fetchDetails(_ selectedPool: Pool, _ uid: String) {
         getCryptoDetailsFor(coinsString: sortedCoinString, currency: "USD", completionForError: { (errorMessage) in
             print(errorMessage)
         }) { (coins) in
@@ -76,8 +77,6 @@ class CoinSelectionController: UIViewController {
         confirmButton.layer.shadowOffset.width = 0
         confirmButton.layer.shadowOffset.height = 3
         
-        
-        
         reference.child("Pools").child(selectedPool.id).observe(.childChanged) { (snapshot) in
             self.reference.child("Pools").child(selectedPool.id).observe(.value, with: { (snapshot) in
                 guard let dictionary = snapshot.value as? [String: Any] else { return }
@@ -85,7 +84,13 @@ class CoinSelectionController: UIViewController {
                 self.selectedPool = pool
             })
         }
-        
+    }
+    
+    fileprivate func setupCoinsTableView() {
+        coinsTable.delegate = self
+        coinsTable.dataSource = self
+        coinsTable.allowsMultipleSelection = true
+        coinsTable.register(UINib.init(nibName: "CoinCell", bundle: nil), forCellReuseIdentifier: coinCellId)
     }
     
     fileprivate func displayConfirmButtonIfRequired() {

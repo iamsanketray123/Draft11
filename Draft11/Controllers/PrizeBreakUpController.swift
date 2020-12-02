@@ -69,37 +69,35 @@ class PrizeBreakUpController: UIViewController {
         })
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    fileprivate func setupGradients() {
         let gradientColorList = [
             #colorLiteral(red: 0.9577245116, green: 0, blue: 0.2201176882, alpha: 1), #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), #colorLiteral(red: 0.937110126, green: 0.818107307, blue: 0.3834404945, alpha: 1), #colorLiteral(red: 0.5141299367, green: 0.9479157329, blue: 0.1380886734, alpha: 1), #colorLiteral(red: 0, green: 0.9703634381, blue: 0, alpha: 1)
         ]
         
         buttonGradientLoadingBar = GradientLoadingBar(height: 3, gradientColorList: gradientColorList, onView: gradientContainer)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        setupGradients()
         reference = Database.database().reference()
-        
         createRankStringRange()
         sortPrizeRange()
         setupUI()
         
         if let selectedPool = selectedPool {
-            
             fetchPoolDetails(selectedPool: selectedPool)
-            
             reference.child("Pools").child(selectedPool.id).observe(.childChanged) { (snapshot) in
                 self.fetchPoolDetails(selectedPool: selectedPool)
             }
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         animateRedDot()
-        
     }
     
     @IBAction func checkIfUserHasCreatedATeam(_ sender: Any) {
@@ -284,7 +282,6 @@ class PrizeBreakUpController: UIViewController {
             amounts = sortedAmounts.map({formatter.string(from: NSNumber(value: $0))!})
             displayTrophyIfRequired()
         }
-        
     }
     
     fileprivate func createRankStringRange() {

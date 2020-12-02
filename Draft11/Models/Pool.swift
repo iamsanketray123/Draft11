@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct Pool {
     let entryFee: Int
     let id: String

@@ -30,16 +30,16 @@ class PoolsListController: UIViewController {
         return cv
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    
+    fileprivate func setupGradients() {
         let gradientColorList = [
             #colorLiteral(red: 0.9577245116, green: 0, blue: 0.2201176882, alpha: 1), #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), #colorLiteral(red: 0.937110126, green: 0.818107307, blue: 0.3834404945, alpha: 1), #colorLiteral(red: 0.5141299367, green: 0.9479157329, blue: 0.1380886734, alpha: 1), #colorLiteral(red: 0, green: 0.9703634381, blue: 0, alpha: 1)
         ]
         
         buttonGradientLoadingBar = GradientLoadingBar(height: 3, gradientColorList: gradientColorList, onView: gradientContainer)
         buttonGradientLoadingBar.show()
-        
+    }
+    
+    fileprivate func setupCollectionView() {
         categoryContainer.addSubview(categoryView)
         categoryView.anchor(top: categoryContainer.topAnchor, left: categoryContainer.leftAnchor, bottom: categoryContainer.bottomAnchor, right: categoryContainer.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         categoryView.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
@@ -48,10 +48,16 @@ class PoolsListController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib.init(nibName: "PoolCell", bundle: nil), forCellWithReuseIdentifier: poolCellId)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+        setupGradients()
+        setupCollectionView()
+        
         reference = Database.database().reference()
-        
         fetchDataAndReload()
-        
         reference.child("Pools").observe(.childChanged) { (snapshot) in
             guard let dictionary = snapshot.value as? [String: Any] else { return }
             let changedPool = Pool(dictionary: dictionary)

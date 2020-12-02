@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct Coin: Equatable {
     let id: Int
     let symbol: String

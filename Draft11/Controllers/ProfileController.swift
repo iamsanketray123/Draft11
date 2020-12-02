@@ -22,21 +22,27 @@ class ProfileController: UIViewController {
     let options = ["Refresh All Games", "Delete My Portfolio", "Sign Out"]
     let optionsImages = [#imageLiteral(resourceName: "refresh.png"), #imageLiteral(resourceName: "delete.png"), #imageLiteral(resourceName: "exit.png")]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    fileprivate func setupTableView() {
         table.delegate = self
         table.dataSource = self
         table.tableFooterView = UIView()
         table.register(UINib.init(nibName: "SettingsCell", bundle: nil), forCellReuseIdentifier: "cellId")
-        
+    }
+    
+    fileprivate func setupUI() {
         nameTextField.delegate = self
         self.navigationController?.navigationBar.isTranslucent = false
-        reference = Database.database().reference()
-        
         container.layer.cornerRadius = 4
         container.layer.masksToBounds = true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        setupTableView()
+        setupUI()
+        
+        reference = Database.database().reference()
         guard let userID = Auth.auth().currentUser?.uid else { return }
         reference.child("Users").child(userID).observeSingleEvent(of: .value) { (snap) in
             guard let dict = snap.value as? [String: String] else { return }
